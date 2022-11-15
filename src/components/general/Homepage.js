@@ -5,7 +5,9 @@ import Navbar from './Navbar';
 
 const Homepage = () => {
 
-    const [routines, setRoutines] = useState([]);
+    const [ routines, setRoutines ] = useState([]);
+    const [ activities, setActivities ] = useState([]);
+
     const [ profileData, setProfileData ] = useState({});
     const [ loggedIn, setLoggedIn ] = useState(false);
 
@@ -48,13 +50,34 @@ const Homepage = () => {
                     }
                 )
                 const data = await response.json();
-                // console.log("routine data: ", data);
+                // console.log("routines data: ", data);
                 setRoutines(data);
             } catch (error) {
                 console.log(error);
             }
         }
         fetchRoutines();
+    }, []);
+
+    useEffect(() => {
+        async function fetchActivities() {
+            try {
+                const activities = await fetch(
+                    'http://fitnesstrac-kr.herokuapp.com/api/activities',
+                    {
+                        headers: {
+                            "Content-Type": "application/json"
+                        }
+                    }
+                )
+                const activitiesData = await activities.json();
+                // console.log("activities data: ", activitiesData);
+                setActivities(activitiesData);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchActivities();
     }, []);
 
 
@@ -69,7 +92,7 @@ const Homepage = () => {
             </div>
             <Navbar loggedIn={loggedIn} profileData={profileData} />
 
-            <Outlet context={{ routines, setRoutines, profileData, setProfileData, loggedIn, setLoggedIn }} />
+            <Outlet context={{ routines, setRoutines, activities, setActivities, profileData, setProfileData, loggedIn, setLoggedIn }} />
 
         </div>
 

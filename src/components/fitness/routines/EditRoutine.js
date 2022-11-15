@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext, useNavigate, useLocation } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const EditRoutine = (props) => {
     const [name, setName] = useState(props.routineData.name);
@@ -32,38 +32,19 @@ const EditRoutine = (props) => {
             console.log("EDIT ROUTINE DATA: ", data);
 
             if (data.id) {
-                // TODO: get the routine to be updated upon returning to 
                 await fetchRoutines();
-                props.handleToggleEditForm();
+                props.handleToggleEditRoutineForm();
                 
                 navigate('/routines/my-routines');
             } else {
                 setErrorMessage(data.error);
             }
 
-
         } catch(error) {
             console.log(error);
         }
     }
 
-    async function fetchRoutines() {
-        try {
-            const updatedRoutines = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/routines',
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedRoutinesData = await updatedRoutines.json();
-            console.log("updated routines data: ", updatedRoutinesData);
-            setRoutines(updatedRoutinesData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     async function deleteRoutine() {
         try {
@@ -81,7 +62,6 @@ const EditRoutine = (props) => {
             console.log("DELETE ROUTINE DATA: ", data);
 
             if (data.success) {
-                // TODO: get the routine to be updated upon returning to 
                 await fetchRoutines();
                 props.handleToggleEditForm();
                 
@@ -90,12 +70,44 @@ const EditRoutine = (props) => {
                 setErrorMessage(data.error);
             }
 
-
         } catch(error) {
             console.log(error);
         }
     }
 
+
+    async function fetchRoutines() {
+        try {
+            const updatedMyRoutines = await fetch(
+                `http://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
+            const updatedMyRoutinesData = await updatedMyRoutines.json();
+            console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
+            props.setRoutines(updatedMyRoutinesData);
+        } catch (error) {
+            console.log(error);
+        }
+        try {
+            const updatedRoutines = await fetch(
+                `http://fitnesstrac-kr.herokuapp.com/api/routines`,
+                {
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            )
+            const updatedRoutinesData = await updatedRoutines.json();
+            console.log("FAST UPDATE routines data: ", updatedRoutinesData);
+            setRoutines(updatedRoutinesData);
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
 
     return (

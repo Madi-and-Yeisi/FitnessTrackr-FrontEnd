@@ -38,7 +38,7 @@ const MyRoutines = () => {
             <button><Link to={'/routines/my-routines/add'}>Add New Routine</Link></button>
             {
                 routines.length ? routines.map((routine, idx) => {
-                    return <RoutinePreview key={idx} routine={routine} />
+                    return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
                 }) : <p>No routines to display</p>
             }
         </div>
