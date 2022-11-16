@@ -6,7 +6,6 @@ import Navbar from './Navbar';
 const Homepage = () => {
 
     const [ routines, setRoutines ] = useState([]);
-    const [ activities, setActivities ] = useState([]);
 
     const [ profileData, setProfileData ] = useState({});
     const [ loggedIn, setLoggedIn ] = useState(false);
@@ -16,7 +15,7 @@ const Homepage = () => {
         async function isLoggedIn() {    
             try {
                 const response = await fetch(
-                    'http://fitnesstrac-kr.herokuapp.com/api/users/me',
+                    'https://fitnesstrac-kr.herokuapp.com/api/users/me',
                     {
                         headers: {
                             "Content-Type": "application/json",
@@ -43,7 +42,7 @@ const Homepage = () => {
         async function fetchRoutines() {
             try {
                 const response = await fetch(
-                    'http://fitnesstrac-kr.herokuapp.com/api/routines',
+                    'https://fitnesstrac-kr.herokuapp.com/api/routines',
                     {
                         headers: {
                             "Content-Type": "application/json"
@@ -65,7 +64,7 @@ const Homepage = () => {
         async function fetchActivities() {
             try {
                 const activities = await fetch(
-                    'http://fitnesstrac-kr.herokuapp.com/api/activities',
+                    'https://fitnesstrac-kr.herokuapp.com/api/activities',
                     {
                         headers: {
                             "Content-Type": "application/json"
@@ -93,7 +92,7 @@ const Homepage = () => {
             </div>
             <Navbar loggedIn={loggedIn} profileData={profileData} />
 
-            <Outlet context={{ routines, setRoutines, activities, setActivities, profileData, setProfileData, loggedIn, setLoggedIn }} />
+            <Outlet context={{ routines, setRoutines, profileData, setProfileData, loggedIn, setLoggedIn }} />
         </div>
 
     )

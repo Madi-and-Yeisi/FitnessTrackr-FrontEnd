@@ -16,7 +16,7 @@ const NewActivity = () => {
 
         try {
             const response = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/activities',
+                'https://fitnesstrac-kr.herokuapp.com/api/activities',
                 {
                     method: "POST",
                     headers: {

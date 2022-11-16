@@ -15,7 +15,7 @@ const EditActivity = (props) => {
 
         try {
             const response = await fetch(
-                `http://fitnesstrac-kr.herokuapp.com/api/activities/${props.activityData.id}`,
+                `https://fitnesstrac-kr.herokuapp.com/api/activities/${props.activityData.id}`,
                 {
                     method: "PATCH",
                     headers: {
@@ -49,7 +49,7 @@ const EditActivity = (props) => {
     async function fetchActivities() {
         try {
             const updatedActivities = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/activities',
+                'https://fitnesstrac-kr.herokuapp.com/api/activities',
                 {
                     headers: {
                         "Content-Type": "application/json"
