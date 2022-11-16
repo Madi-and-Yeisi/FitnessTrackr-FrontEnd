@@ -3,7 +3,7 @@ import React from 'react';
 const ErrorPage = () => {
     return (
         <div>
-            <p>Oh no, page not found! {":("}</p>
+            <h3 className='centered error'>Oh no, page not found! {":("}</h3>
         </div>
     )
 };

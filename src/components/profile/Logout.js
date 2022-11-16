@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, useOutletContext, useNavigate } from "react-router-dom";
-
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const Logout = () => {
 
@@ -16,9 +15,9 @@ const Logout = () => {
     }
 
     return (
-        <div>
-            <p>Are you sure you want to log out?</p>
-            <button onClick={logOutUser}>LOGOUT</button>
+        <div className='centered'>
+            <h1>Are you sure you want to log out?</h1>
+            <button onClick={logOutUser} className='green button'>LOGOUT</button>
         </div>
     )
 }

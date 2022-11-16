@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext, useNavigate, useLocation } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const EditRoutineActivity = (props) => {
     const [count, setCount] = useState(props.activityData.count);
     const [duration, setDuration] = useState(props.activityData.duration);
 
-    const [activities, setActivities] = useState([]);
-
-    console.log("edit activity props", props);
-
     const [errorMessage, setErrorMessage] = useState("");
 
     const { profileData, setRoutines } = useOutletContext();
     const navigate = useNavigate();
+
 
     async function editActivityFormSubmitHandler(event) {
         event.preventDefault();
@@ -80,6 +77,7 @@ const EditRoutineActivity = (props) => {
         }
     }
 
+
     async function fetchRoutines() {
         try {
             const updatedMyRoutines = await fetch(
@@ -114,29 +112,27 @@ const EditRoutineActivity = (props) => {
     }
 
 
-
     return (
         <div>
-            <h2>Editing Activity</h2>
-
-            <form onSubmit={editActivityFormSubmitHandler} className="form">
-                <label>Count:</label>
-                <input type="number" value={count} onChange={(event) => setCount(event.target.value)}></input>
-
-                <br/>
-
-                <label>Duration:</label>
-                <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)}></input>
-
-                <br/>
-
-                <button onClick={deleteActivity}>REMOVE ACTIVITY</button>
-                <button type="submit">UPDATE Activity</button>
+            <form onSubmit={editActivityFormSubmitHandler} className="activity-form">
+                <div className='separated-horiz-container'>
+                    <div className='vert-flex-container'>
+                        <label>Count:</label>
+                        <input type="number" value={count} onChange={(event) => setCount(event.target.value)} className="numeric-input"></input>
+                    </div>
+                    <div className='vert-flex-container'>
+                        <label>Duration:</label>
+                        <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)} className="numeric-input"></input>
+                    </div>
+                </div>
+                <div className='separated-horiz-container'>
+                    <button onClick={deleteActivity} className="red small-button">Remove Activity</button>
+                    <button type="submit" className='green small-button'>Update Activity</button>
+                </div>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null
             }
-
         </div>
     )
 };

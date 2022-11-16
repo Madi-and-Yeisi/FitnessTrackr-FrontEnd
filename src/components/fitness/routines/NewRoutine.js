@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const NewRoutine = () => {
     const [name, setName] = useState("");
@@ -39,8 +39,6 @@ const NewRoutine = () => {
                 // TODO: translate error to something user friendly
                 setErrorMessage(data.error);
             }
-
-
         } catch(error) {
             console.log(error);
         }
@@ -48,9 +46,9 @@ const NewRoutine = () => {
 
 
     return (
-        <div>
-            <h2>Adding New Routine</h2>
-            <p>@{profileData.username}</p>
+        <div className='vert-flex-container'>
+            <h2>New Routine</h2>
+            <p>by @{profileData.username}</p>
 
             <form onSubmit={newRoutineFormSubmitHandler} className="form">
                 <label>Name:</label>
@@ -68,12 +66,11 @@ const NewRoutine = () => {
 
                 <br/>
 
-                <button type="submit">ADD ROUTINE</button>
+                <button type="submit" className='green button'>Add Routine</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null
             }
-
         </div>
     )
 };

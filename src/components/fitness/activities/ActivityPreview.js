@@ -22,22 +22,27 @@ const ActivityPreview = (props) => {
         setToggleEditRoutineActivityForm(!toggleEditRoutineActivityForm);
     }
 
+    function activityCardClass() {
+        if (activitiesPage) return "activity-page-card";
+        else return "activity-card"
+    }
+
 
     return (
-        <div className='card'>
-            <Link to={`/routines/featured/${activityData.id}`}>{activityData.name}</Link>
+        <div className={ activityCardClass() }>
+            <Link to={`/routines/featured/${activityData.id}`} className="activity-tag">{activityData.name}</Link>
             <p>{activityData.description}</p>
             {
                 activityData.count ? 
-                <div>
-                    <p>count: {activityData.count}</p>
-                    <p>duration: {activityData.duration}</p>
+                <div className='separated-horiz-container'>
+                    <div><strong>Count: </strong>{activityData.count}</div>
+                    <div><strong>Duration: </strong>{activityData.duration}</div>
                 </div>
                 : null
             }
             {
-                myRoutinesPage ? <button onClick={handleToggleEditRoutineActivityForm}>Edit Activity</button>  
-                : activitiesPage ? <button onClick={handleToggleEditActivityForm}>Edit Activity</button> : null
+                myRoutinesPage ? <button onClick={handleToggleEditRoutineActivityForm}  className="purple small-button">Edit Activity</button>  
+                : activitiesPage ? <button onClick={handleToggleEditActivityForm}  className="purple small-button">Edit Activity</button> : null
             }
             {
                 toggleEditActivityForm ? <EditActivity activityData={activityData} handleToggleEditActivityForm={handleToggleEditActivityForm} setActivities={props.setActivities} /> : null
@@ -45,7 +50,6 @@ const ActivityPreview = (props) => {
             {
                 toggleEditRoutineActivityForm ? <EditRoutineActivity activityData={activityData} handleToggleEditRoutineActivityForm={handleToggleEditRoutineActivityForm} setRoutines={props.setRoutines} /> : null
             }
-            
         </div>
     )
 }

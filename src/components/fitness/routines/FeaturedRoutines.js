@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
-import { useOutletContext, useLocation, Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 
 import RoutinePreview from "./RoutinePreview";
 
 const FeaturedRoutines = () => {
-    const { profileData } = useOutletContext();
 
-    const [routines, setRoutines] = useState([]);
+    const [ routines, setRoutines ] = useState([]);
+    const [ featuredTag, setFeaturedTag ] = useState("");
 
     const location = useLocation();
     const id = location.pathname.slice('/routines/featured/'.length);
+
 
     useEffect(() => {
         async function fetchRoutines() {
@@ -25,6 +25,7 @@ const FeaturedRoutines = () => {
                 )
                 const data = await response.json();
                 // console.log("routine data: ", data);
+                determineFeaturedTag(data[0]);
                 setRoutines(data);
             } catch (error) {
                 console.log(error);
@@ -34,14 +35,24 @@ const FeaturedRoutines = () => {
     }, []);
 
 
+    async function determineFeaturedTag(routine) {
+        routine.activities.forEach(activity => {
+            if (activity.id == id) setFeaturedTag(activity.name);
+        })
+    }
+
+
     return (
         <div>
-            <h1>Routines featuring</h1>
+            <h1>Routines featuring {featuredTag}</h1>
+            <div className="horiz-flex-container">
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
                 }) : <p>No routines to display</p>
             }
+            </div>
+
         </div>
     )
 }

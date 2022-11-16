@@ -19,9 +19,6 @@ import CreatorRoutines from './components/fitness/routines/CreatorRoutines';
 import FeaturedRoutines from './components/fitness/routines/FeaturedRoutines';
 import AddActivity from './components/fitness/routineActivities/AddRoutineActivity';
 
-
-
-
 const router = createBrowserRouter([
     {
         path: "/",

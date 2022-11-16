@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { useOutletContext, useLocation, Link } from "react-router-dom";
-
+import { useOutletContext, Link } from "react-router-dom";
 
 import RoutinePreview from "./RoutinePreview";
 
@@ -8,6 +7,7 @@ const MyRoutines = () => {
     const { profileData } = useOutletContext();
 
     const [routines, setRoutines] = useState([]);
+
 
     useEffect(() => {
         async function fetchRoutines() {
@@ -33,14 +33,18 @@ const MyRoutines = () => {
 
     return (
         <div>
-            <h1>My Routines</h1>
-            <p>@{profileData.username}</p>
-            <button><Link to={'/routines/my-routines/add'}>Add New Routine</Link></button>
+            <div className="separated-horiz-container">
+                <h1>@{profileData.username}'s routines</h1>
+                <button className="green button"><Link to={'/routines/my-routines/add'} className="black no-line">Add New Routine</Link></button>
+            </div>
+
+            <div className="horiz-flex-container">
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
                 }) : <p>No routines to display</p>
             }
+            </div>
         </div>
     )
 }

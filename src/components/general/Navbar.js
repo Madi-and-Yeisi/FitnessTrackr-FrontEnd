@@ -5,11 +5,11 @@ const Navbar = (props) => {
 
     return (
         <nav className="navbar">
-            <Link to="/">Home</Link>
-            <Link to="routines">Routines</Link>
-            <Link to="activities">Activities</Link>
+            <Link to="/" className="link">Home</Link>
+            <Link to="routines" className="link">Routines</Link>
+            <Link to="activities" className="link">Activities</Link>
             {
-                props.loggedIn ? <Link to={"/routines/my-routines"}>My Routines</Link> : null
+                props.loggedIn ? <Link to={"/routines/my-routines"} className="link">My Routines</Link> : null
             }
         </nav>
     )
