@@ -9,15 +9,15 @@ import Profile from './components/profile/Profile';
 import Login from './components/profile/Login';
 import Logout from './components/profile/Logout';
 import Register from './components/profile/Register';
-import Routines from './components/fitness/AllRoutines';
-import Activities from './components/fitness/AllActivities';
-import NewActivity from './components/fitness/NewActivity';
-import MyRoutines from './components/fitness/MyRoutines';
-import NewRoutine from './components/fitness/NewRoutine';
-import EditRoutine from './components/fitness/EditRoutine';
-import AddActivity from './components/fitness/AddActivity';
-import CreatorRoutines from './components/fitness/CreatorRoutines';
-import FeaturedRoutines from './components/fitness/FeaturedRoutines';
+import Activities from './components/fitness/activities/AllActivities';
+import NewActivity from './components/fitness/activities/NewActivity';
+import Routines from './components/fitness/routines/AllRoutines';
+import MyRoutines from './components/fitness/routines/MyRoutines';
+import NewRoutine from './components/fitness/routines/NewRoutine';
+import EditRoutine from './components/fitness/routines/EditRoutine';
+import CreatorRoutines from './components/fitness/routines/CreatorRoutines';
+import FeaturedRoutines from './components/fitness/routines/FeaturedRoutines';
+import AddActivity from './components/fitness/routineActivities/AddRoutineActivity';
 
 
 

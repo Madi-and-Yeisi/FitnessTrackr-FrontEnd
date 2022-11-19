@@ -34,8 +34,9 @@ const EditActivity = (props) => {
             console.log("EDIT ACTIVITY DATA: ", data);
 
             if (data.id) {
-                props.handleToggleEditForm();
+                props.handleToggleEditActivityForm();
                 // TODO: make it updated when it returns to activites page
+                await fetchActivities();
                 navigate('/activities');
             } else {
                 setErrorMessage(data.error);
@@ -49,17 +50,17 @@ const EditActivity = (props) => {
 
     async function fetchActivities() {
         try {
-            const updatedRoutines = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/routines',
+            const updatedActivities = await fetch(
+                'http://fitnesstrac-kr.herokuapp.com/api/activities',
                 {
                     headers: {
                         "Content-Type": "application/json"
                     }
                 }
             )
-            const updatedRoutinesData = await updatedRoutines.json();
-            console.log("updated routines data: ", updatedRoutinesData);
-            setRoutines(updatedRoutinesData);
+            const updatedActivitiesData = await updatedActivities.json();
+            console.log("FAST UPDATE activities data: ", updatedActivitiesData);
+            props.setActivities(updatedActivitiesData);
         } catch (error) {
             console.log(error);
         }

@@ -43,7 +43,7 @@ const Activities = () => {
             }
             {
                 activities.length ? activities.map((activity, idx) => {
-                    return <ActivityPreview key={idx} activity={activity} />
+                    return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
                 }) : <p>No activities to display</p>
             }
         </div>

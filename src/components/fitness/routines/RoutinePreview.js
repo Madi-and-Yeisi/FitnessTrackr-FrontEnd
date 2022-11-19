@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useOutletContext } from "react-router-dom";
 import EditRoutine from './EditRoutine';
-import AddActivity from './AddActivity';
+import ActivityPreview from '../activities/ActivityPreview';
+import AddRoutineActivity from '../routineActivities/AddRoutineActivity';
 
 const RoutinePreview = (props) => {
     const { profileData, setRoutines } = useOutletContext();
 
-    const [toggleEditForm, setToggleEditForm] = useState(false);
+    const [toggleEditRoutineForm, setToggleEditRoutineForm] = useState(false);
+    // const [toggleEditActivityForm, setToggleEditActivityForm] = useState(false);
     const [toggleAddActivityForm, setToggleAddActivityForm] = useState(false);
     // console.log("THIS THE PROPS", props)
 
@@ -16,8 +18,8 @@ const RoutinePreview = (props) => {
     let myPost = routineData.creatorName === profileData.username;
     // console.log("myPost? ", myPost)
 
-    function handleToggleEditForm() {
-        setToggleEditForm(!toggleEditForm);
+    function handleToggleEditRoutineForm() {
+        setToggleEditRoutineForm(!toggleEditRoutineForm);
     }
 
     function handleToggleAddActivityForm() {
@@ -32,27 +34,22 @@ const RoutinePreview = (props) => {
             {
                 routineData.activities.length ? routineData.activities.map((activity, idx) => {
                     return (
-                        <div key={idx} className='card'>
-                            <h4>{activity.name}</h4>
-                            <p>{activity.description}</p>
-                            <p>duration: {activity.duration}</p>
-                            <p>count: {activity.count}</p>
-                        </div>
+                        <ActivityPreview activity={activity} key={idx} setRoutines={props.setRoutines}/>
                     )
                 }) : <p className='card'>No activities to display</p>
             }
             {
-                myPost ? <button onClick={handleToggleEditForm}>Edit Routine</button> 
+                myPost ? <button onClick={handleToggleEditRoutineForm}>Edit Routine</button> 
                 : <p>created by <Link to={`/routines/${routineData.creatorName}`}>@{routineData.creatorName}</Link></p>
             }
             {
-                toggleEditForm ? <EditRoutine routineData={routineData} handleToggleEditForm={handleToggleEditForm} /> : null
+                toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutines={props.setRoutines} /> : null
             }
             {
                 myPost ? <button onClick={handleToggleAddActivityForm}>Add Activity</button> : null
             }
             {
-                toggleAddActivityForm ? <AddActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} /> : null
+                toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutines={props.setRoutines} /> : null
             }
             
         </div>

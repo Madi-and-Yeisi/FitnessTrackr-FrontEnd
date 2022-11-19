@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const NewActivity = () => {
     const [name, setName] = useState("");
@@ -9,6 +9,7 @@ const NewActivity = () => {
 
     const { profileData } = useOutletContext();
     const navigate = useNavigate();
+
 
     async function newActivityFormSubmitHandler(event) {
         event.preventDefault();
@@ -36,7 +37,6 @@ const NewActivity = () => {
             } else {
                 setErrorMessage(data.error);
             }
-
 
         } catch(error) {
             console.log(error);
