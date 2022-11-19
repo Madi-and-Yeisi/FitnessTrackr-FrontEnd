@@ -11,6 +11,7 @@ const Homepage = () => {
     const [ profileData, setProfileData ] = useState({});
     const [ loggedIn, setLoggedIn ] = useState(false);
 
+
     useEffect(() => {
         async function isLoggedIn() {    
             try {
@@ -59,6 +60,7 @@ const Homepage = () => {
         fetchRoutines();
     }, []);
 
+
     useEffect(() => {
         async function fetchActivities() {
             try {
@@ -81,19 +83,17 @@ const Homepage = () => {
     }, []);
 
 
-
     return (
         <div>
             <div className='header'>
                 <h1 className='title'>FitnessTrackr</h1>
                 {
-                    loggedIn ? <Link to="profile/logout">Logout</Link> : <Link to="profile/login">Login</Link>
+                    loggedIn ? <Link to="profile/logout" className='login'>Logout</Link> : <Link to="profile/login" className='login'>Login</Link>
                 }
             </div>
             <Navbar loggedIn={loggedIn} profileData={profileData} />
 
             <Outlet context={{ routines, setRoutines, activities, setActivities, profileData, setProfileData, loggedIn, setLoggedIn }} />
-
         </div>
 
     )

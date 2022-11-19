@@ -1,12 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 const AddRoutineActivity = (props) => {
-
-    // be able to add an activity to a routine via a small form which has a dropdown for all activities,
-    // and inputs for count and duration
-
-    console.log("add activity to routine", props);
 
     const [activites, setActivities] = useState([]);
     const [chosenActivity, setChosenActivity] = useState({});
@@ -14,7 +9,6 @@ const AddRoutineActivity = (props) => {
 
     const [count, setCount] = useState("");
     const [duration, setDuration] = useState("");
-
 
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -80,6 +74,7 @@ const AddRoutineActivity = (props) => {
         }
     }
 
+
     async function fetchRoutines() {
         try {
             const updatedMyRoutines = await fetch(
@@ -91,7 +86,7 @@ const AddRoutineActivity = (props) => {
                 }
             )
             const updatedMyRoutinesData = await updatedMyRoutines.json();
-            console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
+            // console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
             props.setRoutines(updatedMyRoutinesData);
         } catch (error) {
             console.log(error);
@@ -106,16 +101,16 @@ const AddRoutineActivity = (props) => {
                 }
             )
             const updatedRoutinesData = await updatedRoutines.json();
-            console.log("FAST UPDATE routines data: ", updatedRoutinesData);
+            // console.log("FAST UPDATE routines data: ", updatedRoutinesData);
             setRoutines(updatedRoutinesData);
         } catch (error) {
             console.log(error);
         }
     }
 
+
     function handleSetChosenActivity(activityName) {
         const activityObj = activites.find(activity => activity.name === activityName);
-        console.log("activityObj", activityObj);
         setChosenActivity(activityObj);
     }
 
@@ -123,9 +118,7 @@ const AddRoutineActivity = (props) => {
 
     return (
         <div>
-            <h2>Adding Activity to Routine</h2>
-
-            <form onSubmit={addActivityFormSubmitHandler} className="form">
+            <form onSubmit={addActivityFormSubmitHandler} className="routine-form">
                 <label>Choose Activity</label>
                 <select value={chosenActivity.name} defaultValue={defaultChosenActivity.name} onChange={(event) => handleSetChosenActivity(event.target.value)}>
                         {
@@ -134,25 +127,27 @@ const AddRoutineActivity = (props) => {
                         })
                         }
                 </select>
+                
+                <br/>
 
-
-
-                <label>Count:</label>
-                <input type="number" value={count} onChange={(event) => setCount(event.target.value)}></input>
+                <div className='separated-horiz-container'>
+                    <div className='vert-flex-container'>
+                        <label>Count:</label>
+                        <input type="number" value={count} onChange={(event) => setCount(event.target.value)} className="numeric-input"></input>
+                    </div>
+                    <div className='vert-flex-container'>
+                        <label>Duration:</label>
+                        <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)} className="numeric-input"></input>
+                    </div>
+                </div>
 
                 <br/>
 
-                <label>Duration:</label>
-                <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)}></input>
-
-                <br/>
-
-                <button type="submit">ADD ACTIVITY</button>
+                <button type="submit" className='green small-button'>Add Activity</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null
             }
-
         </div>
     )
 };

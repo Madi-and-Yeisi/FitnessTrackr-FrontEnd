@@ -1,10 +1,16 @@
 import React from 'react';
+import { useOutletContext, useNavigate } from "react-router-dom";
+
 
 const Profile = () => {
+    const { loggedIn, profileData } = useOutletContext();
 
     return (
-        <div>
-            <p>Hello from the profile page!</p>
+        <div className='centered'>
+            <h1>Welcome</h1>
+            {
+                loggedIn ? <h2>{profileData.username} !</h2> : null
+            }
         </div>
     )
 }

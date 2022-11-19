@@ -45,11 +45,11 @@ const NewActivity = () => {
 
 
     return (
-        <div>
+        <div className='vert-flex-container'>
             <h2>Adding New Activity</h2>
             <p>@{profileData.username}</p>
 
-            <form onSubmit={newActivityFormSubmitHandler} className="form">
+            <form onSubmit={newActivityFormSubmitHandler} className="new-form">
                 <label>Name:</label>
                 <input type="text" value={name} onChange={(event) => setName(event.target.value)}></input>
 
@@ -60,7 +60,7 @@ const NewActivity = () => {
 
                 <br/>
 
-                <button type="submit">ADD ACTIVITY</button>
+                <button type="submit" className='green button'>Add Activity</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null

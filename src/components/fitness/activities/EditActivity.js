@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext, useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const EditActivity = (props) => {
     const [name, setName] = useState(props.activityData.name);
     const [description, setDescription] = useState(props.activityData.description);
 
-    console.log("soy props", props);
-
     const [errorMessage, setErrorMessage] = useState("");
 
-    const { profileData, setRoutines } = useOutletContext();
     const navigate = useNavigate();
+
 
     async function editActivityFormSubmitHandler(event) {
         event.preventDefault();
@@ -69,9 +67,7 @@ const EditActivity = (props) => {
 
     return (
         <div>
-            <h2>Editing Routine</h2>
-
-            <form onSubmit={editActivityFormSubmitHandler} className="form">
+            <form onSubmit={editActivityFormSubmitHandler} className="activity-form">
                 <label>Name:</label>
                 <input type="text" value={name} onChange={(event) => setName(event.target.value)}></input>
 
@@ -82,12 +78,11 @@ const EditActivity = (props) => {
 
                 <br/>
 
-                <button type="submit">UPDATE Activity</button>
+                <button type="submit" className='green small-button'>Update Activity</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null
             }
-
         </div>
     )
 };

@@ -1,15 +1,12 @@
 import React, {useEffect, useState} from "react";
 import { useOutletContext, Link } from "react-router-dom";
 
-
 import ActivityPreview from "./ActivityPreview";
 
 const Activities = () => {
-
     const [activities, setActivities] = useState([]);
 
     const { loggedIn } = useOutletContext();
-
 
 
     useEffect(() => {
@@ -36,16 +33,21 @@ const Activities = () => {
 
     return (
         <div>
-            <h1>Activities</h1>
-            {
-                loggedIn ? <button><Link to={'/activities/add'}>Add New Activity</Link></button> : null
-
-            }
+            <div className="separated-horiz-container">
+                <h1>Activities</h1>
+                <div>
+                {
+                    loggedIn ? <button className="green button"><Link to={'/activities/add'} className="black no-line">Add New Activity</Link></button> : null
+                }
+                </div>
+            </div>
+            <div className="horiz-flex-container">
             {
                 activities.length ? activities.map((activity, idx) => {
                     return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
                 }) : <p>No activities to display</p>
             }
+            </div>
         </div>
     )
 }

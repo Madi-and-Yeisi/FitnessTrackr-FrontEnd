@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Righteous&display=swap');
 
 body {
     background-color: whitesmoke;
@@ -6,50 +6,251 @@ body {
     color: black;
 }
 
-.header {
+.vert-flex-container {
     display: flex;
-    background-color: #90b4cb;
+    flex-direction: column;
+    align-items: center;
+}
+
+.horiz-flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: stretch;
+}
+
+.separated-horiz-container {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-left: 10px;
-    border: 2px solid #87adc4;
-    border-radius: 5px;
-    box-shadow: 2px 2px 5px #7695a9;
-    margin-bottom: 10px;
+}
+
+
+.error {
+    color: #ca0818;
+    font-weight: bold;
+}
+
+.black {
+    color: black;
+    font-weight: bold;
+}
+
+.purple {
+    color: #4A306D;
+    /* border-color: #442C63; */
+    /* box-shadow: 1px 1px 1px #4D3371; */
+}
+
+.green {
+    color: #5E8C61;
+    border-color: #5E8C61;
+    box-shadow: 1px 1px 1px #527A54;
+}
+
+.red {
+    color: #ca0818;
+    border-color: #b30614;
+    box-shadow: 1px 1px 1px #980612;
 
 }
 
+.centered {
+    text-align: center;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #8B8BAE;
+    box-shadow: 2px 2px 5px #8787AB;
+    border: 2px solid #7B7BA3;
+    border-radius: 5px;
+}
+
 .title {
-    margin: 10px 5px;
-    font-family: 'Righteous', cursive;
-    font-size: 28pt;
+    margin: 5px;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 32pt;
+    color: white;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;
+}
+
+.login {
+    color: black;
+    font-size: 14pt;
 }
 
 .navbar {
     display: flex;
-    gap: 30px;
-    margin: 10px 5px;
+    justify-content: space-evenly;
+    margin-top: 5px;
     padding: 10px 20px;
+    font-size: 16pt;
+    background-color: black;
+    box-shadow: 2px 2px 5px black;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.link, link:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #8B8BAE;
+    font-weight: bold;
+}
+
+.button {
+    background-color: whitesmoke;
+    border: 2px solid;
+    border-radius: 5px;
+    padding: 2px 20px;
     font-size: 14pt;
+    text-align: center;
+    cursor: pointer;
+}
+
+.small-button {
+    background-color: #F0F0F0;
+    border: 2px solid;
+    border-radius: 5px;
+    width: fit-content;
+    padding: 2px 2px;
+    margin-top: 10px;
+    font-size: 10pt;
+    text-align: center;
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.no-line, no-line:visited {
+    text-decoration: none;
+    color: black;
+
 }
 
 .form {
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin: 20px;
     width: 250px;
-    padding: 10px 25px;
-    border: 2px solid lavender;
+    padding: 25px 25px;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px #D1D1EA;
 }
 
-.card {
-    background-color: white;
-    margin: 10px 5px;
-    padding: 10px 25px;
-    border: 2px solid lavender;
+.routine-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 250px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
     border-radius: 10px;
-    box-shadow: 2px 2px 5px #D1D1EA;
+}
+
+.activity-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 200px;
+    padding: 10px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.new-form {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+    width: 500px;
+    padding: 50px;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.numeric-input {
+    width: 75px;
+}
+
+.routine-card {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    /* color: white;
+    /* background-color: #1B4C74; */
+    background-color: whitesmoke;
+    border: 2px solid #8B8BAE;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #8787AB;
 
 }
+
+.routine-title {
+    /* color: white;
+    text-shadow: -2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black; */
+}
+
+.activities-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.activity-card {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 250px;
+    color: black;
+    background-color: #F0F0F0;
+    border: 2px solid #E0E0E0;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #DEDEDE;
+}
+
+.activity-page-card {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    color: black;
+    background-color: whitesmoke;
+    border: 2px solid #133653;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #0E273C;
+}
+
+.creator-tag-container {
+    display: flex;
+    align-items: baseline;
+}
+
+.creator-tag {
+    color: #8B8BAE;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 14pt;
+}
+
+.activity-tag {
+    color: #4A306D;
+    font-size: 14pt;
+    font-weight: bold;
+
+}
+

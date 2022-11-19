@@ -112,9 +112,7 @@ const EditRoutine = (props) => {
 
     return (
         <div>
-            <h2>Editing Routine</h2>
-
-            <form onSubmit={editRoutineFormSubmitHandler} className="form">
+            <form onSubmit={editRoutineFormSubmitHandler} className="routine-form">
                 <label>Name:</label>
                 <input type="text" value={name} onChange={(event) => setName(event.target.value)}></input>
 
@@ -130,8 +128,8 @@ const EditRoutine = (props) => {
 
                 <br/> */}
 
-                <button onClick={deleteRoutine}>DELETE ROUTINE</button>
-                <button type="submit">UPDATE ROUTINE</button>
+                <button onClick={deleteRoutine} className='red small-button'>Delete Routine</button>
+                <button type="submit" className='green small-button'>Update Routine</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null
