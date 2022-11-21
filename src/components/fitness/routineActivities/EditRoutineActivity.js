@@ -16,7 +16,7 @@ const EditRoutineActivity = (props) => {
 
         try {
             const response = await fetch(
-                `http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${props.activityData.routineActivityId}`,
+                `https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${props.activityData.routineActivityId}`,
                 {
                     method: "PATCH",
                     headers: {
@@ -50,7 +50,7 @@ const EditRoutineActivity = (props) => {
     async function deleteActivity() {
         try {
             const response = await fetch(
-                `http://fitnesstrac-kr.herokuapp.com/api/routine_activities/${props.activityData.routineActivityId}`,
+                `https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${props.activityData.routineActivityId}`,
                 {
                     method: "DELETE",
                     headers: {
@@ -81,7 +81,7 @@ const EditRoutineActivity = (props) => {
     async function fetchRoutines() {
         try {
             const updatedMyRoutines = await fetch(
-                `http://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
+                `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
                 {
                     headers: {
                         "Content-Type": "application/json"

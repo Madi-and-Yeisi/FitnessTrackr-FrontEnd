@@ -16,7 +16,7 @@ const FeaturedRoutines = () => {
         async function fetchRoutines() {
             try {
                 const response = await fetch(
-                    `http://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`,
+                    `https://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`,
                     {
                         headers: {
                             "Content-Type": "application/json"
