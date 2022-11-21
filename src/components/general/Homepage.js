@@ -60,28 +60,6 @@ const Homepage = () => {
     }, []);
 
 
-    useEffect(() => {
-        async function fetchActivities() {
-            try {
-                const activities = await fetch(
-                    'https://fitnesstrac-kr.herokuapp.com/api/activities',
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-                const activitiesData = await activities.json();
-                // console.log("activities data: ", activitiesData);
-                setActivities(activitiesData);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchActivities();
-    }, []);
-
-
     return (
         <div>
             <div className='header'>
