@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 
+import { registerFetch, userFetch } from '../../api/users';
+
 
 const Register = () => {
 
@@ -16,35 +18,18 @@ const Register = () => {
 
         // TODO: provide feedback on the form if the user provides incorrect credentials, or bad usernames or passwords
 
-        try {
-            const response = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/users/register',
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                            username: username,
-                            password: password
-                    })
-                }
-            )
-            const data = await response.json();
-            // console.log("register data:", data);
-
-            if (data.user) {
-                console.log(data.message);
-                setLoggedIn(true);
-                localStorage.setItem("token", data.token);
-                setProfileData(data.user);
-                navigate("/profile");
-            } else {
-                // problem registering
-                setErrorMessage(data.error);
-            }
-        } catch(error) {
-            console.log(error);
+        const registerFetchData = await registerFetch(username, password);
+        
+        if (registerFetchData.success) {
+            console.log(registerFetchData.message);
+            setLoggedIn(true);
+            localStorage.setItem("token", registerFetchData.token);
+            const userFetchData = userFetch();
+            setProfileData(userFetchData.user);
+            navigate("/profile");
+        } else {
+            // problem registering
+            setErrorMessage(registerFetchData.message);
         }
     }
 

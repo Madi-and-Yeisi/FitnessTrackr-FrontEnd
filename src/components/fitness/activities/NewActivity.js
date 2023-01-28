@@ -1,45 +1,29 @@
 import React, { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
+import { newActivityFetch } from '../../../api/activities';
 
 const NewActivity = () => {
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-
-    const [errorMessage, setErrorMessage] = useState("");
 
     const { profileData } = useOutletContext();
     const navigate = useNavigate();
+
+    const [name, setName] = useState("");
+    const [description, setDescription] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+
+    const [errorMessage, setErrorMessage] = useState("");
 
 
     async function newActivityFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                'https://fitnesstrac-kr.herokuapp.com/api/activities',
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        description: description
-                    })
-                }
-            )
-            const data = await response.json();
-            // console.log("NEW ACTIVITY DATA: ", data);
-
-            if (data.id) {
-                navigate('/activities');
-            } else {
-                setErrorMessage(data.error);
-            }
-
-        } catch(error) {
-            console.log(error);
+        const newActivityFetchData = await newActivityFetch(name, description, imageUrl);
+        if (newActivityFetchData.success) {
+            const updatedActivitiesData = await activitiesFetch();
+            // setActivities(updatedActivitiesData.activities);
+            navigate('/activities');
+        } else {
+            setErrorMessage(newActivityFetchData.message);
         }
     }
 

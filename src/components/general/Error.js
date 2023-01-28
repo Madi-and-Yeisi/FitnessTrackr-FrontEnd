@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ErrorPage = () => {
+const Error = () => {
     return (
         <div>
             <h3 className='centered error'>Oh no, page not found! {":("}</h3>
@@ -8,4 +8,4 @@ const ErrorPage = () => {
     )
 };
 
-export default ErrorPage; 
+export default Error; 
