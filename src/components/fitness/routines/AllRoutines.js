@@ -9,9 +9,16 @@ const Routines = () => {
 
 
     return (
-        <div>
-            <h1>Routines</h1>
-            <div className="horiz-flex-container">
+        <div className="page-container">
+            <div className="separated-horiz-container sticky-sub-header sub-header">
+                <div className="sub-title">Routines</div>
+                <div>
+                {
+                    // search 
+                }
+                </div>
+            </div>
+            <div className="vert-flex-container">
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />

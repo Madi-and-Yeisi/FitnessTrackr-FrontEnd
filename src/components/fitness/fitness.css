@@ -1,0 +1,383 @@
+
+.page-container {
+    padding: 20px 80px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.sub-header {
+    background-color: rgba(0, 0, 0, 0.75);
+    padding: 10px;
+    border-radius: 3px;
+}
+
+/* scrolling routines box */
+
+.scroll-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.25);
+    height: 70vh;
+    width: 700px;
+    border-radius: 5px;
+    overflow-y: scroll;
+    /* border: 10px solid green; */
+}
+
+/* tablet styles conditional sizing */
+@media screen and (max-width:768px) {
+    .scroll-box {
+    width: 80vw!important;
+    height: 65;
+    /* border: 10px solid red; */
+    }
+}
+
+/* mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .scroll-box {
+    width: 90vw!important;
+    height: 55vh;
+    /* border: 10px solid blue; */
+    }
+}
+
+.scroll-box::-webkit-scrollbar {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.scroll-box::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+    background-color: rgba(222, 207, 57, .75);
+    /* border: 1px solid rgb(222, 207, 57); */
+    border-radius: 5px;
+}
+
+
+/* routine cards */
+
+.routine-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    /* padding: 10px; */
+    width: 80%;
+    background-color: rgba(23, 23, 56, 0.5);
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px rgb(23, 23, 56);
+    border: 1px solid lime;
+
+}
+
+/* tablet styles conditional sizing */
+@media screen and (max-width:850px) {
+    .routine-card {
+    width: 80vw!important;
+    border: 1px solid yellow;
+    }
+}
+
+/* mobile styles conditional sizing */
+@media screen and (max-width:480px) {
+    .routine-card {
+    width: 95%!important;
+    border: 1px solid magenta;
+    }
+}
+
+/* skinny mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .routine-card {
+    width: 95%!important;
+    border: 1px solid lightcoral;
+    }
+}
+
+.activities-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 0px 20px;
+    margin-bottom: 10px;
+    width: 500px;
+    height: 20vh;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* background-color: seagreen;
+    border: 5px solid hotpink; */
+}
+
+
+/* tablet styles conditional sizing */
+@media screen and (max-width:850px) {
+    .activities-container {
+    width: 480px!important;
+    height: 20vh;
+    border: 1px solid red;
+    }
+}
+
+/* mobile styles conditional sizing */
+@media screen and (max-width:480px) {
+    .activities-container {
+    width: 200px!important;
+    height: 55vh;
+    border: 1px solid blue;
+    }
+}
+
+/* skinny mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .routine-card {
+    width: 100px!important;
+    border: 1px solid orange;
+    }
+}
+
+
+.slider {
+    overflow-x: scroll;
+    /* overflow-y: auto; // TODO: fix weird vertical scroll bug */
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    scrollbar-width: none;
+    width: 90%;
+    height: 90%;
+    padding-top: 10px;
+    
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-nav {
+    font-size: 2rem;
+    width: 5%;
+    /* font-weight: bold; */
+    cursor: pointer;
+    border-radius: 20px;
+    padding: 30px 10px;
+    background-color: rgba(226, 217, 218, 0.75);
+    /* border: 2px dotted darkviolet; */
+
+}
+
+.slider-nav:hover {
+    scale: 120%;
+    color: #decf39;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.routine-card-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px 3px 0 0;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.routine-title {
+    margin: 0px;
+    padding: 10px 0 10px 20px;
+    color: white;
+    text-shadow: 3px -3px 4px black, 3px 3px 4px black;
+}
+
+.routine-goal {
+    align-self: flex-start;
+    padding: 5px;
+    margin-left: 20px;
+    border-radius: 3px;
+    background-color: rgba(226, 217, 218, 0.75);
+}
+
+.creator-tag {
+    color: #decf39;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    padding-right: 25px;
+    border-radius: 10px;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 14pt;
+}
+
+.routine-activities {
+    margin: 4px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgba(226, 217, 218, 0.75);
+    color: #171738;
+}
+
+.show-activities-icon {
+    font-size: 1.5em;
+    color: rgba(226, 217, 218);
+    cursor: pointer;
+}
+
+
+/* activities */
+
+
+
+.new-activity-button {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    /* background-color: rgba(226, 217, 218); */
+    background-color: rgba(222, 207, 57, .75);
+    border: 2pt solid rgba(222, 207, 57, .85);
+    border-radius: 3pt;
+    padding: 5px;
+    /* background-color: red; */
+}
+
+.activity-card {
+    position: relative;
+    display: inline-block;
+    /* display: flex; */
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 374px;
+    /* height: 148x; */
+    height: 80%;
+    padding: 10px;
+    background-color: rgba(226, 217, 218, 0.75);
+    border-radius: 5px;
+    border: 1px solid lime;
+
+    /* box-shadow: 2px 2px 5px #DEDEDE; */
+}
+
+/* tablet styles conditional sizing */
+@media screen and (max-width:850px) {
+    .activity-card {
+    width: 354px!important;
+    height: 15vh;
+    border: 1px solid fuchsia;
+    }
+}
+
+/* mobile styles conditional sizing */
+@media screen and (max-width:480px) {
+    .activities-container {
+    width: 200px!important;
+    height: 55vh;
+    border: 1px solid blue;
+    }
+}
+
+/* skinny mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .activities-container {
+    width: 100px!important;
+    border: 1px solid goldenrod;
+    }
+}
+
+.activity-page-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 30vw;
+    height: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(23, 23, 56, 0.5);
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px rgb(23, 23, 56);
+}
+
+.empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14pt;
+}
+
+.activity-card-contents {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 318px;
+    height: 100%;
+}
+
+.activity-card-info-container {
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-end; */
+    white-space: normal;
+    /* inline-size: 160px; */
+    overflow-wrap: break-word;
+}
+
+.activity-tag {
+    color: whitesmoke;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2px;
+    border-radius: 5px;
+    font-size: 14pt;
+    font-weight: bold;
+    inline-size: 160px;
+    overflow-wrap: break-word;
+}
+
+.activity-card-image {
+    /* width: 140px;
+    height: 140px; */
+    height: 100%;
+    max-width: 140px;
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.5)
+}
+
+.activity-card-description {
+    flex-grow: 2;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    color: #171738;
+}
+
+.activity-card-stats {
+    display: flex;
+    align-items: baseline;
+    padding-bottom: 2px;
+    gap: 2px;
+    color: #7669AE;
+    align-self: flex-end;
+
+}
+
+.activity-stat {
+    font-weight: bold;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.edit-activity {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    color: #7669AE;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow: 2px 2px 3px rgba(0, 0, 0);
+    border: none;
+    border-radius: 3px;
+    padding: 8px 20px 8px 14px;
+    width: fit-content;
+    font-size: 12pt;
+    text-align: center;
+    cursor: pointer;
+    align-self: flex-end;
+}

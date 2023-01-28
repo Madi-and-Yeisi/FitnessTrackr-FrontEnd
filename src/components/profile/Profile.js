@@ -1,5 +1,5 @@
 import React from 'react';
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useOutletContext, useNavigate, Link } from "react-router-dom";
 
 
 const Profile = () => {

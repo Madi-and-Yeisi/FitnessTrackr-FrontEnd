@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { loginFetch, userFetch } from '../../api/users';
 
 const Login = () => {
 
@@ -15,55 +16,19 @@ const Login = () => {
     async function loginFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/users/login',
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        username: username,
-                        password: password
-                    })
-                }
-            )
-            const data = await response.json();
-            // console.log("This is our translated data: ", data);
-            if (data.user) {
-                setLoggedIn(true);
-                localStorage.setItem("token", data.token);
-                fetchUserInfo();
-            } else {
-                // username or password is incorrect
-                setErrorMessage(data.error);
-            }
-        } catch(error) {
-            console.log(error);
+        const loginFetchData = await loginFetch(username, password);
+
+        if (loginFetchData.success) {
+            setLoggedIn(true);
+            localStorage.setItem("token", loginFetchData.token);
+            const userFetchData = await userFetch();
+            setProfileData(userFetchData);
+            navigate('/');
+        } else {
+            setErrorMessage(loginFetchData.message);
         }
     }
 
-
-    async function fetchUserInfo(event) {    
-        try {
-            const response = await fetch(
-                'http://fitnesstrac-kr.herokuapp.com/api/users/me',
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                })
-                
-            const data = await response.json();
-            // console.log("User profile data: ", data);
-            setProfileData(data);
-            navigate('/profile');
-        } catch(error) {
-            console.log(error);
-        }
-    }
 
     function handleTogglePasswordVisibility(event) {
         setPasswordVisibility(event.target.checked);

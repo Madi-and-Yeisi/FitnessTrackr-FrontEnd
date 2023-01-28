@@ -1,7 +1,10 @@
 import React, {useEffect, useState} from "react";
 import { useOutletContext, Link } from "react-router-dom";
 
+import { GrAddCircle } from 'react-icons/gr';
+
 import ActivityPreview from "./ActivityPreview";
+import { activitiesFetch } from "../../../api/activities";
 
 const Activities = () => {
     const [activities, setActivities] = useState([]);
@@ -11,40 +14,30 @@ const Activities = () => {
 
     useEffect(() => {
         async function fetchActivities() {
-            try {
-                const response = await fetch(
-                    'https://fitnesstrac-kr.herokuapp.com/api/activities',
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-                const data = await response.json();
-                // console.log("activity data: ", data);
-                setActivities(data);
-            } catch (error) {
-                console.log(error);
-            }
+            const activitiesData = await activitiesFetch();
+            activitiesData.success ? setActivities(activitiesData.activities) : console.log(activitiesData.message);
+            console.log('activities', activities);
         }
         fetchActivities();
     }, []);
 
 
+
+
     return (
-        <div>
-            <div className="separated-horiz-container">
-                <h1>Activities</h1>
+        <div className="page-container">
+            <div className="separated-horiz-container sticky-sub-header sub-header">
+                <div className="sub-title">Activities</div>
                 <div>
                 {
-                    loggedIn ? <button className="green button"><Link to={'/activities/add'} className="black no-line">Add New Activity</Link></button> : null
+                    loggedIn ? <button className="new-activity-button"><GrAddCircle /><Link to={'/activities/add'} className="black no-line">Add New</Link></button> : null
                 }
                 </div>
             </div>
-            <div className="horiz-flex-container">
+            <div className="vert-flex-container">
             {
                 activities.length ? activities.map((activity, idx) => {
-                    return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
+                    return <ActivityPreview key={idx} activity={activity} />
                 }) : <p>No activities to display</p>
             }
             </div>

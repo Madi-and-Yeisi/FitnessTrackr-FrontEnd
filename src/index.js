@@ -2,9 +2,9 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import Homepage from './components/general/Homepage';
-import ErrorPage from './components/general/ErrorPage';
-import Index from './components/general/Index';
+import App from './components/general/App';
+import Home from './components/general/Home';
+import Error from './components/general/Error';
 import Profile from './components/profile/Profile';
 import Login from './components/profile/Login';
 import Logout from './components/profile/Logout';
@@ -22,12 +22,12 @@ import AddActivity from './components/fitness/routineActivities/AddRoutineActivi
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Homepage />,
-        errorElement: <ErrorPage />,
+        element: <App />,
+        errorElement: <Error />,
         children: [
             {
                 index: true,
-                element: <Index />
+                element: <Home />
             },
             {
                 path: "/profile",
