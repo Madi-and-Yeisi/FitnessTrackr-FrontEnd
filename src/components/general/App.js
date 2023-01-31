@@ -28,8 +28,8 @@ const App = () => {
     async function getRoutines() {
         const routinesData = await fetchRoutines();
 
-        if ( routinesData.length ) {
-            setRoutines(routinesData);
+        if ( routinesData.routines.length ) {
+            setRoutines(routinesData.routines);
         } else {
             console.log( routinesData.error );
         }

@@ -32,19 +32,17 @@ const RoutineActivityPreview = (props) => {
         <div className='activity-card'>
             <div className='activity-card-contents'>
                 {
-                    randomImage ? <img className='activity-card-image' src={randomImage}></img> : null
+                    activityData.imageUrl ? <img className='activity-card-image' src={activityData.imageUrl}></img> : null
                 }
                 <div className='activity-card-info-container'>
                     <Link to={`/routines/featured/${activityData.id}`} className="activity-tag">{activityData.name}</Link>
-                    <div className='activity-card-description'>{activityData.description}</div>
+                    <div className='activity-card-description scroll-box'>{activityData.description}</div>
                     {
                         activityData.count ? 
-                            <div className='activity-card-stats'><strong>Count: </strong><div className='activity-stat'>{activityData.count}</div></div>
-                        : null
-                    }
-                    {
-                        activityData.count ? 
-                            <div className='activity-card-stats'><strong>Duration: </strong><div className='activity-stat'>{activityData.duration}</div></div>
+                            <div className='activity-card-stats-container'>
+                                <div className='activity-card-stats'><strong>Count: </strong><div className='activity-stat'>{activityData.count}</div></div>
+                                <div className='activity-card-stats'><strong>Duration: </strong><div className='activity-stat'>{activityData.duration}</div></div>
+                            </div>
                         : null
                     }
                     {

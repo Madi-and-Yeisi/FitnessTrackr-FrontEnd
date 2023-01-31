@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
+import { editRoutineFetch, fetchRoutines } from '../../../api/routines';
+import { userRoutinesFetch } from '../../../api/users';
+
 const EditRoutine = (props) => {
     const [name, setName] = useState(props.routineData.name);
     const [goal, setGoal] = useState(props.routineData.goal);
+    const [isPublic, setIsPublic] = useState(props.routineData.isPublic);
 
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -13,35 +17,17 @@ const EditRoutine = (props) => {
     async function editRoutineFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routines/${props.routineData.id}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        goal: goal
-                    })
-                }
-            )
-            const data = await response.json();
-            console.log("EDIT ROUTINE DATA: ", data);
+        const editRoutineFetchData = await editRoutineFetch(props.routineData.id, name, goal, isPublic);
 
-            if (data.id) {
-                await fetchRoutines();
-                props.handleToggleEditRoutineForm();
-                
-                navigate('/routines/my-routines');
-            } else {
-                setErrorMessage(data.error);
-            }
-
-        } catch(error) {
-            console.log(error);
+        if (editRoutineFetchData.success) {
+            props.handleToggleEditRoutineForm();
+            const myUpdatedRoutines = await userRoutinesFetch(profileData.username);
+            props.setRoutines(myUpdatedRoutines.routines);
+            const updatedRoutines = await fetchRoutines();
+            setRoutines(updatedRoutines.routines);
+            navigate('/routines/my-routines');
+        } else {
+            setErrorMessage(editRoutineFetchData.message);
         }
     }
 
@@ -76,38 +62,23 @@ const EditRoutine = (props) => {
     }
 
 
-    async function fetchRoutines() {
-        try {
-            const updatedMyRoutines = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedMyRoutinesData = await updatedMyRoutines.json();
-            console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
-            props.setRoutines(updatedMyRoutinesData);
-        } catch (error) {
-            console.log(error);
-        }
-        try {
-            const updatedRoutines = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routines`,
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedRoutinesData = await updatedRoutines.json();
-            console.log("FAST UPDATE routines data: ", updatedRoutinesData);
-            setRoutines(updatedRoutinesData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // async function fetchMyRoutines() {
+    //     try {
+    //         const updatedMyRoutines = await fetch(
+    //             `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
+    //             {
+    //                 headers: {
+    //                     "Content-Type": "application/json"
+    //                 }
+    //             }
+    //         )
+    //         const updatedMyRoutinesData = await updatedMyRoutines.json();
+    //         console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
+    //         props.setRoutines(updatedMyRoutinesData);
+    //     } catch (error) {
+    //         console.log(error);
+    //     }
+    // }
 
 
     return (

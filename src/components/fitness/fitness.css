@@ -14,54 +14,6 @@
     border-radius: 3px;
 }
 
-/* scrolling routines box */
-
-.scroll-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: red;
-    height: 70vh;
-    width: 700px;
-    border-radius: 5px;
-    overflow-y: scroll;
-    /* border: 10px solid green; */
-}
-
-/* tablet styles conditional sizing */
-@media screen and (max-width:768px) {
-    .scroll-box {
-    width: 80vw!important;
-    height: 65;
-    /* border: 10px solid red; */
-    }
-}
-
-/* mobile styles conditional sizing */
-@media screen and (max-width:414px) {
-    .scroll-box {
-    width: 90vw!important;
-    height: 55vh;
-    /* border: 10px solid blue; */
-    }
-}
-
-.scroll-box::-webkit-scrollbar {
-    background-color: rgba(0, 0, 0, 0);
-}
-
-
-.scroll-box::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px;
-}
-
-.scroll-box::-webkit-scrollbar-thumb {
-    background-color: rgba(222, 207, 57, .75);
-    /* border: 1px solid rgb(222, 207, 57); */
-    border-radius: 5px;
-}
-
 
 /* routine cards */
 
@@ -71,7 +23,7 @@
     align-items: center;
     margin: 10px;
     /* padding: 10px; */
-    width: 80%;
+    width: 600px;
     background-color: rgba(245, 245, 245, 0.5);
     border-radius: 3px;
 }
@@ -98,6 +50,53 @@
     width: 95%!important;
     border: 1px solid lightcoral;
     }
+}
+
+.routine-card-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 3px 3px 0 0;
+    background-color: rgba(245, 245, 245, 0.25);
+}
+
+.routine-title {
+    margin: 0px;
+    padding: 10px 0 10px 20px;
+    color: #0b3551;
+    /* text-shadow: -1px -1px 1px #0a060c, 1px 1px 1px #0a060c, 3px 3px 3px #0b3551; */
+}
+
+.routine-goal {
+    align-self: flex-start;
+    padding: 5px;
+    margin-left: 20px;
+    border-radius: 3px;
+    background-color: rgba(245, 245, 245, 0.25);
+}
+
+.creator-tag {
+    color: #e85d75;
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    padding-right: 25px;
+    border-radius: 10px;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 14pt;
+}
+
+.routine-activities {
+    margin: 4px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: rgba(245, 245, 245, 0.25);
+    color: #171738;
+}
+
+.show-activities-icon {
+    font-size: 1.5em;
+    color: #0b3551;
+    cursor: pointer;
 }
 
 .activities-container {
@@ -176,52 +175,55 @@
     background-color: rgba(11, 53, 81, 0.75);
 }
 
-.routine-card-header {
+
+/* scrolling routine activity box */
+
+.scroll-box {
     display: flex;
-    width: 100%;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    border-radius: 3px 3px 0 0;
-    background-color: rgba(245, 245, 245, 0.25);
+    /* height: 180px; */
+    width: 100%;
+    border-radius: 5px;
+    overflow-y: scroll;
+    /* border: 10px solid green; */
 }
 
-.routine-title {
-    margin: 0px;
-    padding: 10px 0 10px 20px;
-    color: #0b3551;
-    /* text-shadow: -1px -1px 1px #0a060c, 1px 1px 1px #0a060c, 3px 3px 3px #0b3551; */
+/* tablet styles conditional sizing */
+@media screen and (max-width:768px) {
+    .scroll-box {
+    /* width: 80vw!important;
+    height: 65; */
+    /* border: 10px solid red; */
+    }
 }
 
-.routine-goal {
-    align-self: flex-start;
-    padding: 5px;
-    margin-left: 20px;
-    border-radius: 3px;
-    background-color: rgba(245, 245, 245, 0.25);
+/* mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .scroll-box {
+    /* width: 90vw!important;
+    height: 55vh; */
+    /* border: 10px solid blue; */
+    }
 }
 
-.creator-tag {
-    color: #e85d75;
-    /* background-color: rgba(0, 0, 0, 0.5); */
-    padding-right: 25px;
-    border-radius: 10px;
-    font-family: 'Racing Sans One', cursive;
-    font-size: 14pt;
+.scroll-box::-webkit-scrollbar {
+    width: 0.5em;
+    background-color: rgba(0, 0, 0, 0);
 }
 
-.routine-activities {
-    margin: 4px;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: rgba(245, 245, 245, 0.25);
-    color: #171738;
+
+.scroll-box::-webkit-scrollbar-track {
+    /* background-color: rgba(245, 245, 245, 0.25); */
+    border-radius: 5px;
 }
 
-.show-activities-icon {
-    font-size: 1.5em;
-    color: #0b3551;
-    cursor: pointer;
+.scroll-box::-webkit-scrollbar-thumb {
+    background-color: rgba(232, 93, 117, 0.5);
+    /* border: 1px solid rgb(222, 207, 57); */
+    border-radius: 5px;
 }
+
 
 
 /* activities */
@@ -253,13 +255,10 @@
     margin-left: 10px;
     margin-right: 10px;
     width: 374px;
-    /* height: 148x; */
     height: 80%;
     padding: 10px;
     background-color: rgba(86, 143, 170, 0.75);
     border-radius: 5px;
-
-    /* box-shadow: 2px 2px 5px #DEDEDE; */
 }
 
 /* tablet styles conditional sizing */
@@ -352,6 +351,12 @@
     padding-top: 5px;
     padding-bottom: 5px;
     color: #0a060c;
+}
+
+.activity-card-stats-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
 }
 
 .activity-card-stats {

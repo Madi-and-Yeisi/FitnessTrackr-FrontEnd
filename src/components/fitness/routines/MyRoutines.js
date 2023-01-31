@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useOutletContext, Link } from "react-router-dom";
+import { userRoutinesFetch } from "../../../api/users";
 
 import RoutinePreview from "./RoutinePreview";
 
@@ -10,25 +11,14 @@ const MyRoutines = () => {
 
 
     useEffect(() => {
-        async function fetchRoutines() {
-            try {
-                const response = await fetch(
-                    `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-                const data = await response.json();
-                // console.log("routine data: ", data);
-                setRoutines(data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
         fetchRoutines();
     }, []);
+
+
+    async function fetchRoutines() {
+        const myRoutinesFetchData = await userRoutinesFetch(profileData.username);
+        setRoutines(myRoutinesFetchData.routines);
+    }
 
 
     return (

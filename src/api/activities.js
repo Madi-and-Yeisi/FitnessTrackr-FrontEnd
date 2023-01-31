@@ -46,6 +46,7 @@ export async function newActivityFetch( name, description, imageUrl ) {
     }
 }
 
+
 export async function editActivityFetch(activityId, name, description, imageUrl) {
     try {
         const response = await fetch(

@@ -77,8 +77,8 @@ body {
 }
 
 .sticky-sub-header {
-    position: sticky;
-    top: 11vh;
+    /* position: sticky;
+    top: 11vh; */
     /* background-color: rgba(226, 217, 218); */
     /* width: 100%; */
 }

@@ -68,3 +68,23 @@ export async function userFetch() {
         console.log(error);
     }
 }
+
+
+export async function userRoutinesFetch(username) {
+    try {
+        const response = await fetch(
+            `https://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const data = await response.json();
+        console.log(`users/${username}/routines data: `, data);
+        return data;
+
+    } catch (error) {
+        console.log(error);
+    }
+}
