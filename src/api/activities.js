@@ -24,7 +24,7 @@ export async function activitiesFetch() {
 export async function newActivityFetch( name, description, imageUrl ) {
     try {
         const response = await fetch(
-            'https://poster-backendapi.onrender.com/api/address',
+            'http://localhost:3001/api/activities',
             {
                 method: "POST",
                 headers: {

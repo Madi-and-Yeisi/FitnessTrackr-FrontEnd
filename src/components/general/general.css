@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap');
 
 body {
-    background-color: rgba(226, 217, 218);
+    background-color: #e0f1eb;
+    /* background: url('https://media.self.com/photos/5b7c4e71ecbb7f4c41c77335/4:3/w_2240%2Cc_limit/triangle-pose-beginner-yoga.jpg'); */
     font-family: Helvetica, sans-serif;
-    color: black;
+    color: #0a060c;
 }
 
 .vert-flex-container {
@@ -88,15 +88,15 @@ header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    background-color: rgba(226, 217, 218);
+    background-color: whitesmoke;
 }
 
 .title {
     margin: 10px;
     font-family: 'Racing Sans One', cursive;
     font-size: 32pt;
-    color: whitesmoke;
-    text-shadow: 3px -3px 4px black, 3px 3px 4px black;
+    color: #568FAA;
+    text-shadow: 1px 1px 1px #0a060c, 4px 4px 4px #0b3551;
 }
 
 .sub-title {
@@ -104,7 +104,7 @@ header {
     font-family: 'Racing Sans One', cursive;
     font-size: 24pt;
     color: whitesmoke;
-    text-shadow: 3px -3px 4px black, 3px 3px 4px black;
+    text-shadow: 2px 2px 2px #0a060c, -1px -1px 1px #0a060c, 4px 4px 4px #0b3551;
 }
 
 .nav-container {
@@ -130,19 +130,19 @@ nav {
     align-items: center;
     gap: 2px;
     padding: 0px 5px 0px 5px;
-    color: black;
+    color: #0a060c;
     text-decoration: none;
     font-size: 13pt;
     font-weight: bold;
 }
 
 .nav-link:hover {
-    color: #796caf;
+    color: #08658f;
     scale: 120%;
 }
 
 .nav-link:active {
-    color: #decf39;
+    color: #e85d75;
     scale: 125%;
 }
 
@@ -151,19 +151,21 @@ nav {
     display: flex;
     align-items: center;
     gap: 2px;
-    color: #796caf;
+    padding: 5px;
+    color: #e85d75;
     text-decoration: none;
     font-size: 13pt;
     font-weight: bold;
 }
 
 .logout:hover {
-    color: black;
+    scale: 110%;
+    color: #0a060c;
 }
 
 .logout:active {
-    color: #decf39;
-    scale: 105%;
+    color: #08658f;
+    scale: 115%;
 }
 
 .home-container {
@@ -173,7 +175,7 @@ nav {
 }
 
 .home-image {
-    width: 100%;
+    height: 80vh;
 }
 
 .home-info {
@@ -183,7 +185,8 @@ nav {
     max-width: 30%;
     padding: 10px;
     border-radius: 2px;
-    background-color: rgba(226, 217, 218, 0.75);
+    background-color: rgba(245, 245, 245, 0.75);
+    box-shadow: 2px 2px 3px #568faa, 6px 6px 7px #0b3551;
     color: black;
     font-size: 14pt;
     cursor: pointer;
@@ -201,12 +204,12 @@ nav {
     max-width: 40%;
     padding: 10px;
     border-radius: 2px;
-    background-color: rgba(226, 217, 218, 0.75);
-    box-shadow: 5px 5px 5px rgba(121, 108, 175);
+    background-color: rgba(245, 245, 245, 0.75);
+    box-shadow: 2px 2px 3px #568faa, 6px 6px 7px #0b3551;
     color: black;
     font-size: 18pt;
     font-weight: bold;
-    font-family: 'Shadows Into Light Two', cursive;
+    font-family: 'Oooh Baby', cursive;
 }
 
 

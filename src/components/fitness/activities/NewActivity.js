@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
-import { newActivityFetch } from '../../../api/activities';
+import { newActivityFetch, activitiesFetch } from '../../../api/activities';
 
 const NewActivity = () => {
 
