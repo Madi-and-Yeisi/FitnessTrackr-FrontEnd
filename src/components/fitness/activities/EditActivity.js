@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
+import { activitiesFetch, editActivityFetch } from '../../../api/activities';
 
 const EditActivity = (props) => {
+
     const [name, setName] = useState(props.activityData.name);
     const [description, setDescription] = useState(props.activityData.description);
+    const [imageUrl, setImageUrl] = useState(props.activityData.imageUrl);
 
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -13,54 +16,15 @@ const EditActivity = (props) => {
     async function editActivityFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/activities/${props.activityData.id}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        description: description
-                    })
-                }
-            )
-            const data = await response.json();
-            console.log("EDIT ACTIVITY DATA: ", data);
-
-            if (data.id) {
-                props.handleToggleEditActivityForm();
-                // TODO: make it updated when it returns to activites page
-                await fetchActivities();
-                navigate('/activities');
-            } else {
-                setErrorMessage(data.error);
-            }
-
-
-        } catch(error) {
-            console.log(error);
-        }
-    }
-
-    async function fetchActivities() {
-        try {
-            const updatedActivities = await fetch(
-                'https://fitnesstrac-kr.herokuapp.com/api/activities',
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedActivitiesData = await updatedActivities.json();
-            console.log("FAST UPDATE activities data: ", updatedActivitiesData);
-            props.setActivities(updatedActivitiesData);
-        } catch (error) {
-            console.log(error);
+        const editActivityFetchData = await editActivityFetch(props.activityData.id, name, description, imageUrl);
+        
+        if (editActivityFetchData.success) {
+            props.handleToggleEditActivityForm();
+            const updatedActivitiesData = activitiesFetch();
+            props.setActivities(updatedActivitiesData.activities);  // TODO: make this update automatically
+            navigate('/activities');
+        } else {
+            setErrorMessage(editActivityFetchData.message);
         }
     }
 
@@ -78,7 +42,12 @@ const EditActivity = (props) => {
 
                 <br/>
 
-                <button type="submit" className='green small-button'>Update Activity</button>
+                <label>Image Url:</label>
+                <input type="text" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)}></input>
+
+                <br />
+
+                <button type="submit">Update Activity</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null

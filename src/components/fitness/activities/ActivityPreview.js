@@ -20,7 +20,7 @@ const ActivityPreview = (props) => {
 
 
     return (
-        <div>
+        <div className='vert-flex-container'>
             <div className='activity-page-card'>
                 {
                     activityData.imageUrl ? <img className='activity-card-image' alt={activityData.name + " activity image"} src={activityData.imageUrl}></img> : null

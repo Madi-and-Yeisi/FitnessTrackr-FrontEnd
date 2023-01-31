@@ -245,8 +245,7 @@ nav {
 
 .no-line, no-line:visited {
     text-decoration: none;
-    color: black;
-
+    color: whitesmoke;
 }
 
 .form {
@@ -271,16 +270,7 @@ nav {
     border-radius: 10px;
 }
 
-.activity-form {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    width: 200px;
-    padding: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
-}
+
 
 .new-form {
     display: flex;

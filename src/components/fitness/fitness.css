@@ -231,14 +231,19 @@
 .new-activity-button {
     display: flex;
     align-items: center;
-    gap: 2px;
-    /* background-color: rgba(226, 217, 218); */
-    background-color: rgba(86, 143, 170, 0.75);
-    /* border: 2px solid rgba(11, 53, 81, 0.75); */
+    gap: 4px;
+    padding: 7px 10px;
+    background-color: rgba(11, 53, 81, 0.75);
     border: none;
     border-radius: 3pt;
-    padding: 7px 10px;
-    /* background-color: red; */
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+.new-activity-button .icon {
+    color: white;
+    font-size: 1.25rem;
 }
 
 .activity-card {
@@ -367,17 +372,58 @@
     border-radius: 2px;
 }
 
+/* EDIT ACTIVITIES */
+
 .edit-activity {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
     background-color: rgba(86, 143, 170, 0.75);
     border: none;
     border-radius: 3px;
-    padding: 7px 20px 7px 14px;
+    padding: 7px 14px 7px 10px;
     width: fit-content;
     font-size: 12pt;
     text-align: center;
     cursor: pointer;
     align-self: flex-end;
+}
+
+.activity-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 30vw;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(245, 245, 245, 0.75);
+}
+
+.activity-form input {
+    padding: 5px;
+    background-color: rgba(245, 245, 245, 0.75);
+    border: none;
+    border-radius: 5px;
+}
+
+.activity-form textarea {
+    max-width: 30vw;
+    min-height: fit-content;
+    padding: 5px;
+    background-color: rgba(245, 245, 245, 0.75);
+    border: none;
+    border-radius: 5px;
+}
+
+.activity-form button {
+    align-self: center;
+    width: fit-content;
+    padding: 7px 10px;
+    background-color: rgba(232, 93, 117, 0.5);
+    color: #0a060c;
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
