@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 import { BsTrash } from 'react-icons/bs';
@@ -52,7 +52,7 @@ const EditRoutine = (props) => {
             const updatedRoutines = await fetchRoutines();
             setRoutines(updatedRoutines.routines);
 
-            navigate(`/routines/${props.routineData.id}`);
+            navigate(`/routines/my-routines`);
         } else {
             setErrorMessage(deleteRoutineFetchData.message);
         }
@@ -87,8 +87,8 @@ const EditRoutine = (props) => {
 
                 <br/>
 
-                <div className='separated-horiz-container'>
-                    <button onClick={deleteRoutineHandler}><BsTrash />Delete Routine</button>
+                <div className='spread-row'>
+                    <button onClick={deleteRoutineHandler} className='center-row'><BsTrash />Delete Routine</button>
                     <button type="submit">Update</button>
                 </div>
             </form>

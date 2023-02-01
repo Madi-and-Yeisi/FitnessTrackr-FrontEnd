@@ -1,16 +1,16 @@
-import React, {useEffect, useState} from "react";
-import { useOutletContext, Link } from "react-router-dom";
-import { myRoutinesFetch } from "../../../api/users";
+import {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 
 import { MdAddCircle } from 'react-icons/md';
+import { ImSearch } from 'react-icons/im';
+
+import { myRoutinesFetch } from "../../../api/users";
 
 import RoutinePreview from "./RoutinePreview";
 
 const MyRoutines = () => {
-    const { profileData } = useOutletContext();
-    console.log("profile Data ", profileData)
-
     const [routines, setRoutines] = useState([]);
+    const [ searchTerm, setSearchTerm ] = useState("");
 
 
     useEffect(() => {
@@ -24,19 +24,30 @@ const MyRoutines = () => {
     }
 
 
+    function findMatch(routine, text) {
+        if (routine.name.toLowerCase().includes(text.toLowerCase())) return true;
+        else if (routine.goal.toLowerCase().includes(text.toLowerCase())) return true;
+        else return false;
+    }
+
+    const filteredRoutines = routines.filter(routine => findMatch(routine, searchTerm));
+    const routinesToDisplay = searchTerm.length ? filteredRoutines : routines;
+
+
     return (
         <div className="page-container">
-            <div className="separated-horiz-container sticky-sub-header sub-header">
-                <div className="sub-title">My Routines</div>
-                {
-                    // search 
-                }
+            <header>
+                <h1>My Routines</h1>
+                <form>
+                    <ImSearch />
+                    <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
+                </form>
                 <Link to={'/routines/my-routines/add'} className="header-button"><MdAddCircle className="icon" />Add New</Link>
-            </div>
+            </header>
 
-            <div className="vert-flex-container">
+            <div className="center-column">
             {
-                routines && routines.length ? routines.map((routine, idx) => {
+                routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
                 }) : <p>No routines to display</p>
             }

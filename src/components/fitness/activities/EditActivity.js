@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate, useOutletContext } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { activitiesFetch, editActivityFetch } from '../../../api/activities';
 
 const EditActivity = (props) => {
@@ -33,7 +33,7 @@ const EditActivity = (props) => {
         <div>
             <form onSubmit={editActivityFormSubmitHandler} className="activity-form">
                 <label>Name:</label>
-                <input type="text" value={name} onChange={(event) => setName(event.target.value)}></input>
+                <input type="text" className="name-input" value={name} onChange={(event) => setName(event.target.value)}></input>
 
                 <br/>
 
@@ -42,7 +42,7 @@ const EditActivity = (props) => {
 
                 <br/>
 
-                <label>Image Url:</label>
+                <label>Image or Gif Reference Url:</label>
                 <input type="text" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)}></input>
 
                 <br />

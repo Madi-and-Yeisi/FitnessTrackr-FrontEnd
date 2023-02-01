@@ -1,0 +1,175 @@
+/* activities css */
+
+
+.activity-tag {
+    flex-grow: 2;
+    color: whitesmoke;
+    background-color: var(--prussian-blue-75);
+    padding: 3px;
+    border-radius: 5px;
+    font-size: 14pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* NEW ACTIVITY */
+
+.new-activity form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 30vw;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--whitesmoke-50);
+
+}
+
+.new-activity form input {
+    padding: 5px;
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+}
+
+.new-activity form .name-input {
+    padding: 5px;
+    color: whitesmoke;
+    background-color: var(--prussian-blue-75);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.new-activity form textarea {
+    max-width: 30vw;
+    min-height: 75px;
+    padding: 5px;
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 5px;
+    font-family: Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+.new-activity form button {
+    align-self: center;
+    width: fit-content;
+    padding: 7px 10px;
+    margin-top: 10px;
+    background-color: var(--bright-pink-50);
+    color: var(--dark-black);
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* EDIT ACTIVITY */
+
+.activity-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 30vw;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--whitesmoke-75);
+}
+
+.activity-form input {
+    padding: 5px;
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+}
+
+.activity-form .name-input {
+    padding: 5px;
+    color: whitesmoke;
+    background-color: var(--prussian-blue-75);
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.activity-form textarea {
+    max-width: 30vw;
+    min-height: 75px;
+    padding: 5px;
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 5px;
+    font-family: Helvetica, sans-serif;
+    font-size: 12pt;
+}
+
+.activity-form button {
+    align-self: center;
+    width: fit-content;
+    padding: 7px 10px;
+    margin-top: 10px;
+    background-color: var(--bright-pink-50);
+    color: var(--dark-black);
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* ACTIVITY PREVIEWS */
+
+.activity-preview {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 30vw;
+    height: 100%;
+    margin: 10px;
+    padding: 10px;
+    background-color: var(--whitesmoke-75);
+    border-radius: 3px;
+    box-shadow: 3px 3px 10px var(--prussian-blue);
+}
+
+.activity-preview img {
+    height: 140px;
+    max-width: 140px;
+    border-radius: 5px;
+    border: 2px solid var(--prussian-blue-75);
+}
+
+.activity-preview p {
+    flex-grow: 2;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    max-height: 110px;
+    overflow-y: scroll;
+}
+
+.activity-preview p::-webkit-scrollbar {
+    width: 0.5em;
+}
+
+.activity-preview p::-webkit-scrollbar-thumb {
+    background-color: var(--blue-green-75);
+    border-radius: 5px;
+}
+
+.activity-preview button {
+    background-color: var(--blue-green-75);
+    border: none;
+    border-radius: 3px;
+    padding: 5px 6px 3px 6px;
+    margin-left: 10px;
+    font-size: 12pt;
+    cursor: pointer;
+}

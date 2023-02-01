@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
+
+import { BsTrash } from 'react-icons/bs';
+
 import { fetchRoutine, fetchRoutines } from '../../../api/routines';
 import { deleteRoutineActivityFetch, editRoutineActivityFetch } from '../../../api/routine_activities';
 
@@ -9,10 +12,9 @@ const EditRoutineActivity = (props) => {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const { profileData, setRoutines } = useOutletContext();
+    const { setRoutines } = useOutletContext();
     const navigate = useNavigate();
 
-    console.log('props', props)
 
     async function editRoutineActivityFormSubmitHandler(event) {
         event.preventDefault();
@@ -42,7 +44,7 @@ const EditRoutineActivity = (props) => {
 
         if (deleteRoutineActivityFetchData.success) {
             props.handleToggleEditRoutineActivityForm();
-            
+
             const updatedRoutineFetchData = await fetchRoutine(props.activityData.routineId);
             if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
 
@@ -59,18 +61,18 @@ const EditRoutineActivity = (props) => {
     return (
         <div>
             <form onSubmit={editRoutineActivityFormSubmitHandler} className="routine-activity-form">
-                <div className='separated-horiz-container'>
-                    <div className='vert-flex-container'>
-                        <label>Count:</label>
+                <div className='spread-row'>
+                    <div className='center-column'>
+                        <label>Set Count:</label>
                         <input type="number" value={count} onChange={(event) => setCount(event.target.value)} className="numeric-input"></input>
                     </div>
-                    <div className='vert-flex-container'>
-                        <label>Duration:</label>
+                    <div className='center-column'>
+                        <label>Set Duration:</label>
                         <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)} className="numeric-input"></input>
                     </div>
                 </div>
-                <div className='separated-horiz-container'>
-                    <button onClick={deleteRoutineActivity}>Remove Activity</button>
+                <div className='spread-row'>
+                    <button onClick={deleteRoutineActivity} className='center-row'><BsTrash />Remove Activity</button>
                     <button type="submit">Update</button>
                 </div>
             </form>

@@ -11,16 +11,12 @@ const Home = () => {
 
 
     return (
-        <div className='centered'>
+        <div>
             <div className='home-container'>
-                <img className='home-image' src="https://media.self.com/photos/5b7c4e71ecbb7f4c41c77335/4:3/w_2240%2Cc_limit/triangle-pose-beginner-yoga.jpg" alt="action shot"></img>
-                <div className='home-info' onClick={() => navigate('/routines')}>Hey { loggedIn ? `${profileData.username}!` : '!'} Welcome{ loggedIn ? ' back' : ''} to <div className='home-title'>Fitness Trackr</div>! Good luck with your <strong><u>routines</u></strong> today!</div>
+                <img src="https://media.self.com/photos/5b7c4e71ecbb7f4c41c77335/4:3/w_2240%2Cc_limit/triangle-pose-beginner-yoga.jpg" alt="action shot"></img>
+                <div className='home-info' onClick={() => navigate('/routines')}>Hey { loggedIn ? `${profileData.username}!` : '!'} Welcome{ loggedIn ? ' back' : ''} to <div id='home-title'>Fitness Trackr</div>! Good luck with your <strong><u>routines</u></strong> today!</div>
                 <div className='home-message'>{randomMessage}</div>
             </div>
-
-            {/* {
-                loggedIn ? <h2>{profileData.username} !</h2> : null
-            } */}
         </div>
     )
 }

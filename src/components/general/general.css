@@ -1,92 +1,74 @@
 @import url('https://fonts.googleapis.com/css2?family=Racing+Sans+One&family=Righteous&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oooh+Baby&display=swap');
 
+:root {
+    /* COLOR PALETTE */
+    --mint-cream: #e0f1eb;
+    --blue-green: #568faa;
+    --blue-green-75: rgba(86, 143, 170, 0.75);
+    --blue-sapphire: #08658f;
+    --prussian-blue: #0b3551;
+    --prussian-blue-75: rgba(11, 53, 81, 0.75);
+    --bright-pink: #e85d75;
+    --bright-pink-50: rgba(232, 93, 117, 0.5);
+    --whitesmoke-25: rgba(245, 245, 245, 0.25);
+    --whitesmoke-50: rgba(245, 245, 245, 0.5);
+    --whitesmoke-75: rgba(245, 245, 245, 0.75);
+
+    --dark-black: #0a060c;
+    --error-red: #bf0603;
+}
+
 body {
-    background-color: #e0f1eb;
-    /* background: url('https://media.self.com/photos/5b7c4e71ecbb7f4c41c77335/4:3/w_2240%2Cc_limit/triangle-pose-beginner-yoga.jpg'); */
+    background-color: var(--mint-cream);
+    color: var(--dark-black);
     font-family: Helvetica, sans-serif;
-    color: #0a060c;
 }
 
-.vert-flex-container {
+/* containers */
+
+.center-column {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.separated-vert-container {
+.column {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
-.horiz-flex-container {
+.spread-row {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
-.separated-horiz-container {
-    display: flex;
-    width: 100%;
+    /* width: 100%; */
     justify-content: space-between;
     align-items: center;
     /* background-color: red; */
 }
 
+.center-row {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+}
+
+/* general */
 
 .error {
-    color: #ca0818;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background-color: var(--whitesmoke-50);
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--error-red);
     font-weight: bold;
-}
-
-.black {
-    color: black;
-    font-weight: bold;
-}
-
-.purple {
-    color: #7669AE;
-    /* border-color: #442C63; */
-    /* box-shadow: 1px 1px 1px #4D3371; */
-}
-
-.blue {
-    color: #171738;
-}
-
-.yellow {
-    color: #DECF39;
-}
-
-.green {
-    color: #5E8C61;
-    border-color: #5E8C61;
-    box-shadow: 1px 1px 1px #527A54;
-}
-
-.red {
-    color: #ca0818;
-    border-color: #b30614;
-    box-shadow: 1px 1px 1px #980612;
-
-}
-
-.centered {
-    text-align: center;
 }
 
 .sticky-header {
     position: sticky;
     top: 0;
     width: 100%;
-}
-
-.sticky-sub-header {
-    /* position: sticky;
-    top: 11vh; */
-    /* background-color: rgba(226, 217, 218); */
-    /* width: 100%; */
 }
 
 header {
@@ -101,16 +83,8 @@ header {
     margin: 10px;
     font-family: 'Racing Sans One', cursive;
     font-size: 32pt;
-    color: #568FAA;
-    text-shadow: 1px 1px 1px #0a060c, 4px 4px 4px #0b3551;
-}
-
-.sub-title {
-    /* margin: 10px; */
-    font-family: 'Racing Sans One', cursive;
-    font-size: 24pt;
-    color: whitesmoke;
-    text-shadow: 2px 2px 2px #0a060c, -1px -1px 1px #0a060c, 4px 4px 4px #0b3551;
+    color: var(--blue-green);
+    text-shadow: 1px 1px 1px var(--dark-black), 4px 4px 4px var(--prussian-blue);
 }
 
 .nav-container {
@@ -136,19 +110,19 @@ nav {
     align-items: center;
     gap: 2px;
     padding: 0px 5px 0px 5px;
-    color: #0a060c;
+    color: var(--dark-black);
     text-decoration: none;
     font-size: 13pt;
     font-weight: bold;
 }
 
 .nav-link:hover {
-    color: #08658f;
+    color: var(--blue-sapphire);
     scale: 120%;
 }
 
 .nav-link:active {
-    color: #e85d75;
+    color: var(--bright-pink);
     scale: 125%;
 }
 
@@ -158,7 +132,7 @@ nav {
     align-items: center;
     gap: 2px;
     padding: 5px;
-    color: #e85d75;
+    color: var(--bright-pink);
     text-decoration: none;
     font-size: 13pt;
     font-weight: bold;
@@ -166,13 +140,84 @@ nav {
 
 .logout:hover {
     scale: 110%;
-    color: #0a060c;
+    color: var(--dark-black);
 }
 
 .logout:active {
-    color: #08658f;
+    color: var(--blue-sapphire);
     scale: 115%;
 }
+
+
+/* all routines and activities pages */
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 80px;
+    background-image: linear-gradient(to right, var(--prussian-blue), var(--blue-green), var(--blue-green), var(--blue-green), var(--blue-green), var(--blue-green), var(--prussian-blue));
+}
+
+.page-container header {
+    background: rgba(0, 0, 0, 0);
+    padding: 10px;
+}
+
+.page-container header h1 {
+    margin: 0px;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 24pt;
+    color: whitesmoke;
+    text-shadow: 2px 2px 2px var(--dark-black), -1px -1px 1px var(--dark-black), 4px 4px 4px var(--prussian-blue);
+}
+
+.sub-title {
+    font-family: 'Racing Sans One', cursive;
+    font-size: 24pt;
+    color: whitesmoke;
+    text-shadow: 2px 2px 2px var(--dark-black), -1px -1px 1px var(--dark-black), 4px 4px 4px var(--prussian-blue);
+}
+
+.header-button {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 7px 10px;
+    background-color: var(--prussian-blue-75);
+    border: none;
+    border-radius: 3pt;
+    color: whitesmoke;
+    text-decoration: none;
+    font-size: 12pt;
+}
+
+.header-button .icon {
+    color: whitesmoke;
+    font-size: 1.25rem;
+}
+
+/* search */
+.page-container header form {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    color: whitesmoke;
+    background-color: var(--prussian-blue-75);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.page-container header form input {
+    outline: none;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    color: whitesmoke;
+    padding: 5px;
+}
+
+
+/* HOME */
 
 .home-container {
     position: relative;
@@ -180,7 +225,7 @@ nav {
     color: whitesmoke;
 }
 
-.home-image {
+.home-container img {
     height: 80vh;
 }
 
@@ -191,14 +236,14 @@ nav {
     max-width: 30%;
     padding: 10px;
     border-radius: 2px;
-    background-color: rgba(245, 245, 245, 0.75);
-    box-shadow: 2px 2px 3px #568faa, 6px 6px 7px #0b3551;
-    color: black;
+    background-color: var(--whitesmoke-75);
+    box-shadow: 2px 2px 3px var(--blue-green), 6px 6px 7px var(--prussian-blue);
+    color: var(--dark-black);
     font-size: 14pt;
     cursor: pointer;
 }
 
-.home-title {
+#home-title {
     display: inline;
     font-family: 'Racing Sans One', cursive;
 }
@@ -210,85 +255,10 @@ nav {
     max-width: 40%;
     padding: 10px;
     border-radius: 2px;
-    background-color: rgba(245, 245, 245, 0.75);
-    box-shadow: 2px 2px 3px #568faa, 6px 6px 7px #0b3551;
-    color: black;
+    background-color: var(--whitesmoke-75);
+    box-shadow: 2px 2px 3px var(--blue-green), 6px 6px 7px var(--prussian-blue);
+    color: var(--dark-black);
     font-size: 18pt;
     font-weight: bold;
     font-family: 'Oooh Baby', cursive;
-}
-
-
-.login {
-    color: black;
-    font-size: 14pt;
-}
-
-
-
-.button {
-    background-color: whitesmoke;
-    border: 2px solid;
-    border-radius: 5px;
-    padding: 2px 20px;
-    font-size: 14pt;
-    text-align: center;
-    cursor: pointer;
-}
-
-.small-button {
-    background-color: #F0F0F0;
-    border: 2px solid;
-    border-radius: 5px;
-    width: fit-content;
-    padding: 2px 2px;
-    margin-top: 10px;
-    font-size: 10pt;
-    text-align: center;
-    cursor: pointer;
-    align-self: flex-end;
-}
-
-.no-line, no-line:visited {
-    text-decoration: none;
-    color: whitesmoke;
-}
-
-.form {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    width: 250px;
-    padding: 25px 25px;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
-}
-
-.routine-form {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    width: 250px;
-    padding: 10px;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
-}
-
-
-
-.new-form {
-    display: flex;
-    flex-direction: column;
-    margin: 20px;
-    width: 500px;
-    padding: 50px;
-    border-width: 2px;
-    border-style: solid;
-    border-radius: 10px;
-}
-
-.numeric-input {
-    width: 75px;
 }

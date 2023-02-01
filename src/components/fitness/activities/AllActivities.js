@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useOutletContext, Link } from "react-router-dom";
 
 import { MdAddCircle } from 'react-icons/md';
+import { ImSearch } from 'react-icons/im';
 
 import ActivityPreview from "./ActivityPreview";
 import { activitiesFetch } from "../../../api/activities";
 
 const Activities = () => {
-    const [activities, setActivities] = useState([]);
+    const [ activities, setActivities ] = useState([]);
+    const [ searchTerm, setSearchTerm ] = useState("");
 
     const { loggedIn } = useOutletContext();
 
@@ -22,23 +24,33 @@ const Activities = () => {
     }, []);
 
 
+    function findMatch(activity, text) {
+        if (activity.name.toLowerCase().includes(text.toLowerCase())) return true;
+        else if (activity.description.toLowerCase().includes(text.toLowerCase())) return true;
+        else return false;
+    }
+
+    const filteredActivities = activities.filter(activity => findMatch(activity, searchTerm));
+    const activitiesToDisplay = searchTerm.length ? filteredActivities : activities;
+
+
     return (
-        <div className="page-container">
-            <div className="separated-horiz-container sticky-sub-header sub-header">
-                <div className="sub-title">Activities</div>
-                <div>
+        <div className="page-container all-activities">
+            <header>
+                <h1>Activities</h1>
+                <form>
+                    <ImSearch />
+                    <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
+                </form>
                 {
                     loggedIn ? <Link to={'/activities/add'} className="header-button"><MdAddCircle className="icon" />Add New</Link> : null
                 }
-                </div>
-            </div>
-            <div className="vert-flex-container">
+            </header>
             {
-                activities && activities.length ? activities.map((activity, idx) => {
+                activitiesToDisplay.length ? activitiesToDisplay.map((activity, idx) => {
                     return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
                 }) : <p>No activities to display</p>
             }
-            </div>
         </div>
     )
 }

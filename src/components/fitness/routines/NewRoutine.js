@@ -28,11 +28,14 @@ const NewRoutine = () => {
 
 
     return (
-        <div className='vert-flex-container'>
-            <h2>New Routine</h2>
-            <p>by @{profileData.username}</p>
+        <div className='page-container'>
+            <header>
+                <h1>New Routine</h1>
+                <div className="me-tag">by @{profileData.username}</div>
+            </header>
 
-            <form onSubmit={newRoutineFormSubmitHandler} className="form">
+
+            <form onSubmit={newRoutineFormSubmitHandler} className="routine-form">
                 <label>Name:</label>
                 <input type="text" value={name} onChange={(event) => setName(event.target.value)}></input>
 
@@ -43,12 +46,19 @@ const NewRoutine = () => {
 
                 <br/>
 
-                <label>Public Routine? {"("}Check for yes{")"}</label>
-                <input type="checkbox" value={isPublic} onChange={(event) => setIsPublic(event.target.checked)} defaultChecked ></input>
-
+                <label>Visible to public?</label>
+                <div className='publicity-container'>
+                    <div>No</div>
+                    <div className='checkbox'>
+                        <input type="checkbox" value={isPublic} onChange={(event) => setIsPublic(event.target.checked)} id='edit-routine-publicity' checked={isPublic}></input>
+                        <label htmlFor='edit-routine-publicity'></label>
+                    </div>
+                    <div>Yes</div>
+                </div>
+                
                 <br/>
 
-                <button type="submit" className='green button'>Add Routine</button>
+                <button type="submit">Add Routine</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext, useLocation, Link } from "react-router-dom";
 
 import { AiOutlineEdit, AiOutlineUpCircle } from 'react-icons/ai';
@@ -50,7 +50,7 @@ const DetailedRoutine = () => {
     return (
         <div className='page-container'>
             {
-                myRoutine ? !toggleEditRoutineForm ? <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineEdit />Edit Your Routine</button> : <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineUpCircle />Nevermind</button> : null
+                myRoutine ? !toggleEditRoutineForm ? <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineEdit />Edit Your Routine</button> : <button onClick={handleToggleEditRoutineForm} className="edit-routine-button stupid-random-margin-pixels"><AiOutlineUpCircle />Nevermind</button> : null
             }
             {
                 toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutineData={setRoutineData} /> : null
@@ -59,7 +59,7 @@ const DetailedRoutine = () => {
             {
                 routineData ? 
                     <div className='routine-card'>
-                        <div className='routine-card-header'>
+                        <header>
                             <h2 className='routine-title'>
                                 {routineData.name}
                                 {
@@ -67,21 +67,19 @@ const DetailedRoutine = () => {
                                 }
                             </h2>
                             <Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link>
-                        </div>
-                        <p className='routine-goal'><strong>Goal: </strong>{routineData.goal}</p>
-                        <div className='vert-flex-container'>
-                            <h4 className='routine-activities'>Activities {`(${routineData.activities.length})`}<button onClick={handleToggleAddActivityForm} className="add-routine-activity-button"><MdAddCircle className="icon" />Add</button></h4>
-                            {
-                                toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutineData={setRoutineData} /> : null
-                            }
+                        </header>
+                        <p><strong>Goal: </strong>{routineData.goal}</p>
+                        <h4 className='routine-activities'>Activities {`(${routineData.activities.length})`} { myRoutine ? <button onClick={handleToggleAddActivityForm} className="add-routine-activity-button">{ !toggleAddActivityForm ? <div className="center-row"><MdAddCircle className="icon" />Add</div> : <div className='center-row'><AiOutlineUpCircle className="icon" />Nevermind</div> }</button> : null } </h4>
+                        {
+                            toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutineData={setRoutineData} /> : null
+                        }
                         {
                             routineData.activities.length ? routineData.activities.map((activity, idx) => {
                                 return (
-                                    <DetailedRoutineActivity activity={activity} key={idx} setRoutineData={setRoutineData}/>
+                                    <DetailedRoutineActivity key={idx} activity={activity} setRoutineData={setRoutineData} myRoutine={myRoutine} />
                                 )
                             }) : <div className='empty activity-card'>No activities to display</div>
                         }
-                        </div>            
                     </div>
 
                 : <p>no routine data</p>

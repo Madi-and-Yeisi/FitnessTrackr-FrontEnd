@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 import { loginFetch, meFetch } from '../../api/users';
 
@@ -41,7 +41,7 @@ const Login = () => {
     }
 
     return (
-        <div className='vert-flex-container'>
+        <div className='center-column'>
             <form onSubmit={loginFormSubmitHandler} className="purple form">
                 <label>Enter Username Here</label>
                 <input type="text" value={username} onChange={(event) => setUsername(event.target.value)}></input>

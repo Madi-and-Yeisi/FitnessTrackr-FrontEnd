@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
 import { activitiesFetch } from '../../../api/activities';
@@ -15,7 +15,7 @@ const AddRoutineActivity = (props) => {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const { profileData, setRoutines } = useOutletContext();
+    const { setRoutines } = useOutletContext();
     const navigate = useNavigate();
 
 
@@ -62,8 +62,8 @@ const AddRoutineActivity = (props) => {
 
     return (
         <div>
-            <form onSubmit={addRoutineActivityFormSubmitHandler} className="add-activity-form">
-                <label>Choose Activity</label>
+            <form onSubmit={addRoutineActivityFormSubmitHandler} className="add-routine-activity-form">
+                <label>Choose Activity:</label>
                 <select value={chosenActivity.name} defaultValue={defaultChosenActivity.name} onChange={(event) => handleSetChosenActivity(event.target.value)}>
                         {
                         activities.map((activity, idx) => {
@@ -74,13 +74,13 @@ const AddRoutineActivity = (props) => {
                 
                 <br/>
 
-                <div className='separated-horiz-container'>
-                    <div className='vert-flex-container'>
-                        <label>Count:</label>
+                <div className='spread-row'>
+                    <div className='center-column'>
+                        <label>Set Count:</label>
                         <input type="number" value={count} onChange={(event) => setCount(event.target.value)} className="numeric-input"></input>
                     </div>
-                    <div className='vert-flex-container'>
-                        <label>Duration:</label>
+                    <div className='center-column'>
+                        <label>Set Duration:</label>
                         <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)} className="numeric-input"></input>
                     </div>
                 </div>

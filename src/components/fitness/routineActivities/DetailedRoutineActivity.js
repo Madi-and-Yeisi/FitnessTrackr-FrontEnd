@@ -1,22 +1,13 @@
-import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { AiOutlineUpCircle } from 'react-icons/ai';
+import { AiOutlineUpCircle, AiOutlineEdit } from 'react-icons/ai';
 
-// import EditActivity from './EditActivity';
 import EditRoutineActivity from './EditRoutineActivity';
 
-const DetailedRoutineActivity = (props) => {
-    const activityData = props.activity;
-    // console.log(activityData)
+const DetailedRoutineActivity = ({ activity, setRoutineData, myRoutine}) => {
 
-    const [toggleEditActivityForm, setToggleEditActivityForm] = useState(false);
     const [toggleEditRoutineActivityForm, setToggleEditRoutineActivityForm] = useState(false);
-
-
-    function handleToggleEditActivityForm() {
-        setToggleEditActivityForm(!toggleEditActivityForm);
-    }
 
 
     function handleToggleEditRoutineActivityForm() {
@@ -25,42 +16,33 @@ const DetailedRoutineActivity = (props) => {
 
 
     return (
-        <div className='detailed-activity-card'>
-            <div className='activity-card-contents'>
-                <div className='separated-vert-container'>
+        <div className='center-column'>
+            <div className='detailed-routine-activity'>
                 {
-                    activityData.imageUrl ? <img className='activity-card-image' src={activityData.imageUrl}></img> : null
+                    activity.imageUrl ? <img className='activity-card-image' src={activity.imageUrl}></img> : null
                 }
-                    <button onClick={handleToggleEditRoutineActivityForm} className='edit-routine-activity-button'>{ !toggleEditRoutineActivityForm ? 'Update' : <div className='horiz-flex-container'><AiOutlineUpCircle className='edit-routine-activity-icon' />Nevermind</div>}</button>
-                </div>
-
-                <div className='activity-card-info-container'>
-                    <Link to={`/routines/featured/${activityData.id}`} className="activity-tag">{activityData.name}</Link>
-                    <div className='activity-card-description scroll-box'>{activityData.description}</div>
+                <div className='detailed-routine-activity-info-container'>
+                    <div className='spread-row'>
+                        <Link to={`/routines/featured/${activity.id}`} className="activity-tag">{activity.name}</Link>
+                        {
+                            myRoutine ? <button onClick={handleToggleEditRoutineActivityForm}>{ !toggleEditRoutineActivityForm ? <AiOutlineEdit /> : <AiOutlineUpCircle/>}</button> : null
+                        }
+                    </div>
+                    <p>{activity.description}</p>
                     {
-                        activityData.count ? 
-                            <div className='activity-card-stats-container'>
-                                <div className='activity-card-stats'><strong>Count: </strong><div className='activity-stat'>{activityData.count}</div></div>
-                                <div className='activity-card-stats'><strong>Duration: </strong><div className='activity-stat'>{activityData.duration}</div></div>
+                        activity.count ? 
+                            <div className='spread-row'>
+                                <div className='routine-activity-preview-stat'><strong>Count: </strong><div className='value'>{activity.count}</div></div>
+                                <div className='routine-activity-preview-stat'><strong>Duration: </strong><div className='value'>{activity.duration}</div></div>
                             </div>
                         : null
                     }
-                    {/* {
-                        myRoutinesPage ? 
-                        : activitiesPage ? <button onClick={handleToggleEditActivityForm}  className="yellow small-button">Edit Activity</button> : null
-                    } */}
-                </div>    
+                </div>
             </div>
             {
-                toggleEditRoutineActivityForm ? <EditRoutineActivity activityData={activityData} handleToggleEditRoutineActivityForm={handleToggleEditRoutineActivityForm} setRoutineData={props.setRoutineData} /> : null
+                toggleEditRoutineActivityForm ? <EditRoutineActivity activityData={activity} handleToggleEditRoutineActivityForm={handleToggleEditRoutineActivityForm} setRoutineData={setRoutineData} /> : null
             }
         </div>
-
-        // {
-        //         toggleEditActivityForm ? <EditActivity activityData={activityData} handleToggleEditActivityForm={handleToggleEditActivityForm} setActivities={props.setActivities} /> : null
-        // }
-
-
     )
 }
 

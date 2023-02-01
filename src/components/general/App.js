@@ -4,7 +4,10 @@ import { Outlet, Link } from 'react-router-dom';
 import { AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai';
 
 import './general.css';
-import '../fitness/fitness.css'
+import '../fitness/activities/activities.css';
+import '../fitness/routines/routines.css';
+import '../fitness/routineActivities/routine-activities.css';
+
 
 import { fetchRoutines } from '../../api/routines';
 import { meFetch } from '../../api/users';
@@ -50,8 +53,8 @@ const App = () => {
 
 
     return (
-        <div className='vert-flex-container'>
-            <div className='sticky-header vert-flex-container'>
+        <div className='center-column'>
+            <div className='sticky-header center-column'>
                 <header className='sticky-header'>
                     <h1 className="title">Fitness Trackr</h1>
                     {
@@ -65,7 +68,6 @@ const App = () => {
 
             <Outlet context={{ routines, setRoutines, profileData, setProfileData, loggedIn, setLoggedIn }} />
         </div>
-
     )
 }
 

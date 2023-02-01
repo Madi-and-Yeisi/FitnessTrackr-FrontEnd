@@ -1,0 +1,298 @@
+/* routines css */
+
+
+/* ROUTINE CARDS */
+
+.routine-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 600px;
+    background-color: var(--whitesmoke-50);
+    border-radius: 3px;
+}
+
+.routine-card header {
+    width: 100%;
+    padding: 10px 0px;
+    border-radius: 3px 3px 0 0;
+    background-color: var(--whitesmoke-25);
+}
+
+.creator-tag {
+    color: var(--bright-pink);
+    padding-right: 20px;
+    font-family: 'Racing Sans One', cursive;
+    font-size: 14pt;
+}
+
+.routine-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0px;
+    padding: 5px 0 5px 20px;
+    color: var(--prussian-blue);
+    font-size: 1.5em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.routine-card p {
+    align-self: flex-start;
+    padding: 5px;
+    margin: 10px 20px;
+    border-radius: 3px;
+    background-color: rgba(245, 245, 245, 0.25);
+}
+
+.routine-card h4 {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 0 0 10px 0;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: var(--whitesmoke-25);
+    color: var(--prussian-blue);
+}
+
+.show-activities-icon {
+    font-size: 1.5em;
+    color: var(--blue-green);
+    background-color: var(--whitesmoke-75);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.activities-container {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 7px 20px 0 20px;
+    margin-bottom: 10px;
+    width: 500px;
+    height: 200px;
+    border-radius: 5px;
+    background-color: var(--whitesmoke-25);
+}
+
+.slider {
+    overflow-x: scroll;
+    /* overflow-y: auto; // TODO: fix weird vertical scroll bug */
+    scroll-behavior: smooth;
+    white-space: nowrap;
+    scrollbar-width: none;
+    height: 163px;
+    padding-bottom: 10px;
+    /* background-color: pink; */
+    
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slider-nav {
+    display: flex;
+    align-items: center;
+    font-size: 24pt;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 25px 5px;
+    background-color: var(--blue-green-75);
+    color: whitesmoke
+
+}
+
+.slider-nav:hover {
+    scale: 120%;
+    color: var(--bright-pink);
+    background-color: var(--prussian-blue-75);
+}
+
+
+/* EDIT ROUTINE */
+
+.edit-routine-button {
+    display: flex;
+    align-self: flex-end;
+    gap: 4px;
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 3px;
+    padding: 7px 14px 7px 10px;
+    width: fit-content;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.stupid-random-margin-pixels { /* TODO: fix whatever is happening to the edit-routine-button */
+    margin-right: 10px;
+}
+
+.routine-form {
+    display: flex;
+    flex-direction: column;
+    width: 580px;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    background-color: var(--whitesmoke-50);
+}
+
+.routine-form input {
+    padding: 5px;
+    padding-left: 20px;
+    color: rgba(11, 53, 81);
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.routine-form textarea {
+    max-width: 100%;
+    min-height: fit-content;
+    padding: 5px;
+    background-color: var(--whitesmoke-50);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+    font-family: Helvetica, sans-serif;
+}
+
+.routine-form button {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    padding: 7px 10px;
+    margin-top: 10px;
+    background-color: var(--bright-pink-50);
+    color: var(--dark-black);
+    /* font-size: 12pt; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.routine-form .publicity-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--whitesmoke-50);
+    width: fit-content;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+/* Start by hiding the checkboxes*/
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked {
+    /* background-color: lime; */
+}
+
+/* the slider bar */
+.checkbox {
+    width: 45px;
+    height: 15px;
+    background-color: rgba(86, 143, 170);
+    margin: 10px 20px;
+    position: relative;
+    border-radius: 5px;
+}
+
+/* the slider from the label */
+.checkbox label {
+    display: block;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -2px;
+    left: -3px;
+    background-color: rgba(245, 245, 245);
+}
+
+/* Move the slider if the checkbox is clicked */
+.checkbox input[type=checkbox]:checked + label {
+    left: 27px;
+}
+
+.me-tag {
+    color: var(--bright-pink);
+    font-family: 'Racing Sans One', cursive;
+    font-size: 14pt;
+    background-color: var(--whitesmoke-50);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* 
+
+SCREEN SIZE CONDITIONAL SIZING
+
+*/
+
+
+/* tablet styles conditional sizing */
+@media screen and (max-width:850px) {
+    .routine-card {
+    width: 80vw!important;
+    border: 1px solid yellow;
+    }
+}
+
+/* mobile styles conditional sizing */
+@media screen and (max-width:480px) {
+    .routine-card {
+    width: 95%!important;
+    border: 1px solid magenta;
+    }
+}
+
+/* skinny mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .routine-card {
+    width: 95%!important;
+    border: 1px solid lightcoral;
+    }
+}
+
+
+
+/* tablet styles conditional sizing */
+@media screen and (max-width:850px) {
+    .activities-container {
+    width: 480px!important;
+    height: 20vh;
+    border: 1px solid red;
+    }
+}
+
+/* mobile styles conditional sizing */
+@media screen and (max-width:480px) {
+    .activities-container {
+    width: 200px!important;
+    height: 55vh;
+    border: 1px solid blue;
+    }
+}
+
+/* skinny mobile styles conditional sizing */
+@media screen and (max-width:414px) {
+    .routine-card {
+    width: 100px!important;
+    border: 1px solid orange;
+    }
+}
