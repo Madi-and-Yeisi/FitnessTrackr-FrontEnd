@@ -68,6 +68,9 @@ const DetailedRoutine = () => {
                         <p className='routine-goal'><strong>Goal: </strong>{routineData.goal}</p>
                         <div className='vert-flex-container'>
                             <h4 className='routine-activities'>Activities {`(${routineData.activities.length})`}<button onClick={handleToggleAddActivityForm} className="add-routine-activity-button"><MdAddCircle className="icon" />Add</button></h4>
+                            {
+                                toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutineData={setRoutineData} /> : null
+                            }
                         {
                             routineData.activities.length ? routineData.activities.map((activity, idx) => {
                                 return (
@@ -75,12 +78,7 @@ const DetailedRoutine = () => {
                                 )
                             }) : <div className='empty activity-card'>No activities to display</div>
                         }
-                        </div>
-                        
-                        {/* {
-                            toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutines={setRoutineData} /> : null
-                        } */}
-            
+                        </div>            
                     </div>
 
                 : <p>no routine data</p>

@@ -1,5 +1,6 @@
 // routines api fetches
 
+
 export async function fetchRoutines() {
     try {
         const response = await fetch(
@@ -10,10 +11,10 @@ export async function fetchRoutines() {
                 }
             }
         )
+
         const data = await response.json();
         console.log("routines data: ", data);
         return data;
-
     } catch (error) {
         console.log(error);
     }
@@ -30,10 +31,10 @@ export async function fetchRoutine(routineId) {
                 }
             }
         )
+
         const data = await response.json();
         console.log("routine data: ", data);
         return data;
-
     } catch (error) {
         console.log(error);
     }
@@ -57,6 +58,7 @@ export async function newRoutineFetch( name, goal, isPublic ) {
                 })
             }
         )
+
         const data = await response.json();
         console.log("new routine data: ", data);
         return data;
@@ -92,6 +94,7 @@ export async function editRoutineFetch(routineId, name, goal, isPublic) {
     }
 }
 
+
 export async function deleteRoutineFetch(routineId) {
     try {
         const response = await fetch(
@@ -104,8 +107,36 @@ export async function deleteRoutineFetch(routineId) {
                 }
             }
         )
+
         const data = await response.json();
         console.log("delete routine data: ", data);
+        return data;
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+
+export async function addActivityToRoutineFetch(routineId, activityId, count, duration) {
+    try {
+        const response = await fetch(
+            `http://localhost:3001/api/routines/${routineId}/activities`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    activityId: activityId,
+                    count: count,
+                    duration: duration
+                })
+            }
+        )
+
+        const data = await response.json();
+        console.log("new routine activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);
