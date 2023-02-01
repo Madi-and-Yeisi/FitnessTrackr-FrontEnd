@@ -8,7 +8,7 @@ import EditRoutineActivity from './EditRoutineActivity';
 
 const DetailedRoutineActivity = (props) => {
     const activityData = props.activity;
-    console.log(activityData)
+    // console.log(activityData)
 
     const [toggleEditActivityForm, setToggleEditActivityForm] = useState(false);
     const [toggleEditRoutineActivityForm, setToggleEditRoutineActivityForm] = useState(false);
@@ -52,7 +52,7 @@ const DetailedRoutineActivity = (props) => {
                 </div>    
             </div>
             {
-                toggleEditRoutineActivityForm ? <EditRoutineActivity activityData={activityData} handleToggleEditRoutineActivityForm={handleToggleEditRoutineActivityForm} setRoutines={props.setRoutines} /> : null
+                toggleEditRoutineActivityForm ? <EditRoutineActivity activityData={activityData} handleToggleEditRoutineActivityForm={handleToggleEditRoutineActivityForm} setRoutineData={props.setRoutineData} /> : null
             }
         </div>
 
