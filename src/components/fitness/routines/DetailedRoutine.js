@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useOutletContext, useLocation, Link } from "react-router-dom";
 
-import { AiOutlineEdit } from 'react-icons/ai';
-import { MdOutlinePublic, MdOutlineVisibilityOff, MdAddCircle } from 'react-icons/md';
+import { AiOutlineEdit, AiOutlineUpCircle } from 'react-icons/ai';
+import { MdPublic, MdOutlinePublicOff, MdAddCircle } from 'react-icons/md';
 
 import EditRoutine from './EditRoutine';
 import AddRoutineActivity from '../routineActivities/AddRoutineActivity';
-import RoutineActivityPreview from '../routineActivities/RoutineActivityPreview';
-import { fetchRoutine } from '../../../api/routines';
-import ActivityPreview from '../activities/ActivityPreview';
 import DetailedRoutineActivity from '../routineActivities/DetailedRoutineActivity';
+
+import { fetchRoutine } from '../../../api/routines';
+
 
 const DetailedRoutine = () => {
 
@@ -23,8 +23,6 @@ const DetailedRoutine = () => {
 
     const [toggleEditRoutineForm, setToggleEditRoutineForm] = useState(false);
     const [toggleAddActivityForm, setToggleAddActivityForm] = useState(false);
-
-    const [ toggleActivitiesDisplay, setToggleActivitiesDisplay ] = useState(false);
 
 
     useEffect(() => {
@@ -52,17 +50,22 @@ const DetailedRoutine = () => {
     return (
         <div className='page-container'>
             {
-                myRoutine ? <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineEdit />Edit Your Routine</button> : null
+                myRoutine ? !toggleEditRoutineForm ? <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineEdit />Edit Your Routine</button> : <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineUpCircle />Nevermind</button> : null
             }
             {
-                toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutines={props.setRoutines} /> : null
+                toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutineData={setRoutineData} /> : null
             }
             
             {
                 routineData ? 
                     <div className='routine-card'>
                         <div className='routine-card-header'>
-                            <h2 className='routine-title'>{routineData.name}</h2>
+                            <h2 className='routine-title'>
+                                {routineData.name}
+                                {
+                                    myRoutine ? routineData.isPublic ? <MdPublic /> : <MdOutlinePublicOff /> : null
+                                }
+                            </h2>
                             <Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link>
                         </div>
                         <p className='routine-goal'><strong>Goal: </strong>{routineData.goal}</p>

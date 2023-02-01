@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
-import { deleteRoutineFetch, editRoutineFetch, fetchRoutines } from '../../../api/routines';
-import { userRoutinesFetch } from '../../../api/users';
+import { BsTrash } from 'react-icons/bs';
+
+import { deleteRoutineFetch, editRoutineFetch, fetchRoutine, fetchRoutines } from '../../../api/routines';
+
 
 const EditRoutine = (props) => {
     const [name, setName] = useState(props.routineData.name);
@@ -11,7 +13,8 @@ const EditRoutine = (props) => {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const { profileData, setRoutines } = useOutletContext();
+
+    const { setRoutines } = useOutletContext();
     const navigate = useNavigate();
 
     async function editRoutineFormSubmitHandler(event) {
@@ -21,11 +24,14 @@ const EditRoutine = (props) => {
 
         if (editRoutineFetchData.success) {
             props.handleToggleEditRoutineForm();
-            const myUpdatedRoutines = await userRoutinesFetch(profileData.username);    
-            props.setRoutines(myUpdatedRoutines.routines);
+
+            const updatedRoutineFetchData = await fetchRoutine(props.routineData.id);
+            if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
+
             const updatedRoutines = await fetchRoutines();
             setRoutines(updatedRoutines.routines);
-            navigate('/routines/my-routines');
+
+            navigate(`/routines/${props.routineData.id}`);
         } else {
             setErrorMessage(editRoutineFetchData.message);
         }
@@ -38,35 +44,22 @@ const EditRoutine = (props) => {
         const deleteRoutineFetchData = await deleteRoutineFetch(props.routineData.id);
 
         if (deleteRoutineFetchData.success) {
-            props.handleToggleEditForm();
-            const myUpdatedRoutines = await userRoutinesFetch(profileData.username);
-            props.setRoutines(myUpdatedRoutines.routines);
+            props.handleToggleEditRoutineForm();
+
+            const updatedRoutineFetchData = await fetchRoutine(props.routineData.id);
+            if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
+
             const updatedRoutines = await fetchRoutines();
             setRoutines(updatedRoutines.routines);
-            navigate('/routines/my-routines');
+
+            navigate(`/routines/${props.routineData.id}`);
         } else {
             setErrorMessage(deleteRoutineFetchData.message);
         }
     }
 
 
-    // async function fetchMyRoutines() {
-    //     try {
-    //         const updatedMyRoutines = await fetch(
-    //             `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
-    //             {
-    //                 headers: {
-    //                     "Content-Type": "application/json"
-    //                 }
-    //             }
-    //         )
-    //         const updatedMyRoutinesData = await updatedMyRoutines.json();
-    //         console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
-    //         props.setRoutines(updatedMyRoutinesData);
-    //     } catch (error) {
-    //         console.log(error);
-    //     }
-    // }
+    // TODO: FIX ISPUBLIC CHECKBOX
 
 
     return (
@@ -82,13 +75,22 @@ const EditRoutine = (props) => {
 
                 <br/>
 
-                {/* <label>Public Routine? {"("}Check for yes{")"}</label>
-                <input type="checkbox" value={isPublic} onChange={(event) => setIsPublic(event.target.checked)} ></input>
+                <label>Visible to public?</label>
+                <div className='publicity-container'>
+                    <div>No</div>
+                    <div className='checkbox'>
+                        <input type="checkbox" value={isPublic} onChange={(event) => setIsPublic(event.target.checked)} id='edit-routine-publicity' checked={isPublic}></input>
+                        <label htmlFor='edit-routine-publicity'></label>
+                    </div>
+                    <div>Yes</div>
+                </div>
 
-                <br/> */}
+                <br/>
 
-                <button onClick={deleteRoutineHandler} className='red small-button'>Delete Routine</button>
-                <button type="submit" className='green small-button'>Update Routine</button>
+                <div className='separated-horiz-container'>
+                    <button onClick={deleteRoutineHandler}><BsTrash />Delete Routine</button>
+                    <button type="submit">Update</button>
+                </div>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null

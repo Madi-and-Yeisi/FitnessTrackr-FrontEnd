@@ -62,7 +62,7 @@ const AddRoutineActivity = (props) => {
 
     return (
         <div>
-            <form onSubmit={addRoutineActivityFormSubmitHandler} className="routine-form">
+            <form onSubmit={addRoutineActivityFormSubmitHandler} className="add-activity-form">
                 <label>Choose Activity</label>
                 <select value={chosenActivity.name} defaultValue={defaultChosenActivity.name} onChange={(event) => handleSetChosenActivity(event.target.value)}>
                         {
@@ -87,7 +87,7 @@ const AddRoutineActivity = (props) => {
 
                 <br/>
 
-                <button type="submit" className='green small-button'>Add Activity</button>
+                <button type="submit">Add Activity</button>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null

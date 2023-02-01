@@ -80,6 +80,9 @@
 }
 
 .routine-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     margin: 0px;
     padding: 10px 0 10px 20px;
     color: #0b3551;
@@ -461,11 +464,15 @@
     align-self: flex-end;
 }
 
+
+/* EDIT ROUTINE ACTIVITIES */
+
 .routine-activity-form {
     display: flex;
     flex-direction: column;
     margin: 10px;
     /* width: 100%; */
+    /* width: 374px; */
     padding: 10px;
     border-radius: 10px;
     border: none;
@@ -496,6 +503,166 @@
 
 .routine-activity-form button {
     align-self: center;
+    width: fit-content;
+    padding: 7px 10px;
+    margin-top: 10px;
+    background-color: rgba(232, 93, 117, 0.5);
+    color: #0a060c;
+    /* font-size: 12pt; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+/* EDIT ROUTINE */
+
+.routine-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 580px;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(245, 245, 245, 0.5);
+}
+
+.routine-form input {
+    padding: 5px;
+    padding-left: 20px;
+    color: rgba(11, 53, 81);
+    background-color: rgba(245, 245, 245, 0.5);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.routine-form textarea {
+    max-width: 100%;
+    min-height: fit-content;
+    padding: 5px;
+    background-color: rgba(245, 245, 245, 0.5);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+    font-family: Helvetica, sans-serif;
+}
+
+.routine-form button {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    width: fit-content;
+    padding: 7px 10px;
+    margin-top: 10px;
+    background-color: rgba(232, 93, 117, 0.5);
+    color: #0a060c;
+    /* font-size: 12pt; */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.routine-form .publicity-container {
+    display: flex;
+    align-items: center;
+    background-color: rgba(245, 245, 245, 0.5);
+    width: fit-content;
+    border-radius: 5px;
+    padding: 5px;
+
+}
+
+/* Start by hiding the checkboxes*/
+input[type=checkbox] {
+    visibility: hidden;
+}
+
+input[type="checkbox"]:checked {
+    /* background-color: lime; */
+}
+
+/* the slider bar */
+.checkbox {
+    width: 45px;
+    height: 15px;
+    background-color: rgba(86, 143, 170);
+    margin: 10px 20px;
+    position: relative;
+    border-radius: 5px;
+}
+
+/* the slider from the label */
+.checkbox label {
+    display: block;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    transition: all .5s ease;
+    cursor: pointer;
+    position: absolute;
+    top: -2px;
+    left: -3px;
+    background-color: rgba(245, 245, 245);
+}
+
+/* Move the slider if the checkbox is clicked */
+.checkbox input[type=checkbox]:checked + label {
+    left: 27px;
+}
+
+
+.add-activity-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 374px;
+    padding: 10px;
+    border-radius: 3px;
+    border: none;
+    background-color: rgba(86, 143, 170, 0.75);
+}
+
+.add-activity-form select {
+    padding: 5px;
+    color: whitesmoke;
+    background-color: rgba(11, 53, 81, 0.75);
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+}
+
+.add-activity-form select option{
+    padding: 5px;
+    /* color: whitesmoke; */
+    color: whitesmoke;
+    background-color: rgba(11, 53, 81, 0.75);
+    font-size: 12pt;
+    border: none;
+    border-radius: 5px;
+}
+
+.add-activity-form input {
+    padding: 5px;
+    padding-left: 20px;
+    color: rgba(11, 53, 81);
+    background-color: rgba(245, 245, 245, 0.5);
+    border: none;
+    border-radius: 5px;
+    font-size: 12pt;
+    font-weight: bold;
+    text-align: center;
+}
+
+.add-activity-form button {
+    align-self: center;
+    display: flex;
+    align-items: center;
+    gap: 3px;
     width: fit-content;
     padding: 7px 10px;
     margin-top: 10px;
