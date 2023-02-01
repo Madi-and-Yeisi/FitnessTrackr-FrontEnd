@@ -50,11 +50,8 @@ const RoutinePreview = (props) => {
     return (
         <div className='routine-card'>
             <div className='routine-card-header'>
-                <h2 className='routine-title'>{routineData.name}</h2>
-                {
-                    myPost ? <button onClick={handleToggleEditRoutineForm} className="purple small-button">Edit Routine</button> 
-                    : <div className=''><Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link></div>
-                }
+                <Link to={"/routines/" + routineData.id} className='routine-title'>{routineData.name}</Link>
+                <Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link>
             </div>
             <p className='routine-goal'><strong>Goal: </strong>{routineData.goal}</p>
             <div className='horiz-flex-container'>
@@ -63,16 +60,6 @@ const RoutinePreview = (props) => {
                     toggleActivitiesDisplay ? <AiOutlineUpCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> : <AiOutlineDownCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> 
                 }
             </div>
-            {
-                toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutines={props.setRoutines} /> : null
-            }
-
-
-
-            {
-                toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutines={props.setRoutines} /> : null
-            }
-
             {
                 toggleActivitiesDisplay ? 
                 <div className='activities-container'>
@@ -93,13 +80,6 @@ const RoutinePreview = (props) => {
                 : null
             }
 
-
-            <div className='separated-horiz-container'>
-
-                {
-                    myPost ? <button onClick={handleToggleAddActivityForm} className="purple small-button">Add Activity</button> : null
-                }
-            </div>
         </div>
     )
 }

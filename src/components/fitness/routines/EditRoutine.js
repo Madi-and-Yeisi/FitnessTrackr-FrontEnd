@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
 
-import { editRoutineFetch, fetchRoutines } from '../../../api/routines';
+import { deleteRoutineFetch, editRoutineFetch, fetchRoutines } from '../../../api/routines';
 import { userRoutinesFetch } from '../../../api/users';
 
 const EditRoutine = (props) => {
@@ -21,7 +21,7 @@ const EditRoutine = (props) => {
 
         if (editRoutineFetchData.success) {
             props.handleToggleEditRoutineForm();
-            const myUpdatedRoutines = await userRoutinesFetch(profileData.username);
+            const myUpdatedRoutines = await userRoutinesFetch(profileData.username);    
             props.setRoutines(myUpdatedRoutines.routines);
             const updatedRoutines = await fetchRoutines();
             setRoutines(updatedRoutines.routines);
@@ -32,32 +32,20 @@ const EditRoutine = (props) => {
     }
 
 
-    async function deleteRoutine() {
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routines/${props.routineData.id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            )
-            const data = await response.json();
-            console.log("DELETE ROUTINE DATA: ", data);
+    async function deleteRoutineHandler(event) {
+        event.preventDefault();
 
-            if (data.success) {
-                await fetchRoutines();
-                props.handleToggleEditForm();
-                
-                navigate('/routines/my-routines');
-            } else {
-                setErrorMessage(data.error);
-            }
+        const deleteRoutineFetchData = await deleteRoutineFetch(props.routineData.id);
 
-        } catch(error) {
-            console.log(error);
+        if (deleteRoutineFetchData.success) {
+            props.handleToggleEditForm();
+            const myUpdatedRoutines = await userRoutinesFetch(profileData.username);
+            props.setRoutines(myUpdatedRoutines.routines);
+            const updatedRoutines = await fetchRoutines();
+            setRoutines(updatedRoutines.routines);
+            navigate('/routines/my-routines');
+        } else {
+            setErrorMessage(deleteRoutineFetchData.message);
         }
     }
 
@@ -99,7 +87,7 @@ const EditRoutine = (props) => {
 
                 <br/> */}
 
-                <button onClick={deleteRoutine} className='red small-button'>Delete Routine</button>
+                <button onClick={deleteRoutineHandler} className='red small-button'>Delete Routine</button>
                 <button type="submit" className='green small-button'>Update Routine</button>
             </form>
             {

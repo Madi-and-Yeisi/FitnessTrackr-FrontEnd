@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
+import { newRoutineFetch } from '../../../api/routines';
 
 const NewRoutine = () => {
     const [name, setName] = useState("");
@@ -14,33 +15,14 @@ const NewRoutine = () => {
     async function newRoutineFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                'https://fitnesstrac-kr.herokuapp.com/api/routines',
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        goal: goal,
-                        isPublic: isPublic
-                    })
-                }
-            )
-            const data = await response.json();
-            // console.log("NEW ROUTINE DATA: ", data);
+        const newRoutineFetchData = await newRoutineFetch(name, goal, isPublic);
 
-            if (data.id) {
-                navigate('/routines/my-routines');
-            } else {
-                // TODO: translate error to something user friendly
-                setErrorMessage(data.error);
-            }
-        } catch(error) {
-            console.log(error);
+        if (newRoutineFetchData.success) {
+            // TODO: update routines immediately
+
+            navigate('/routines/my-routines');
+        } else {
+            setErrorMessage(newRoutineFetchData.message);
         }
     }
 

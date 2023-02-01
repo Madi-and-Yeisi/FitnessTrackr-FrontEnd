@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
 
-import { registerFetch, userFetch } from '../../api/users';
+import { registerFetch, meFetch } from '../../api/users';
 
 
 const Register = () => {
@@ -24,7 +24,7 @@ const Register = () => {
             console.log(registerFetchData.message);
             setLoggedIn(true);
             localStorage.setItem("token", registerFetchData.token);
-            const userFetchData = userFetch();
+            const userFetchData = meFetch();
             setProfileData(userFetchData.user);
             navigate("/profile");
         } else {

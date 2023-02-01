@@ -13,6 +13,7 @@ import Activities from './components/fitness/activities/AllActivities';
 import NewActivity from './components/fitness/activities/NewActivity';
 import Routines from './components/fitness/routines/AllRoutines';
 import MyRoutines from './components/fitness/routines/MyRoutines';
+import DetailedRoutine from './components/fitness/routines/DetailedRoutine';
 import NewRoutine from './components/fitness/routines/NewRoutine';
 import EditRoutine from './components/fitness/routines/EditRoutine';
 import CreatorRoutines from './components/fitness/routines/CreatorRoutines';
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: "/routines",
                 element: <Routines />
+            },
+            {
+                path: "/routines/:id",
+                element: <DetailedRoutine />
             },
             {
                 path: "/routines/my-routines",

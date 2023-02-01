@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from "react";
 import { useOutletContext, Link } from "react-router-dom";
-import { userRoutinesFetch } from "../../../api/users";
+import { myRoutinesFetch } from "../../../api/users";
+
+import { MdAddCircle } from 'react-icons/md';
 
 import RoutinePreview from "./RoutinePreview";
 
 const MyRoutines = () => {
     const { profileData } = useOutletContext();
+    console.log("profile Data ", profileData)
 
     const [routines, setRoutines] = useState([]);
 
@@ -16,21 +19,24 @@ const MyRoutines = () => {
 
 
     async function fetchRoutines() {
-        const myRoutinesFetchData = await userRoutinesFetch(profileData.username);
+        const myRoutinesFetchData = await myRoutinesFetch();
         setRoutines(myRoutinesFetchData.routines);
     }
 
 
     return (
-        <div>
-            <div className="separated-horiz-container">
-                <h1>@{profileData.username}'s routines</h1>
-                <button className="green button"><Link to={'/routines/my-routines/add'} className="black no-line">Add New Routine</Link></button>
+        <div className="page-container">
+            <div className="separated-horiz-container sticky-sub-header sub-header">
+                <div className="sub-title">My Routines</div>
+                {
+                    // search 
+                }
+                <Link to={'/routines/my-routines/add'} className="header-button"><MdAddCircle className="icon" />Add New</Link>
             </div>
 
-            <div className="horiz-flex-container">
+            <div className="vert-flex-container">
             {
-                routines.length ? routines.map((routine, idx) => {
+                routines && routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
                 }) : <p>No routines to display</p>
             }

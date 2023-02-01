@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
-import { loginFetch, userFetch } from '../../api/users';
+import { loginFetch, meFetch } from '../../api/users';
 
 const Login = () => {
 
@@ -21,7 +21,7 @@ const Login = () => {
         if (loginFetchData.success) {
             setLoggedIn(true);
             localStorage.setItem("token", loginFetchData.token);
-            const userFetchData = await userFetch();
+            const userFetchData = await meFetch();
             setProfileData(userFetchData);
             navigate('/');
         } else {

@@ -28,7 +28,7 @@ const Activities = () => {
                 <div className="sub-title">Activities</div>
                 <div>
                 {
-                    loggedIn ? <Link to={'/activities/add'} className="new-activity-button"><MdAddCircle className="icon" />Add New</Link> : null
+                    loggedIn ? <Link to={'/activities/add'} className="header-button"><MdAddCircle className="icon" />Add New</Link> : null
                 }
                 </div>
             </div>

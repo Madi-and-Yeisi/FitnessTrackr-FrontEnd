@@ -1,11 +1,13 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { useOutletContext, Link } from "react-router-dom";
+
+import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 
 import RoutinePreview from "./RoutinePreview";
 
 const Routines = () => {
 
-    const { routines } = useOutletContext();
+    const { loggedIn, routines } = useOutletContext();
 
 
     return (
@@ -17,6 +19,10 @@ const Routines = () => {
                     // search 
                 }
                 </div>
+                {
+                    loggedIn ? <Link to='/routines/my-routines' className="header-button"><BsFillArrowRightCircleFill />My Routines</Link> : null
+                }
+                
             </div>
             <div className="vert-flex-container">
             {

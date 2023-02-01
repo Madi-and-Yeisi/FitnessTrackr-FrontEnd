@@ -7,7 +7,7 @@ import './general.css';
 import '../fitness/fitness.css'
 
 import { fetchRoutines } from '../../api/routines';
-import { userFetch } from '../../api/users';
+import { meFetch } from '../../api/users';
 
 import Navbar from './Navbar';
 
@@ -37,7 +37,7 @@ const App = () => {
 
 
     async function checkForUser() {
-        const meData = await userFetch();    // arg me data
+        const meData = await meFetch();    // arg me data
 
         if ( meData.success ) {
             console.log('welcome ' + meData.user.username);

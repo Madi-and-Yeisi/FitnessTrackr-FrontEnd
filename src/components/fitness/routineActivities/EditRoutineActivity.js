@@ -114,7 +114,7 @@ const EditRoutineActivity = (props) => {
 
     return (
         <div>
-            <form onSubmit={editActivityFormSubmitHandler} className="activity-form">
+            <form onSubmit={editActivityFormSubmitHandler} className="routine-activity-form">
                 <div className='separated-horiz-container'>
                     <div className='vert-flex-container'>
                         <label>Count:</label>
@@ -126,8 +126,8 @@ const EditRoutineActivity = (props) => {
                     </div>
                 </div>
                 <div className='separated-horiz-container'>
-                    <button onClick={deleteActivity} className="red small-button">Remove Activity</button>
-                    <button type="submit" className='green small-button'>Update Activity</button>
+                    <button onClick={deleteActivity}>Remove Activity</button>
+                    <button type="submit">Update</button>
                 </div>
             </form>
             {
