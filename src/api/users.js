@@ -94,7 +94,7 @@ export async function myRoutinesFetch() {
 export async function userRoutinesFetch(username) {
     try {
         const response = await fetch(
-            `https://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`,
+            `http://localhost:3001/api/users/${username}/routines`,
             {
                 headers: {
                     "Content-Type": "application/json"

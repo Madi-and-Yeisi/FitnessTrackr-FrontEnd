@@ -197,10 +197,6 @@ input[type=checkbox] {
     visibility: hidden;
 }
 
-input[type="checkbox"]:checked {
-    /* background-color: lime; */
-}
-
 /* the slider bar */
 .checkbox {
     width: 45px;
@@ -238,6 +234,22 @@ input[type="checkbox"]:checked {
     padding: 5px;
     border-radius: 5px;
 }
+
+
+.creator-page-tag {
+    display: inline;
+    color: var(--prussian-blue);
+    text-shadow: 1px 1px 1px var(--blue-green), -1px -1px 1px var(--blue-green), 4px 4px 4px var(--prussian-blue);
+}
+
+
+
+
+
+
+
+
+
 
 /* 
 

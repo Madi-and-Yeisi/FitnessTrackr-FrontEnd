@@ -74,7 +74,7 @@ const router = createBrowserRouter([
                 element: <AddActivity />
             },
             {
-                path: "/routines/:username",
+                path: "/routines/user/:username",
                 element: <CreatorRoutines />
             },
             {

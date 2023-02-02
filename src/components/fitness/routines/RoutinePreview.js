@@ -40,7 +40,7 @@ const RoutinePreview = (props) => {
                     }
                 </Link>
                 {
-                    routineData.creatorName ? <Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link> : null
+                    routineData.creatorName ? <Link to={`/routines/user/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link> : null
                 }
                 
             </header>
