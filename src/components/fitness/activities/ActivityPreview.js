@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useOutletContext } from 'react-router-dom';
 
 import EditActivity from './EditActivity';
 import { AiOutlineEdit, AiOutlineUpCircle } from 'react-icons/ai';
 
 
 const ActivityPreview = ({ activity }) => {
+
+    const { loggedIn } = useOutletContext();
 
     const [toggleEditActivityForm, setToggleEditActivityForm] = useState(false);
 
@@ -24,7 +26,9 @@ const ActivityPreview = ({ activity }) => {
                 <div className='column'>
                     <div className='spread-row'>
                         <Link to={`/routines/featured/${activity.id}`} className="activity-tag">{activity.name}</Link>
-                        <button onClick={handleToggleEditActivityForm}>{ !toggleEditActivityForm ? <AiOutlineEdit /> : <AiOutlineUpCircle/>}</button>
+                        {
+                            loggedIn ? <button onClick={handleToggleEditActivityForm}>{ !toggleEditActivityForm ? <AiOutlineEdit /> : <AiOutlineUpCircle/>}</button> : null
+                        }
                     </div>
                     <p>{activity.description}</p>
                 </div>    

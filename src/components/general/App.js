@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Outlet, Link } from 'react-router-dom';
 
-import { AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai';
+import { BiLogOutCircle, BiLogInCircle } from 'react-icons/bi';
 
 import './general.css';
+import '../profile/profile.css';
 import '../fitness/activities/activities.css';
 import '../fitness/routines/routines.css';
 import '../fitness/routineActivities/routine-activities.css';
@@ -58,7 +59,7 @@ const App = () => {
                 <header className='sticky-header'>
                     <h1 className="title">Fitness Trackr</h1>
                     {
-                    loggedIn ? <Link className='logout' to='profile/logout'><AiOutlineLogout />Log out</Link> : <Link className='logout' to='profile/login'><AiOutlineLogin />Log in</Link>
+                    loggedIn ? <Link className='logout' to='profile/logout'><BiLogOutCircle className='flip' />Log out</Link> : <Link className='logout' to='profile/login'><BiLogInCircle />Log in</Link>
                     }
                 </header>
                 <div className='nav-container'>

@@ -7,7 +7,6 @@ import Home from './components/general/Home';
 import Error from './components/general/Error';
 import Profile from './components/profile/Profile';
 import Login from './components/profile/Login';
-import Logout from './components/profile/Logout';
 import Register from './components/profile/Register';
 import Activities from './components/fitness/activities/AllActivities';
 import NewActivity from './components/fitness/activities/NewActivity';
@@ -37,10 +36,6 @@ const router = createBrowserRouter([
             {
                 path: "/profile/login",
                 element: <Login />
-            },
-            {
-                path: "/profile/logout",
-                element: <Logout />
             },
             {
                 path: "/profile/register",
