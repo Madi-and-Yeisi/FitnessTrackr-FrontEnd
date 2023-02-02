@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Outlet, Link } from 'react-router-dom';
-
-import { BiLogOutCircle, BiLogInCircle } from 'react-icons/bi';
+import { Outlet } from 'react-router-dom';
 
 import './general.css';
 import '../profile/profile.css';
@@ -9,11 +7,10 @@ import '../fitness/activities/activities.css';
 import '../fitness/routines/routines.css';
 import '../fitness/routineActivities/routine-activities.css';
 
-
 import { fetchRoutines } from '../../api/routines';
 import { meFetch } from '../../api/users';
 
-import Navbar from './Navbar';
+import Header from './Header';
 
 const App = () => {
 
@@ -55,17 +52,7 @@ const App = () => {
 
     return (
         <div className='center-column'>
-            <div className='sticky-header center-column'>
-                <header className='sticky-header'>
-                    <h1 className="title">Fitness Trackr</h1>
-                    {
-                    loggedIn ? <Link className='logout' to='profile/logout'><BiLogOutCircle className='flip' />Log out</Link> : <Link className='logout' to='profile/login'><BiLogInCircle />Log in</Link>
-                    }
-                </header>
-                <div className='nav-container'>
-                    <Navbar loggedIn={loggedIn} profileData={profileData}/>
-                </div>
-            </div>
+            <Header loggedIn={loggedIn} profileData={profileData} />
 
             <Outlet context={{ routines, setRoutines, profileData, setProfileData, loggedIn, setLoggedIn }} />
         </div>

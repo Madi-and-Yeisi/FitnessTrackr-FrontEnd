@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { AiFillDownCircle, AiFillUpCircle, AiFillCaretRight, AiFillCaretLeft } from 'react-icons/ai';
-import { MdPublic, MdOutlinePublicOff, MdAddCircle } from 'react-icons/md';
+import { MdPublic, MdOutlinePublicOff } from 'react-icons/md';
 
-import EditRoutine from './EditRoutine';
-import AddRoutineActivity from '../routineActivities/AddRoutineActivity';
 import RoutineActivityPreview from '../routineActivities/RoutineActivityPreview';
 
-const RoutinePreview = (props) => {
-    const routineData = props.routine;
+const RoutinePreview = ({ routine, setRoutines }) => {
 
     const [ toggleActivitiesDisplay, setToggleActivitiesDisplay ] = useState(false);
 
@@ -20,12 +17,12 @@ const RoutinePreview = (props) => {
 
 
     const sliderLeft = () => {
-        const slider = document.getElementById('slider' + routineData.id)
+        const slider = document.getElementById('slider' + routine.id)
         slider.scrollLeft = slider.scrollLeft - 416
     }
 
     const sliderRight = () => {
-        const slider = document.getElementById('slider' + routineData.id)
+        const slider = document.getElementById('slider' + routine.id)
         slider.scrollLeft = slider.scrollLeft + 416
     }
 
@@ -33,19 +30,19 @@ const RoutinePreview = (props) => {
     return (
         <div className='routine-card'>
             <header className='routine-card-header'>
-                <Link to={"/routines/" + routineData.id} className='routine-title'>
-                    {routineData.name}
+                <Link to={"/routines/" + routine.id} className='routine-title'>
+                    {routine.name}
                     {
-                        !routineData.creatorName ? routineData.isPublic ? <MdPublic /> : <MdOutlinePublicOff /> : null
+                        !routine.creatorName ? routine.isPublic ? <MdPublic /> : <MdOutlinePublicOff /> : null
                     }
                 </Link>
                 {
-                    routineData.creatorName ? <Link to={`/routines/user/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link> : null
+                    routine.creatorName ? <Link to={`/routines/user/${routine.creatorName}`} className="creator-tag">@{routine.creatorName}</Link> : null
                 }
                 
             </header>
-            <p><strong>Goal: </strong>{routineData.goal}</p>
-            <h4>Activities {`(${routineData.activities.length})`}
+            <p><strong>Goal: </strong>{routine.goal}</p>
+            <h4>Activities {`(${routine.activities.length})`}
                 {
                     toggleActivitiesDisplay ? <AiFillUpCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> : <AiFillDownCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> 
                 }
@@ -55,13 +52,13 @@ const RoutinePreview = (props) => {
                 <div className='activities-container'>
                     <div className='slider-nav' onClick={sliderLeft}><AiFillCaretLeft /></div>
 
-                    <div className='slider' id={'slider' + routineData.id}>
+                    <div className='slider' id={'slider' + routine.id}>
                     {
-                        routineData.activities.length ? routineData.activities.map((activity, idx) => {
+                        routine.activities.length ? routine.activities.map((activity, idx) => {
                             return (
-                                <RoutineActivityPreview activity={activity} key={idx} setRoutines={props.setRoutines}/>
+                                <RoutineActivityPreview activity={activity} key={idx} setRoutines={setRoutines}/>
                             )
-                        }) : <div className='empty activity-card'>No activities to display</div>
+                        }) : <div className='empty routine-activity-container'>No activities to display</div>
                     }
                     </div>
 

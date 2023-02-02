@@ -1,10 +1,19 @@
 import React from 'react';
+import { Link } from "react-router-dom"; 
+
+import { BiHomeAlt, BiDumbbell, BiUser } from 'react-icons/bi';
+import Header from './Header';
+
 
 const Error = () => {
     return (
-        <div>
-            <h3 className='centered error'>Oh no, page not found! {":("}</h3>
+        <div className='center-column'>
+            <Header />
+            <div className='page-container' id='error-page'>
+                <h3 className='error'>Sorry, there's nothing here...</h3>
+            </div>
         </div>
+
     )
 };
 

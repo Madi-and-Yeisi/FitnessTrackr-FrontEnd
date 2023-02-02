@@ -40,10 +40,8 @@ body {
 
 .spread-row {
     display: flex;
-    /* width: 100%; */
     justify-content: space-between;
     align-items: center;
-    /* background-color: red; */
 }
 
 .center-row {
@@ -149,7 +147,7 @@ nav {
 }
 
 
-/* all routines and activities pages */
+/* ~almost~ all pages */
 
 .page-container {
     display: flex;
@@ -159,6 +157,10 @@ nav {
     background-image: linear-gradient(to right, var(--prussian-blue), var(--blue-green), var(--blue-green), var(--blue-green), var(--blue-green), var(--blue-green), var(--prussian-blue));
 }
 
+#error-page {
+    width: 600px
+}
+
 .page-container header {
     background: rgba(0, 0, 0, 0);
     padding: 10px;
@@ -166,13 +168,6 @@ nav {
 
 .page-container header h1 {
     margin: 0px;
-    font-family: 'Racing Sans One', cursive;
-    font-size: 24pt;
-    color: whitesmoke;
-    text-shadow: 2px 2px 2px var(--dark-black), -1px -1px 1px var(--dark-black), 4px 4px 4px var(--prussian-blue);
-}
-
-.sub-title {
     font-family: 'Racing Sans One', cursive;
     font-size: 24pt;
     color: whitesmoke;
@@ -216,6 +211,16 @@ nav {
     padding: 5px;
 }
 
+.nothing-here {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    background-color: var(--prussian-blue-75);
+    color: whitesmoke;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
 
 /* HOME */
 

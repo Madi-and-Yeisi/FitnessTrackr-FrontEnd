@@ -23,7 +23,6 @@ const Routines = () => {
     const filteredRoutines = routines.filter(routine => findMatch(routine, searchTerm));
     const routinesToDisplay = searchTerm.length ? filteredRoutines : routines;
 
-
     return (
         <div className="page-container">
         <header>
@@ -39,7 +38,7 @@ const Routines = () => {
         {
             routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
                 return <RoutinePreview key={idx} routine={routine} />
-            }) : <p>No routines to display</p>
+            }) : <p className="nothing-here">No routines to display...</p>
         }
     </div>
     )

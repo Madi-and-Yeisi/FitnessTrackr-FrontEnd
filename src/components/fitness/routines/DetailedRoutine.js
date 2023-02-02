@@ -66,7 +66,7 @@ const DetailedRoutine = () => {
                                     myRoutine ? routineData.isPublic ? <MdPublic /> : <MdOutlinePublicOff /> : null
                                 }
                             </h2>
-                            <Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link>
+                            <Link to={`/routines/user/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link>
                         </header>
                         <p><strong>Goal: </strong>{routineData.goal}</p>
                         <h4 className='routine-activities'>Activities {`(${routineData.activities.length})`} { myRoutine ? <button onClick={handleToggleAddActivityForm} className="add-routine-activity-button">{ !toggleAddActivityForm ? <div className="center-row"><MdAddCircle className="icon" />Add</div> : <div className='center-row'><AiOutlineUpCircle className="icon" />Nevermind</div> }</button> : null } </h4>
@@ -78,11 +78,11 @@ const DetailedRoutine = () => {
                                 return (
                                     <DetailedRoutineActivity key={idx} activity={activity} setRoutineData={setRoutineData} myRoutine={myRoutine} />
                                 )
-                            }) : <div className='empty activity-card'>No activities to display</div>
+                            }) : null
                         }
                     </div>
 
-                : <p>no routine data</p>
+                : <p className="nothing-here">Nothing to display...</p>
             }
         </div>
     )

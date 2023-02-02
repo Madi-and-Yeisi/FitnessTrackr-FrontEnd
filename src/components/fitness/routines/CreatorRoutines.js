@@ -35,7 +35,7 @@ const CreatorRoutines = () => {
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) : <p>No routines to display</p>
+                }) : <p className="nothing-here">No routines to display...</p>
             }
             </div>
         </div>

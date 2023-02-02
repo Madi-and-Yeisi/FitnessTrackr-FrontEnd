@@ -235,18 +235,11 @@ input[type=checkbox] {
     border-radius: 5px;
 }
 
-
 .creator-page-tag {
     display: inline;
     color: var(--prussian-blue);
     text-shadow: 1px 1px 1px var(--blue-green), -1px -1px 1px var(--blue-green), 4px 4px 4px var(--prussian-blue);
 }
-
-
-
-
-
-
 
 
 

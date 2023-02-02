@@ -33,7 +33,6 @@ const Activities = () => {
     const filteredActivities = activities.filter(activity => findMatch(activity, searchTerm));
     const activitiesToDisplay = searchTerm.length ? filteredActivities : activities;
 
-
     return (
         <div className="page-container all-activities">
             <header>
@@ -49,7 +48,7 @@ const Activities = () => {
             {
                 activitiesToDisplay.length ? activitiesToDisplay.map((activity, idx) => {
                     return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
-                }) : <p>No activities to display</p>
+                }) : <p className="nothing-here">No activities to display...</p>
             }
         </div>
     )

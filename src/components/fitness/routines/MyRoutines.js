@@ -49,7 +49,7 @@ const MyRoutines = () => {
             {
                 routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
-                }) : <p>No routines to display</p>
+                }) : <p className="nothing-here">No routines to display...</p>
             }
             </div>
         </div>
