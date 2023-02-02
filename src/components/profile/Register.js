@@ -57,7 +57,7 @@ const Register = () => {
             localStorage.setItem("token", registerFetchData.token);
             const userFetchData = meFetch();
             setProfileData(userFetchData.user);
-            navigate("/profile");
+            navigate("/routines");
         } else {
             setErrorMessage(registerFetchData.message);
         }
