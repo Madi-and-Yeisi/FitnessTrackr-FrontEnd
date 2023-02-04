@@ -49,7 +49,7 @@ export async function loginFetch(username, password) {
 }
 
 
-export async function userFetch() {    
+export async function meFetch() {    
     try {
         const response = await fetch(
             'http://localhost:3001/api/users/me',
@@ -65,6 +65,47 @@ export async function userFetch() {
         return data;
 
     } catch(error) {
+        console.log(error);
+    }
+}
+
+
+export async function myRoutinesFetch() {    
+    try {
+        const response = await fetch(
+            'http://localhost:3001/api/users/my-routines',
+            {
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${localStorage.getItem("token")}`
+                },
+            })
+            
+        const data = await response.json();
+        console.log("my routines data: ", data);
+        return data;
+
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+
+export async function userRoutinesFetch(username) {
+    try {
+        const response = await fetch(
+            `http://localhost:3001/api/users/${username}/routines`,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const data = await response.json();
+        console.log(`users/${username}/routines data: `, data);
+        return data;
+
+    } catch (error) {
         console.log(error);
     }
 }

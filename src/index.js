@@ -7,12 +7,12 @@ import Home from './components/general/Home';
 import Error from './components/general/Error';
 import Profile from './components/profile/Profile';
 import Login from './components/profile/Login';
-import Logout from './components/profile/Logout';
 import Register from './components/profile/Register';
 import Activities from './components/fitness/activities/AllActivities';
 import NewActivity from './components/fitness/activities/NewActivity';
 import Routines from './components/fitness/routines/AllRoutines';
 import MyRoutines from './components/fitness/routines/MyRoutines';
+import DetailedRoutine from './components/fitness/routines/DetailedRoutine';
 import NewRoutine from './components/fitness/routines/NewRoutine';
 import EditRoutine from './components/fitness/routines/EditRoutine';
 import CreatorRoutines from './components/fitness/routines/CreatorRoutines';
@@ -38,10 +38,6 @@ const router = createBrowserRouter([
                 element: <Login />
             },
             {
-                path: "/profile/logout",
-                element: <Logout />
-            },
-            {
                 path: "/profile/register",
                 element: <Register />
             },
@@ -56,6 +52,10 @@ const router = createBrowserRouter([
             {
                 path: "/routines",
                 element: <Routines />
+            },
+            {
+                path: "/routines/:id",
+                element: <DetailedRoutine />
             },
             {
                 path: "/routines/my-routines",
@@ -74,7 +74,7 @@ const router = createBrowserRouter([
                 element: <AddActivity />
             },
             {
-                path: "/routines/:username",
+                path: "/routines/user/:username",
                 element: <CreatorRoutines />
             },
             {

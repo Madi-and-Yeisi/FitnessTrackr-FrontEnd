@@ -1,0 +1,115 @@
+/* profile css */
+
+
+/* LOGIN AND REGISTER */
+
+.user-form {
+    background-color: var(--whitesmoke-50);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 3px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--whitesmoke-50);
+    border: 2px solid var(--whitesmoke-25);
+    border-radius: 3px;
+    padding: 5px;
+    gap: 3px;
+}
+
+.input-error {
+    color: var(--error-red);
+    border: 2px solid var(--error-red);
+}
+
+.input-container .icon {
+    font-size: 14pt;
+}
+
+.user-form input {
+    flex-grow: 2;
+    border-style: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 12pt;
+}
+
+.user-form input {
+    outline: none;
+}
+
+.user-form button {
+    align-self: center;
+    background-color: var(--bright-pink-50);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 25px;
+    width: fit-content;
+    font-size: 12pt;
+    cursor: pointer;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.register-link {
+    color: var(--dark-black);
+}
+
+
+/* PROFILE ICONS */
+
+.profile-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 50px;
+    margin: 50px 0;
+}
+
+.profile-container button {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14pt;
+    height: 135px;
+    width: 135px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--whitesmoke-75);
+    cursor: pointer;
+}
+
+.profile-button-link, .profile-button-link:visited {
+    text-decoration: none;
+    color: var(--dark-black);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14pt;
+    height: 135px;
+    width: 135px;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--whitesmoke-75);
+}
+
+.profile-icon {
+    font-size: 4rem;
+}
+
+.flip {
+    rotate: 180deg;
+}
+
+.inline {
+    display: inline;
+}

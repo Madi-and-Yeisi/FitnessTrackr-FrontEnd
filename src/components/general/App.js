@@ -1,15 +1,16 @@
 import { useState, useEffect } from 'react';
-import { Outlet, Link } from 'react-router-dom';
-
-import { AiOutlineLogout, AiOutlineLogin } from 'react-icons/ai';
+import { Outlet } from 'react-router-dom';
 
 import './general.css';
-import '../fitness/fitness.css'
+import '../profile/profile.css';
+import '../fitness/activities/activities.css';
+import '../fitness/routines/routines.css';
+import '../fitness/routineActivities/routine-activities.css';
 
 import { fetchRoutines } from '../../api/routines';
-import { userFetch } from '../../api/users';
+import { meFetch } from '../../api/users';
 
-import Navbar from './Navbar';
+import Header from './Header';
 
 const App = () => {
 
@@ -28,8 +29,8 @@ const App = () => {
     async function getRoutines() {
         const routinesData = await fetchRoutines();
 
-        if ( routinesData.length ) {
-            setRoutines(routinesData);
+        if ( routinesData.routines.length ) {
+            setRoutines(routinesData.routines);
         } else {
             console.log( routinesData.error );
         }
@@ -37,7 +38,7 @@ const App = () => {
 
 
     async function checkForUser() {
-        const meData = await userFetch();    // arg me data
+        const meData = await meFetch();    // arg me data
 
         if ( meData.success ) {
             console.log('welcome ' + meData.user.username);
@@ -50,22 +51,11 @@ const App = () => {
 
 
     return (
-        <div className='vert-flex-container'>
-            <div className='sticky-header vert-flex-container'>
-                <header className='sticky-header'>
-                    <h1 className="title">Fitness Trackr</h1>
-                    {
-                    loggedIn ? <Link className='logout' to='profile/logout'><AiOutlineLogout />Log out</Link> : <Link className='logout' to='profile/login'><AiOutlineLogin />Log in</Link>
-                    }
-                </header>
-                <div className='nav-container'>
-                    <Navbar loggedIn={loggedIn} profileData={profileData}/>
-                </div>
-            </div>
+        <div className='center-column'>
+            <Header loggedIn={loggedIn} profileData={profileData} />
 
             <Outlet context={{ routines, setRoutines, profileData, setProfileData, loggedIn, setLoggedIn }} />
         </div>
-
     )
 }
 

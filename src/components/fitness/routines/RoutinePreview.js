@@ -1,105 +1,72 @@
 import React, { useState } from 'react';
-import { Link, useOutletContext } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { AiOutlineDownCircle, AiOutlineUpCircle} from 'react-icons/ai';
+import { AiFillDownCircle, AiFillUpCircle, AiFillCaretRight, AiFillCaretLeft } from 'react-icons/ai';
+import { MdPublic, MdOutlinePublicOff } from 'react-icons/md';
 
-import EditRoutine from './EditRoutine';
-import AddRoutineActivity from '../routineActivities/AddRoutineActivity';
 import RoutineActivityPreview from '../routineActivities/RoutineActivityPreview';
 
-const RoutinePreview = (props) => {
-    const routineData = props.routine;
-
-    const { profileData } = useOutletContext();
-
-    const [toggleEditRoutineForm, setToggleEditRoutineForm] = useState(false);
-    const [toggleAddActivityForm, setToggleAddActivityForm] = useState(false);
+const RoutinePreview = ({ routine, setRoutines }) => {
 
     const [ toggleActivitiesDisplay, setToggleActivitiesDisplay ] = useState(false);
 
-    let myPost = routineData.creatorName === profileData.username;
 
-
-    function handleToggleEditRoutineForm() {
-        setToggleEditRoutineForm(!toggleEditRoutineForm);
-    }
-
-
-    function handleToggleAddActivityForm() {
-        setToggleAddActivityForm(!toggleAddActivityForm);
-    }
-
-    
     function handleToggleActivitiesDisplay() {
-        console.log("toggle activities")
         setToggleActivitiesDisplay(!toggleActivitiesDisplay);
-
     }
+
 
     const sliderLeft = () => {
-        const slider = document.getElementById('slider' + routineData.id)
-        slider.scrollLeft = slider.scrollLeft - 415
+        const slider = document.getElementById('slider' + routine.id)
+        slider.scrollLeft = slider.scrollLeft - 416
     }
 
     const sliderRight = () => {
-        const slider = document.getElementById('slider' + routineData.id)
-        slider.scrollLeft = slider.scrollLeft + 415
+        const slider = document.getElementById('slider' + routine.id)
+        slider.scrollLeft = slider.scrollLeft + 416
     }
 
 
     return (
         <div className='routine-card'>
-            <div className='routine-card-header'>
-                <h2 className='routine-title'>{routineData.name}</h2>
+            <header className='routine-card-header'>
+                <Link to={"/routines/" + routine.id} className='routine-title'>
+                    {routine.name}
+                    {
+                        !routine.creatorName ? routine.isPublic ? <MdPublic /> : <MdOutlinePublicOff /> : null
+                    }
+                </Link>
                 {
-                    myPost ? <button onClick={handleToggleEditRoutineForm} className="purple small-button">Edit Routine</button> 
-                    : <div className=''><Link to={`/routines/${routineData.creatorName}`} className="creator-tag">@{routineData.creatorName}</Link></div>
+                    routine.creatorName ? <Link to={`/routines/user/${routine.creatorName}`} className="creator-tag">@{routine.creatorName}</Link> : null
                 }
-            </div>
-            <p className='routine-goal'><strong>Goal: </strong>{routineData.goal}</p>
-            <div className='horiz-flex-container'>
-                <h4 className='routine-activities'>Activities {`(${routineData.activities.length})`}</h4>
+                
+            </header>
+            <p><strong>Goal: </strong>{routine.goal}</p>
+            <h4>Activities {`(${routine.activities.length})`}
                 {
-                    toggleActivitiesDisplay ? <AiOutlineUpCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> : <AiOutlineDownCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> 
+                    toggleActivitiesDisplay ? <AiFillUpCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> : <AiFillDownCircle className='show-activities-icon' onClick={handleToggleActivitiesDisplay} /> 
                 }
-            </div>
-            {
-                toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutines={props.setRoutines} /> : null
-            }
-
-
-
-            {
-                toggleAddActivityForm ? <AddRoutineActivity routineData={routineData} handleToggleAddActivityForm={handleToggleAddActivityForm} setRoutines={props.setRoutines} /> : null
-            }
-
+            </h4>
             {
                 toggleActivitiesDisplay ? 
                 <div className='activities-container'>
-                    <div className='slider-nav' onClick={sliderLeft}>{'<'}</div>
+                    <div className='slider-nav' onClick={sliderLeft}><AiFillCaretLeft /></div>
 
-                    <div className='slider' id={'slider' + routineData.id}>
+                    <div className='slider' id={'slider' + routine.id}>
                     {
-                        routineData.activities.length ? routineData.activities.map((activity, idx) => {
+                        routine.activities.length ? routine.activities.map((activity, idx) => {
                             return (
-                                <RoutineActivityPreview activity={activity} key={idx} setRoutines={props.setRoutines}/>
+                                <RoutineActivityPreview activity={activity} key={idx} setRoutines={setRoutines}/>
                             )
-                        }) : <div className='empty activity-card'>No activities to display</div>
+                        }) : <div className='empty routine-activity-container'>No activities to display</div>
                     }
                     </div>
 
-                    <div className='slider-nav' onClick={sliderRight}>{'>'}</div>
+                    <div className='slider-nav' onClick={sliderRight}><AiFillCaretRight /></div>
                 </div>
                 : null
             }
 
-
-            <div className='separated-horiz-container'>
-
-                {
-                    myPost ? <button onClick={handleToggleAddActivityForm} className="purple small-button">Add Activity</button> : null
-                }
-            </div>
         </div>
     )
 }

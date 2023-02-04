@@ -1,113 +1,65 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
+
+import { BsTrash } from 'react-icons/bs';
+
+import { deleteRoutineFetch, editRoutineFetch, fetchRoutine, fetchRoutines } from '../../../api/routines';
+
 
 const EditRoutine = (props) => {
     const [name, setName] = useState(props.routineData.name);
     const [goal, setGoal] = useState(props.routineData.goal);
+    const [isPublic, setIsPublic] = useState(props.routineData.isPublic);
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const { profileData, setRoutines } = useOutletContext();
+
+    const { setRoutines } = useOutletContext();
     const navigate = useNavigate();
 
     async function editRoutineFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routines/${props.routineData.id}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        name: name,
-                        goal: goal
-                    })
-                }
-            )
-            const data = await response.json();
-            console.log("EDIT ROUTINE DATA: ", data);
+        const editRoutineFetchData = await editRoutineFetch(props.routineData.id, name, goal, isPublic);
 
-            if (data.id) {
-                await fetchRoutines();
-                props.handleToggleEditRoutineForm();
-                
-                navigate('/routines/my-routines');
-            } else {
-                setErrorMessage(data.error);
-            }
+        if (editRoutineFetchData.success) {
+            props.handleToggleEditRoutineForm();
 
-        } catch(error) {
-            console.log(error);
+            const updatedRoutineFetchData = await fetchRoutine(props.routineData.id);
+            if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
+
+            const updatedRoutines = await fetchRoutines();
+            setRoutines(updatedRoutines.routines);
+
+            navigate(`/routines/${props.routineData.id}`);
+        } else {
+            setErrorMessage(editRoutineFetchData.message);
         }
     }
 
 
-    async function deleteRoutine() {
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routines/${props.routineData.id}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            )
-            const data = await response.json();
-            console.log("DELETE ROUTINE DATA: ", data);
+    async function deleteRoutineHandler(event) {
+        event.preventDefault();
 
-            if (data.success) {
-                await fetchRoutines();
-                props.handleToggleEditForm();
-                
-                navigate('/routines/my-routines');
-            } else {
-                setErrorMessage(data.error);
-            }
+        const deleteRoutineFetchData = await deleteRoutineFetch(props.routineData.id);
 
-        } catch(error) {
-            console.log(error);
+        if (deleteRoutineFetchData.success) {
+            props.handleToggleEditRoutineForm();
+
+            const updatedRoutineFetchData = await fetchRoutine(props.routineData.id);
+            if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
+
+            const updatedRoutines = await fetchRoutines();
+            setRoutines(updatedRoutines.routines);
+
+            navigate(`/routines/my-routines`);
+        } else {
+            setErrorMessage(deleteRoutineFetchData.message);
         }
     }
 
 
-    async function fetchRoutines() {
-        try {
-            const updatedMyRoutines = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedMyRoutinesData = await updatedMyRoutines.json();
-            console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
-            props.setRoutines(updatedMyRoutinesData);
-        } catch (error) {
-            console.log(error);
-        }
-        try {
-            const updatedRoutines = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routines`,
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedRoutinesData = await updatedRoutines.json();
-            console.log("FAST UPDATE routines data: ", updatedRoutinesData);
-            setRoutines(updatedRoutinesData);
-        } catch (error) {
-            console.log(error);
-        }
-    }
+    // TODO: FIX ISPUBLIC CHECKBOX
 
 
     return (
@@ -123,13 +75,22 @@ const EditRoutine = (props) => {
 
                 <br/>
 
-                {/* <label>Public Routine? {"("}Check for yes{")"}</label>
-                <input type="checkbox" value={isPublic} onChange={(event) => setIsPublic(event.target.checked)} ></input>
+                <label>Visible to public?</label>
+                <div className='publicity-container'>
+                    <div>No</div>
+                    <div className='checkbox'>
+                        <input type="checkbox" value={isPublic} onChange={(event) => setIsPublic(event.target.checked)} id='edit-routine-publicity' checked={isPublic}></input>
+                        <label htmlFor='edit-routine-publicity'></label>
+                    </div>
+                    <div>Yes</div>
+                </div>
 
-                <br/> */}
+                <br/>
 
-                <button onClick={deleteRoutine} className='red small-button'>Delete Routine</button>
-                <button type="submit" className='green small-button'>Update Routine</button>
+                <div className='spread-row'>
+                    <button onClick={deleteRoutineHandler} className='center-row'><BsTrash />Delete Routine</button>
+                    <button type="submit">Update</button>
+                </div>
             </form>
             {
                 errorMessage ? <p>{errorMessage}</p> : null

@@ -11,16 +11,12 @@ const Home = () => {
 
 
     return (
-        <div className='centered'>
+        <div>
             <div className='home-container'>
-                <img className='home-image' src="https://www.shape.com/thmb/QNEryNaLLGIlAFAxMTQhoZ5b9VE=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/barbell-GettyImages-1305407157-f394dfd947e04e57bcad8149bcf314d4.jpg" alt="action shot"></img>
-                <div className='home-info' onClick={() => navigate('/routines')}>Hey{ loggedIn ? <strong> {profileData.username}!</strong>: '!'} Welcome{ loggedIn ? ' back' : ''} to <div className='home-title'>Fitness Trackr</div>! Good luck with your <strong><u>routines</u></strong> today!</div>
+                <img src="https://media.self.com/photos/5b7c4e71ecbb7f4c41c77335/4:3/w_2240%2Cc_limit/triangle-pose-beginner-yoga.jpg" alt="action shot"></img>
+                <div className='home-info' onClick={() => navigate('/routines')}>Hey { loggedIn ? `${profileData.username}!` : '!'} Welcome{ loggedIn ? ' back' : ''} to <div id='home-title'>Fitness Trackr</div>! Good luck with your <strong><u>routines</u></strong> today!</div>
                 <div className='home-message'>{randomMessage}</div>
             </div>
-
-            {/* {
-                loggedIn ? <h2>{profileData.username} !</h2> : null
-            } */}
         </div>
     )
 }

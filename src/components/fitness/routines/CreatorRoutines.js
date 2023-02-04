@@ -1,50 +1,41 @@
 import React, {useEffect, useState} from "react";
 import { useOutletContext, useLocation, Link } from "react-router-dom";
 
+import { userRoutinesFetch } from "../../../api/users";
+
 import RoutinePreview from "./RoutinePreview";
 
 const CreatorRoutines = () => {
     const { profileData } = useOutletContext();
+    console.log("HELLO CREATOR ROUTINES")
 
     const [routines, setRoutines] = useState([]);
 
     const location = useLocation();
-    const username = location.pathname.slice('/routines/'.length);
+    const username = location.pathname.slice('/routines/user/'.length);
 
 
     useEffect(() => {
-        async function fetchRoutines() {
-            try {
-                const response = await fetch(
-                    `https://fitnesstrac-kr.herokuapp.com/api/users/${username}/routines`,
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-                const data = await response.json();
-                // console.log("routine data: ", data);
-                setRoutines(data);
-            } catch (error) {
-                console.log(error);
-            }
+        async function getRoutines() {
+            console.log("getting routines")
+            const userRoutinesFetchData = await userRoutinesFetch(username);
+            console.log("userRoutinesFetchData: ", userRoutinesFetchData)
+            userRoutinesFetchData.success ? setRoutines(userRoutinesFetchData.routines) : console.log(userRoutinesFetchData.message);
         }
-        fetchRoutines();
+        getRoutines();
     }, []);
 
 
     return (
-        <div>
-            <h1>@{username}'s routines</h1>
-            {
-                username === profileData.username ? <button><Link to={`/routines/${username}/add`}>Add New Routine</Link></button> : null
-            }
-            <div className="horiz-flex-container">
+        <div className="page-container">
+            <header>
+                <h1><div className="creator-page-tag">{username}'s</div> Public Routines</h1>
+            </header>
+            <div>
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) : <p>No routines to display</p>
+                }) : <p className="nothing-here">No routines to display...</p>
             }
             </div>
         </div>

@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useOutletContext, useNavigate } from "react-router-dom";
+
+import { BsTrash } from 'react-icons/bs';
+
+import { fetchRoutine, fetchRoutines } from '../../../api/routines';
+import { deleteRoutineActivityFetch, editRoutineActivityFetch } from '../../../api/routine_activities';
 
 const EditRoutineActivity = (props) => {
     const [count, setCount] = useState(props.activityData.count);
@@ -7,127 +12,68 @@ const EditRoutineActivity = (props) => {
 
     const [errorMessage, setErrorMessage] = useState("");
 
-    const { profileData, setRoutines } = useOutletContext();
+    const { setRoutines } = useOutletContext();
     const navigate = useNavigate();
 
 
-    async function editActivityFormSubmitHandler(event) {
+    async function editRoutineActivityFormSubmitHandler(event) {
         event.preventDefault();
 
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${props.activityData.routineActivityId}`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    },
-                    body: JSON.stringify({
-                        count: count,
-                        duration: duration
-                    })
-                }
-            )
-            const data = await response.json();
-            console.log("EDIT ACTIVITY DATA: ", data);
+        const editRoutineActivityFetchData = await editRoutineActivityFetch(props.activityData.routineActivityId, count, duration);
 
-            if (data.id) {
-                props.handleToggleEditRoutineActivityForm();
-                await fetchRoutines();
-                navigate('/routines/my-routines');
-            } else {
-                setErrorMessage(data.error);
-            }
+        if (editRoutineActivityFetchData.success) {
+            props.handleToggleEditRoutineActivityForm();
 
+            const updatedRoutineFetchData = await fetchRoutine(props.activityData.routineId);
+            if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
 
-        } catch(error) {
-            console.log(error);
+            const updatedRoutinesFetchData = await fetchRoutines();
+            if (updatedRoutinesFetchData.success) setRoutines(updatedRoutinesFetchData.routines);
+
+            navigate(`/routines/${props.activityData.routineId}`);
+        } else {
+            setErrorMessage(editRoutineActivityFetchData.message);
         }
     }
 
 
-    async function deleteActivity() {
-        try {
-            const response = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/routine_activities/${props.activityData.routineActivityId}`,
-                {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${localStorage.getItem("token")}`
-                    }
-                }
-            )
-            const data = await response.json();
-            console.log("DELETE ACTIVITY DATA: ", data);
+    async function deleteRoutineActivity(event) {
+        event.preventDefault();
 
-            if (data.success) {
-                await fetchRoutines();
-                props.handleToggleEditActivityForm();
-                
-                navigate('/routines/my-routines');
-            } else {
-                setErrorMessage(data.error);
-            }
+        const deleteRoutineActivityFetchData = await deleteRoutineActivityFetch(props.activityData.routineActivityId)
 
+        if (deleteRoutineActivityFetchData.success) {
+            props.handleToggleEditRoutineActivityForm();
 
-        } catch(error) {
-            console.log(error);
-        }
-    }
+            const updatedRoutineFetchData = await fetchRoutine(props.activityData.routineId);
+            if (updatedRoutineFetchData.success) props.setRoutineData(updatedRoutineFetchData.routine);
 
+            const updatedRoutinesFetchData = await fetchRoutines();
+            if (updatedRoutinesFetchData.success) setRoutines(updatedRoutinesFetchData.routines);
 
-    async function fetchRoutines() {
-        try {
-            const updatedMyRoutines = await fetch(
-                `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedMyRoutinesData = await updatedMyRoutines.json();
-            console.log("FAST UPDATE my routines data: ", updatedMyRoutinesData);
-            props.setRoutines(updatedMyRoutinesData);
-        } catch (error) {
-            console.log(error);
-        }
-        try {
-            const updatedRoutines = await fetch(
-                `http://fitnesstrac-kr.herokuapp.com/api/routines`,
-                {
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                }
-            )
-            const updatedRoutinesData = await updatedRoutines.json();
-            console.log("FAST UPDATE routines data: ", updatedRoutinesData);
-            setRoutines(updatedRoutinesData);
-        } catch (error) {
-            console.log(error);
+            navigate(`/routines/${props.activityData.routineId}`);
+        } else {
+            setErrorMessage(deleteRoutineActivityFetchData.message);
         }
     }
 
 
     return (
         <div>
-            <form onSubmit={editActivityFormSubmitHandler} className="activity-form">
-                <div className='separated-horiz-container'>
-                    <div className='vert-flex-container'>
-                        <label>Count:</label>
+            <form onSubmit={editRoutineActivityFormSubmitHandler} className="routine-activity-form">
+                <div className='spread-row'>
+                    <div className='center-column'>
+                        <label>Set Count:</label>
                         <input type="number" value={count} onChange={(event) => setCount(event.target.value)} className="numeric-input"></input>
                     </div>
-                    <div className='vert-flex-container'>
-                        <label>Duration:</label>
+                    <div className='center-column'>
+                        <label>Set Duration:</label>
                         <input type="number" value={duration} onChange={(event) => setDuration(event.target.value)} className="numeric-input"></input>
                     </div>
                 </div>
-                <div className='separated-horiz-container'>
-                    <button onClick={deleteActivity} className="red small-button">Remove Activity</button>
-                    <button type="submit" className='green small-button'>Update Activity</button>
+                <div className='spread-row'>
+                    <button onClick={deleteRoutineActivity} className='center-row'><BsTrash />Remove Activity</button>
+                    <button type="submit">Update</button>
                 </div>
             </form>
             {

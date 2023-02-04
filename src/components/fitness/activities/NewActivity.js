@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import { useOutletContext, useNavigate } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { newActivityFetch } from '../../../api/activities';
+
+import { BiErrorCircle } from 'react-icons/bi';
+
 
 const NewActivity = () => {
 
-    const { profileData } = useOutletContext();
     const navigate = useNavigate();
 
     const [name, setName] = useState("");
@@ -18,24 +20,17 @@ const NewActivity = () => {
         event.preventDefault();
 
         const newActivityFetchData = await newActivityFetch(name, description, imageUrl);
-        if (newActivityFetchData.success) {
-            const updatedActivitiesData = await activitiesFetch();
-            // setActivities(updatedActivitiesData.activities);
-            navigate('/activities');
-        } else {
-            setErrorMessage(newActivityFetchData.message);
-        }
+        newActivityFetchData.success ? navigate('/activities') : setErrorMessage(newActivityFetchData.message);
     }
 
 
     return (
-        <div className='vert-flex-container'>
-            <h2>Adding New Activity</h2>
-            <p>@{profileData.username}</p>
+        <div className='page-container new-activity'>
+            <h2>New Activity</h2>
 
-            <form onSubmit={newActivityFormSubmitHandler} className="new-form">
+            <form onSubmit={newActivityFormSubmitHandler}>
                 <label>Name:</label>
-                <input type="text" value={name} onChange={(event) => setName(event.target.value)}></input>
+                <input type="text" className='name-input' value={name} onChange={(event) => setName(event.target.value)}></input>
 
                 <br/>
 
@@ -44,12 +39,16 @@ const NewActivity = () => {
 
                 <br/>
 
-                <button type="submit" className='green button'>Add Activity</button>
+                <label>Image or Gif Reference Url:</label>
+                <input type="text" value={imageUrl} onChange={(event) => setImageUrl(event.target.value)}></input>
+
+                <br />
+
+                <button type="submit">Add Activity</button>
             </form>
             {
-                errorMessage ? <p>{errorMessage}</p> : null
+                errorMessage ? <p className='error'><BiErrorCircle />{errorMessage}</p> : null
             }
-
         </div>
     )
 };

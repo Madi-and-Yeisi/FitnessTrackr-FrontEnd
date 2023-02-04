@@ -1,48 +1,55 @@
-import React, {useEffect, useState} from "react";
-import { useOutletContext, Link } from "react-router-dom";
+import {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
+
+import { MdAddCircle } from 'react-icons/md';
+import { ImSearch } from 'react-icons/im';
+
+import { myRoutinesFetch } from "../../../api/users";
 
 import RoutinePreview from "./RoutinePreview";
 
 const MyRoutines = () => {
-    const { profileData } = useOutletContext();
-
     const [routines, setRoutines] = useState([]);
+    const [ searchTerm, setSearchTerm ] = useState("");
 
 
     useEffect(() => {
-        async function fetchRoutines() {
-            try {
-                const response = await fetch(
-                    `https://fitnesstrac-kr.herokuapp.com/api/users/${profileData.username}/routines`,
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-                const data = await response.json();
-                // console.log("routine data: ", data);
-                setRoutines(data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
         fetchRoutines();
     }, []);
 
 
-    return (
-        <div>
-            <div className="separated-horiz-container">
-                <h1>@{profileData.username}'s routines</h1>
-                <button className="green button"><Link to={'/routines/my-routines/add'} className="black no-line">Add New Routine</Link></button>
-            </div>
+    async function fetchRoutines() {
+        const myRoutinesFetchData = await myRoutinesFetch();
+        setRoutines(myRoutinesFetchData.routines);
+    }
 
-            <div className="horiz-flex-container">
+
+    function findMatch(routine, text) {
+        if (routine.name.toLowerCase().includes(text.toLowerCase())) return true;
+        else if (routine.goal.toLowerCase().includes(text.toLowerCase())) return true;
+        else return false;
+    }
+
+    const filteredRoutines = routines.filter(routine => findMatch(routine, searchTerm));
+    const routinesToDisplay = searchTerm.length ? filteredRoutines : routines;
+
+
+    return (
+        <div className="page-container">
+            <header>
+                <h1>My Routines</h1>
+                <form>
+                    <ImSearch />
+                    <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
+                </form>
+                <Link to={'/routines/my-routines/add'} className="header-button"><MdAddCircle className="icon" />Add New</Link>
+            </header>
+
+            <div className="center-column">
             {
-                routines.length ? routines.map((routine, idx) => {
+                routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
-                }) : <p>No routines to display</p>
+                }) : <p className="nothing-here">No routines to display...</p>
             }
             </div>
         </div>

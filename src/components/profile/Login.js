@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link, useOutletContext, useNavigate } from "react-router-dom";
-import { loginFetch, userFetch } from '../../api/users';
+
+import { BiUser, BiLockAlt, BiErrorCircle } from 'react-icons/bi';
+import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+
+import { loginFetch, meFetch } from '../../api/users';
 
 const Login = () => {
 
@@ -21,7 +25,7 @@ const Login = () => {
         if (loginFetchData.success) {
             setLoggedIn(true);
             localStorage.setItem("token", loginFetchData.token);
-            const userFetchData = await userFetch();
+            const userFetchData = await meFetch();
             setProfileData(userFetchData);
             navigate('/');
         } else {
@@ -30,29 +34,24 @@ const Login = () => {
     }
 
 
-    function handleTogglePasswordVisibility(event) {
-        setPasswordVisibility(event.target.checked);
-        let passwordType = document.getElementById("passwordVisibilityInput");
-        if (passwordType.type === "password") {
-            passwordType.type = "text";
-        } else {
-            passwordType.type = "password";
-        }
-    }
-
     return (
-        <div className='vert-flex-container'>
-            <form onSubmit={loginFormSubmitHandler} className="purple form">
-                <label>Enter Username Here</label>
-                <input type="text" value={username} onChange={(event) => setUsername(event.target.value)}></input>
+        <div className='page-container'>
+            <form onSubmit={loginFormSubmitHandler} className="user-form">
+                <label>Enter Username:</label> 
+                <div className='input-container'>
+                    <BiUser className='icon' />
+                    <input type="text" value={username} onChange={(event) => setUsername(event.target.value)}></input>
+                </div>
 
                 <br/>
 
-                <label>Enter Password Here</label>
-                <input type="password" value={password} id="passwordVisibilityInput" onChange={(event) => setPassword(event.target.value)}></input>
-                <div  className='centered'>
-                    <label>Show Password?</label>
-                    <input type="checkbox" value={passwordVisibility} onChange={handleTogglePasswordVisibility}></input>
+                <label>Enter Password:</label>
+                <div className='input-container'>
+                    <BiLockAlt className='icon'/>
+                    <input type={ !passwordVisibility ? 'password' : 'text'} value={password} onChange={(event) => setPassword(event.target.value)}></input>
+                    {
+                        passwordVisibility ? <AiOutlineEye onClick={() => setPasswordVisibility(!passwordVisibility)} className='clickable icon'/> : <AiOutlineEyeInvisible onClick={() => setPasswordVisibility(!passwordVisibility)} className='clickable icon'/>
+                    }
                 </div>
 
                 <br/>
@@ -60,10 +59,10 @@ const Login = () => {
                 <button type="submit" className='green button'>Login</button>
             </form>
 
-            <Link to="/profile/register">Don't have an account? Click here to sign up</Link>
+            <Link to="/profile/register" className='register-link'>Don't have an account? Click here to sign up.</Link>
 
             {
-                errorMessage ? <p className='error'>{errorMessage}</p> : null
+                errorMessage ? <p className='error'><BiErrorCircle />{errorMessage}</p> : null
             }
         </div>
     )
