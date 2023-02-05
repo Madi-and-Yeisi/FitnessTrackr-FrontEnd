@@ -82,7 +82,7 @@ const DetailedRoutine = () => {
                         }
                     </div>
 
-                : <p className="nothing-here">Nothing to display...<div className="spinner"></div></p>
+                : <div className="nothing-here">Nothing to display...<div className="spinner"></div></div>
             }
         </div>
     )

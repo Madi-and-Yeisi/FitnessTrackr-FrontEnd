@@ -48,7 +48,7 @@ const Activities = () => {
             {
                 activitiesToDisplay.length ? activitiesToDisplay.map((activity, idx) => {
                     return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
-                }) : <p className="nothing-here">No activities to display...<div className="spinner"></div></p>
+                }) : <div className="nothing-here">No activities to display...<div className="spinner"></div></div>
             }
         </div>
     )
