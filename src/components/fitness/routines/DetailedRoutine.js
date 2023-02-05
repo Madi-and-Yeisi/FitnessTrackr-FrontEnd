@@ -50,7 +50,7 @@ const DetailedRoutine = () => {
     return (
         <div className='page-container'>
             {
-                myRoutine ? !toggleEditRoutineForm ? <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineEdit />Edit Your Routine</button> : <button onClick={handleToggleEditRoutineForm} className="edit-routine-button stupid-random-margin-pixels"><AiOutlineUpCircle />Nevermind</button> : null
+                myRoutine ? !toggleEditRoutineForm ? <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineEdit />Edit Routine</button> : <button onClick={handleToggleEditRoutineForm} className="edit-routine-button"><AiOutlineUpCircle />Nevermind</button> : null
             }
             {
                 toggleEditRoutineForm ? <EditRoutine routineData={routineData} handleToggleEditRoutineForm={handleToggleEditRoutineForm} setRoutineData={setRoutineData} /> : null
@@ -82,7 +82,7 @@ const DetailedRoutine = () => {
                         }
                     </div>
 
-                : <p className="nothing-here">Nothing to display...</p>
+                : <p className="nothing-here">Nothing to display...<div className="spinner"></div></p>
             }
         </div>
     )

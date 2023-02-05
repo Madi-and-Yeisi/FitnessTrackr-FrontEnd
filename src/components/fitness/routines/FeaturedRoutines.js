@@ -44,7 +44,7 @@ const FeaturedRoutines = () => {
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) :  <p className="nothing-here">No routines to display...</p>
+                }) :  <p className="nothing-here">No routines to display...<div className="spinner"></div></p>
             }
         </div>
     )

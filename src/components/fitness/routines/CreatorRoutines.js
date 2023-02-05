@@ -20,7 +20,7 @@ const CreatorRoutines = () => {
             console.log("getting routines")
             const userRoutinesFetchData = await userRoutinesFetch(username);
             console.log("userRoutinesFetchData: ", userRoutinesFetchData)
-            userRoutinesFetchData.success ? setRoutines(userRoutinesFetchData.routines) : console.log(userRoutinesFetchData.message);
+            // userRoutinesFetchData.success ? setRoutines(userRoutinesFetchData.routines) : console.log(userRoutinesFetchData.message);
         }
         getRoutines();
     }, []);
@@ -35,7 +35,7 @@ const CreatorRoutines = () => {
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) : <p className="nothing-here">No routines to display...</p>
+                }) : <p className="nothing-here">No routines to display...<div className="spinner"></div></p>
             }
             </div>
         </div>

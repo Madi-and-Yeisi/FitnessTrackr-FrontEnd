@@ -121,7 +121,8 @@
     display: flex;
     align-self: flex-end;
     gap: 4px;
-    background-color: var(--whitesmoke-50);
+    color: whitesmoke;
+    background-color: var(--prussian-blue-75);
     border: none;
     border-radius: 3px;
     padding: 7px 14px 7px 10px;
@@ -130,15 +131,12 @@
     cursor: pointer;
 }
 
-.stupid-random-margin-pixels { /* TODO: fix whatever is happening to the edit-routine-button */
-    margin-right: 10px;
-}
-
 .routine-form {
     display: flex;
     flex-direction: column;
     width: 580px;
     padding: 10px;
+    margin-top: 10px;
     border-radius: 3px;
     border: none;
     background-color: var(--whitesmoke-50);

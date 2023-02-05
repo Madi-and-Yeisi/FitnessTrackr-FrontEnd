@@ -13,7 +13,7 @@ const Header = ({ loggedIn, profileData }) => {
             <header className='sticky-header'>
                 <h1 className="title">Fitness Trackr</h1>
                 {
-                loggedIn ? <Link className='logout' to='profile'><BiLogOutCircle className='flip' />Log out</Link> : <Link className='logout' to='profile/login'><BiLogInCircle />Log in</Link>
+                loggedIn ? null : <Link className='logout' to='profile/login'><BiLogInCircle />Log in</Link>
                 }
             </header>
             <div className='nav-container'>
