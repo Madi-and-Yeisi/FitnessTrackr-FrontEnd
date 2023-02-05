@@ -1,13 +1,11 @@
-import React, {useEffect, useState} from "react";
-import { useOutletContext, useLocation, Link } from "react-router-dom";
+import {useEffect, useState} from "react";
+import { useLocation } from "react-router-dom";
 
 import { userRoutinesFetch } from "../../../api/users";
 
 import RoutinePreview from "./RoutinePreview";
 
 const CreatorRoutines = () => {
-    const { profileData } = useOutletContext();
-    console.log("HELLO CREATOR ROUTINES")
 
     const [routines, setRoutines] = useState([]);
 
@@ -17,10 +15,8 @@ const CreatorRoutines = () => {
 
     useEffect(() => {
         async function getRoutines() {
-            console.log("getting routines")
             const userRoutinesFetchData = await userRoutinesFetch(username);
-            console.log("userRoutinesFetchData: ", userRoutinesFetchData)
-            // userRoutinesFetchData.success ? setRoutines(userRoutinesFetchData.routines) : console.log(userRoutinesFetchData.message);
+            userRoutinesFetchData.success ? setRoutines(userRoutinesFetchData.routines) : console.log(userRoutinesFetchData.message);
         }
         getRoutines();
     }, []);
