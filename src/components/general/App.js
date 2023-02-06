@@ -45,7 +45,7 @@ const App = () => {
             setLoggedIn(true);
             setProfileData(meData.user);
         } else {
-            console.log(meData.message);
+            // console.log(meData.message);
         }
     }
 
