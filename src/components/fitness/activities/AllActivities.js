@@ -33,7 +33,7 @@ const Activities = () => {
     const activitiesToDisplay = searchTerm.length ? filteredActivities : activities;
 
     return (
-        <div className="page-container all-activities">
+        <div className="page-container">
             <header>
                 <h1>Activities</h1>
                 <form>
