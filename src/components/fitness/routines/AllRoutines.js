@@ -38,7 +38,7 @@ const Routines = () => {
         {
             routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
                 return <RoutinePreview key={idx} routine={routine} />
-            }) : <div className="nothing-here">Getting routines...<div className="spinner"></div></div>
+            }) : <div className="nothing-here">Fetching routines...<div className="spinner"></div></div>
         }
     </div>
     )

@@ -20,6 +20,7 @@ const DetailedRoutine = () => {
 
     const [ routineData, setRoutineData ] = useState();
     const [ myRoutine, setMyRoutine ] = useState(false);
+    const [ routineExists, setRoutineExists ] = useState(true);
 
     const [toggleEditRoutineForm, setToggleEditRoutineForm] = useState(false);
     const [toggleAddActivityForm, setToggleAddActivityForm] = useState(false);
@@ -32,8 +33,14 @@ const DetailedRoutine = () => {
 
     async function getRoutine() {
         const routineFetchData = await fetchRoutine(routineId);
-        routineFetchData.success ? setRoutineData(routineFetchData.routine) : console.log(routineFetchData.message);
-        if ( profileData.id == routineFetchData.routine.creatorId ) setMyRoutine(true);
+        if (routineFetchData.success) {
+            setRoutineData(routineFetchData.routine);
+            if ( profileData.id == routineFetchData.routine.creatorId ) setMyRoutine(true);
+        } else {
+            console.log(routineFetchData.message);
+            setRoutineExists(false);
+        } 
+        
     }
 
 
@@ -82,7 +89,8 @@ const DetailedRoutine = () => {
                         }
                     </div>
 
-                : <div className="nothing-here">Nothing to display...<div className="spinner"></div></div>
+                : routineExists ? <div className="nothing-here">Fetching routine...<div className="spinner"></div></div> 
+                    : <p className="nothing-here">This routine doesn't exist.</p>
             }
         </div>
     )

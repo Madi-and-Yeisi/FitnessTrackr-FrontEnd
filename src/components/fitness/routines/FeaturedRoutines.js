@@ -9,6 +9,7 @@ const FeaturedRoutines = () => {
 
     const [ routines, setRoutines ] = useState([]);
     const [ featuredTag, setFeaturedTag ] = useState("");
+    const [ noRoutines, setNoRoutines ] = useState(false);
 
     const location = useLocation();
     const id = location.pathname.slice('/routines/featured/'.length);
@@ -22,14 +23,15 @@ const FeaturedRoutines = () => {
                 determineFeaturedTag(routinesFetchData.routines[0]);
                 setRoutines(routinesFetchData.routines);
             } else {
-                console.log(routinesFetchData.message);
+                // console.log(routinesFetchData.message);
+                setNoRoutines(true);
             }
         }
         getRoutines();
     }, []);
 
 
-    async function determineFeaturedTag(routine) {
+    function determineFeaturedTag(routine) {
         routine.activities.forEach(activity => {
             if (activity.id == id) setFeaturedTag(activity.name);
         })
@@ -39,12 +41,15 @@ const FeaturedRoutines = () => {
     return (
         <div className="page-container">
             <header>
-                <h1>Routines with <div className="creator-page-tag">{featuredTag}</div></h1>
+                {
+                    noRoutines ? null : <h1>Routines with <div className="creator-page-tag">{featuredTag}</div></h1>
+                }
             </header>
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) :  <div className="nothing-here">No routines to display...<div className="spinner"></div></div>
+                }) :  !noRoutines ? <div className="nothing-here">Fetching routines...<div className="spinner"></div></div> 
+                        : <p className="nothing-here">No routines use this activity...</p>
             }
         </div>
     )
