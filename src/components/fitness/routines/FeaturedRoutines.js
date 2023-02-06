@@ -1,5 +1,7 @@
-import React, {useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
+
+import { fetchRoutinesByActivityId } from "../../../api/activities";
 
 import RoutinePreview from "./RoutinePreview";
 
@@ -13,25 +15,17 @@ const FeaturedRoutines = () => {
 
 
     useEffect(() => {
-        async function fetchRoutines() {
-            try {
-                const response = await fetch(
-                    `https://fitnesstrac-kr.herokuapp.com/api/activities/${id}/routines`,
-                    {
-                        headers: {
-                            "Content-Type": "application/json"
-                        }
-                    }
-                )
-                const data = await response.json();
-                // console.log("routine data: ", data);
-                determineFeaturedTag(data[0]);
-                setRoutines(data);
-            } catch (error) {
-                console.log(error);
+        async function getRoutines() {
+            const routinesFetchData = await fetchRoutinesByActivityId(id);
+
+            if (routinesFetchData.success) {
+                determineFeaturedTag(routinesFetchData.routines[0]);
+                setRoutines(routinesFetchData.routines);
+            } else {
+                console.log()
             }
         }
-        fetchRoutines();
+        getRoutines();
     }, []);
 
 
@@ -43,16 +37,15 @@ const FeaturedRoutines = () => {
 
 
     return (
-        <div>
-            <h1>Routines featuring {featuredTag}</h1>
-            <div className="horiz-flex-container">
+        <div className="page-container">
+            <header>
+                <h1>Routines with <div className="creator-page-tag">{featuredTag}</div></h1>
+            </header>
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) : <p>No routines to display</p>
+                }) :  <div className="nothing-here">No routines to display...<div className="spinner"></div></div>
             }
-            </div>
-
         </div>
     )
 }

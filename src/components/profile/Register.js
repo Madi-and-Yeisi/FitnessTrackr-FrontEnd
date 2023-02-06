@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useOutletContext, useNavigate } from "react-router-dom";
+import { useState, useEffect } from 'react';
+import { useOutletContext, useNavigate } from "react-router-dom";
 
 import { BiUser, BiLockAlt, BiErrorCircle } from 'react-icons/bi';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
@@ -55,9 +55,9 @@ const Register = () => {
             console.log(registerFetchData.message);
             setLoggedIn(true);
             localStorage.setItem("token", registerFetchData.token);
-            const userFetchData = meFetch();
+            const userFetchData = await meFetch();
             setProfileData(userFetchData.user);
-            navigate("/profile");
+            navigate("/");
         } else {
             setErrorMessage(registerFetchData.message);
         }

@@ -72,3 +72,23 @@ export async function editActivityFetch(activityId, name, description, imageUrl)
         console.log(error);
     }
 }
+
+
+export async function fetchRoutinesByActivityId(activityId) {
+    try {
+        const response = await fetch(
+            `http://localhost:3001/api/activities/${activityId}/routines`,
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
+        )
+        const data = await response.json();
+        console.log("routines by activity id " + activityId + " data:", data);
+
+        return data;
+    } catch (error) {
+        console.log(error);
+    }
+}
