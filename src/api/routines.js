@@ -13,7 +13,7 @@ export async function fetchRoutines() {
         )
 
         const data = await response.json();
-        console.log("routines data: ", data);
+        // console.log("routines data: ", data);
         return data;
     } catch (error) {
         console.log(error);
@@ -33,7 +33,7 @@ export async function fetchRoutine(routineId) {
         )
 
         const data = await response.json();
-        console.log("routine data: ", data);
+        // console.log("routine data: ", data);
         return data;
     } catch (error) {
         console.log(error);
@@ -60,7 +60,7 @@ export async function newRoutineFetch( name, goal, isPublic ) {
         )
 
         const data = await response.json();
-        console.log("new routine data: ", data);
+        // console.log("new routine data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -87,7 +87,7 @@ export async function editRoutineFetch(routineId, name, goal, isPublic) {
         )
 
         const data = await response.json();
-        console.log("edit routine data: ", data);
+        // console.log("edit routine data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -109,7 +109,7 @@ export async function deleteRoutineFetch(routineId) {
         )
 
         const data = await response.json();
-        console.log("delete routine data: ", data);
+        // console.log("delete routine data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -136,7 +136,7 @@ export async function addActivityToRoutineFetch(routineId, activityId, count, du
         )
 
         const data = await response.json();
-        console.log("new routine activity data: ", data);
+        // console.log("new routine activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);

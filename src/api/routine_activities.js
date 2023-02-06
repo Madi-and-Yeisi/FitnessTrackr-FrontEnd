@@ -19,7 +19,7 @@ export async function editRoutineActivityFetch(routineActivityId, count, duratio
         )
 
         const data = await response.json();
-        console.log("edit routine activity data: ", data);
+        // console.log("edit routine activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -41,7 +41,7 @@ export async function deleteRoutineActivityFetch(routineActivityId) {
         )
 
         const data = await response.json();
-        console.log("delete routine activity data: ", data);
+        // console.log("delete routine activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);

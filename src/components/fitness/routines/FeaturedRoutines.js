@@ -22,7 +22,7 @@ const FeaturedRoutines = () => {
                 determineFeaturedTag(routinesFetchData.routines[0]);
                 setRoutines(routinesFetchData.routines);
             } else {
-                console.log()
+                console.log(routinesFetchData.message);
             }
         }
         getRoutines();

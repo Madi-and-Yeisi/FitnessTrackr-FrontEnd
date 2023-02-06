@@ -52,7 +52,7 @@ const Register = () => {
         const registerFetchData = await registerFetch(username, password);
         
         if (registerFetchData.success) {
-            console.log(registerFetchData.message);
+            // console.log(registerFetchData.message);
             setLoggedIn(true);
             localStorage.setItem("token", registerFetchData.token);
             const userFetchData = await meFetch();

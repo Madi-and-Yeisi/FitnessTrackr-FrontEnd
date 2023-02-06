@@ -17,7 +17,7 @@ export async function registerFetch(username, password) {
             }
         )
         const data = await response.json();
-        console.log("register data:", data);
+        // console.log("register data:", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -41,7 +41,7 @@ export async function loginFetch(username, password) {
             }
         )
         const data = await response.json();
-        console.log("login data: ", data);
+        // console.log("login data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -61,7 +61,7 @@ export async function meFetch() {
             })
             
         const data = await response.json();
-        console.log("users/me data: ", data);
+        // console.log("users/me data: ", data);
         return data;
 
     } catch(error) {
@@ -82,7 +82,7 @@ export async function myRoutinesFetch() {
             })
             
         const data = await response.json();
-        console.log("my routines data: ", data);
+        // console.log("my routines data: ", data);
         return data;
 
     } catch(error) {
@@ -102,7 +102,7 @@ export async function userRoutinesFetch(username) {
             }
         )
         const data = await response.json();
-        console.log(`users/${username}/routines data: `, data);
+        // console.log(`users/${username}/routines data: `, data);
         return data;
 
     } catch (error) {

@@ -13,7 +13,7 @@ export async function activitiesFetch() {
             }
         )
         const data = await response.json();
-        console.log("activities data: ", data);
+        // console.log("activities data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -39,7 +39,7 @@ export async function newActivityFetch( name, description, imageUrl ) {
             }
         )
         const data = await response.json();
-        console.log("new activity data: ", data);
+        // console.log("new activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -66,7 +66,7 @@ export async function editActivityFetch(activityId, name, description, imageUrl)
         )
 
         const data = await response.json();
-        console.log("edit activity data: ", data);
+        // console.log("edit activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -85,7 +85,7 @@ export async function fetchRoutinesByActivityId(activityId) {
             }
         )
         const data = await response.json();
-        console.log("routines by activity id " + activityId + " data:", data);
+        // console.log("routines by activity id " + activityId + " data:", data);
 
         return data;
     } catch (error) {
