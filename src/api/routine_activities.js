@@ -4,7 +4,7 @@
 export async function editRoutineActivityFetch(routineActivityId, count, duration) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routine_activities/${routineActivityId}`,
+            `https://my-fitness-trackr.onrender.com/api/routine_activities/${routineActivityId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -30,7 +30,7 @@ export async function editRoutineActivityFetch(routineActivityId, count, duratio
 export async function deleteRoutineActivityFetch(routineActivityId) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routine_activities/${routineActivityId}`,
+            `https://my-fitness-trackr.onrender.com/api/routine_activities/${routineActivityId}`,
             {
                 method: "DELETE",
                 headers: {

@@ -4,7 +4,7 @@
 export async function fetchRoutines() {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/routines',
+            'https://my-fitness-trackr.onrender.com/api/routines',
             {
                 headers: {
                     "Content-Type": "application/json"
@@ -24,7 +24,7 @@ export async function fetchRoutines() {
 export async function fetchRoutine(routineId) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}`,
             {
                 headers: {
                     "Content-Type": "application/json"
@@ -44,7 +44,7 @@ export async function fetchRoutine(routineId) {
 export async function newRoutineFetch( name, goal, isPublic ) {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/routines',
+            'https://my-fitness-trackr.onrender.com/api/routines',
             {
                 method: "POST",
                 headers: {
@@ -71,7 +71,7 @@ export async function newRoutineFetch( name, goal, isPublic ) {
 export async function editRoutineFetch(routineId, name, goal, isPublic) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -98,7 +98,7 @@ export async function editRoutineFetch(routineId, name, goal, isPublic) {
 export async function deleteRoutineFetch(routineId) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}`,
             {
                 method: "DELETE",
                 headers: {
@@ -120,7 +120,7 @@ export async function deleteRoutineFetch(routineId) {
 export async function addActivityToRoutineFetch(routineId, activityId, count, duration) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}/activities`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}/activities`,
             {
                 method: "POST",
                 headers: {

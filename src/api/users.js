@@ -4,7 +4,7 @@
 export async function registerFetch(username, password) {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/users/register',
+            'https://my-fitness-trackr.onrender.com/api/users/register',
             {
                 method: "POST",
                 headers: {
@@ -28,7 +28,7 @@ export async function registerFetch(username, password) {
 export async function loginFetch(username, password) {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/users/login',
+            'https://my-fitness-trackr.onrender.com/api/users/login',
             {
                 method: "POST",
                 headers: {
@@ -52,7 +52,7 @@ export async function loginFetch(username, password) {
 export async function meFetch() {    
     try {
         const response = await fetch(
-            'http://localhost:3001/api/users/me',
+            'https://my-fitness-trackr.onrender.com/api/users/me',
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export async function meFetch() {
 export async function myRoutinesFetch() {    
     try {
         const response = await fetch(
-            'http://localhost:3001/api/users/my-routines',
+            'https://my-fitness-trackr.onrender.com/api/users/my-routines',
             {
                 headers: {
                     "Content-Type": "application/json",
@@ -94,7 +94,7 @@ export async function myRoutinesFetch() {
 export async function userRoutinesFetch(username) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/users/${username}/routines`,
+            `https://my-fitness-trackr.onrender.com/api/users/${username}/routines`,
             {
                 headers: {
                     "Content-Type": "application/json"

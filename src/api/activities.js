@@ -4,7 +4,7 @@
 export async function activitiesFetch() {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/activities',
+            'https://my-fitness-trackr.onrender.com/api/activities',
             {
                 method: "GET",
                 headers: {
@@ -24,7 +24,7 @@ export async function activitiesFetch() {
 export async function newActivityFetch( name, description, imageUrl ) {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/activities',
+            'https://my-fitness-trackr.onrender.com/api/activities',
             {
                 method: "POST",
                 headers: {
@@ -50,7 +50,7 @@ export async function newActivityFetch( name, description, imageUrl ) {
 export async function editActivityFetch(activityId, name, description, imageUrl) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/activities/${activityId}`,
+            `https://my-fitness-trackr.onrender.com/api/activities/${activityId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -77,7 +77,7 @@ export async function editActivityFetch(activityId, name, description, imageUrl)
 export async function fetchRoutinesByActivityId(activityId) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/activities/${activityId}/routines`,
+            `https://my-fitness-trackr.onrender.com/api/activities/${activityId}/routines`,
             {
                 headers: {
                     "Content-Type": "application/json"
