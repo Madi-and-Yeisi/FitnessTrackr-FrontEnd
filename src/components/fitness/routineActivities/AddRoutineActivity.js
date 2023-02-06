@@ -27,7 +27,6 @@ const AddRoutineActivity = (props) => {
     async function getActivities() {
         const activitiesData = await activitiesFetch();
         activitiesData.success ? setActivities(activitiesData.activities) : console.log(activitiesData.message);
-        console.log('activities', activities);
     }
 
 

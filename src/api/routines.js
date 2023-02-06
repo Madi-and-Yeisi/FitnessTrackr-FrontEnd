@@ -4,7 +4,7 @@
 export async function fetchRoutines() {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/routines',
+            'https://my-fitness-trackr.onrender.com/api/routines',
             {
                 headers: {
                     "Content-Type": "application/json"
@@ -13,7 +13,7 @@ export async function fetchRoutines() {
         )
 
         const data = await response.json();
-        console.log("routines data: ", data);
+        // console.log("routines data: ", data);
         return data;
     } catch (error) {
         console.log(error);
@@ -24,7 +24,7 @@ export async function fetchRoutines() {
 export async function fetchRoutine(routineId) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}`,
             {
                 headers: {
                     "Content-Type": "application/json"
@@ -33,7 +33,7 @@ export async function fetchRoutine(routineId) {
         )
 
         const data = await response.json();
-        console.log("routine data: ", data);
+        // console.log("routine data: ", data);
         return data;
     } catch (error) {
         console.log(error);
@@ -44,7 +44,7 @@ export async function fetchRoutine(routineId) {
 export async function newRoutineFetch( name, goal, isPublic ) {
     try {
         const response = await fetch(
-            'http://localhost:3001/api/routines',
+            'https://my-fitness-trackr.onrender.com/api/routines',
             {
                 method: "POST",
                 headers: {
@@ -60,7 +60,7 @@ export async function newRoutineFetch( name, goal, isPublic ) {
         )
 
         const data = await response.json();
-        console.log("new routine data: ", data);
+        // console.log("new routine data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -71,7 +71,7 @@ export async function newRoutineFetch( name, goal, isPublic ) {
 export async function editRoutineFetch(routineId, name, goal, isPublic) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}`,
             {
                 method: "PATCH",
                 headers: {
@@ -87,7 +87,7 @@ export async function editRoutineFetch(routineId, name, goal, isPublic) {
         )
 
         const data = await response.json();
-        console.log("edit routine data: ", data);
+        // console.log("edit routine data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -98,7 +98,7 @@ export async function editRoutineFetch(routineId, name, goal, isPublic) {
 export async function deleteRoutineFetch(routineId) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}`,
             {
                 method: "DELETE",
                 headers: {
@@ -109,7 +109,7 @@ export async function deleteRoutineFetch(routineId) {
         )
 
         const data = await response.json();
-        console.log("delete routine data: ", data);
+        // console.log("delete routine data: ", data);
         return data;
     } catch(error) {
         console.log(error);
@@ -120,7 +120,7 @@ export async function deleteRoutineFetch(routineId) {
 export async function addActivityToRoutineFetch(routineId, activityId, count, duration) {
     try {
         const response = await fetch(
-            `http://localhost:3001/api/routines/${routineId}/activities`,
+            `https://my-fitness-trackr.onrender.com/api/routines/${routineId}/activities`,
             {
                 method: "POST",
                 headers: {
@@ -136,7 +136,7 @@ export async function addActivityToRoutineFetch(routineId, activityId, count, du
         )
 
         const data = await response.json();
-        console.log("new routine activity data: ", data);
+        // console.log("new routine activity data: ", data);
         return data;
     } catch(error) {
         console.log(error);

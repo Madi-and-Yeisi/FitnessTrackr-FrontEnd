@@ -18,7 +18,6 @@ const Activities = () => {
         async function fetchActivities() {
             const activitiesData = await activitiesFetch();
             activitiesData.success ? setActivities(activitiesData.activities) : console.log(activitiesData.message);
-            console.log('activities', activities);
         }
         fetchActivities();
     }, []);

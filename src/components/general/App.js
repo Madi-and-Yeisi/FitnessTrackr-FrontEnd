@@ -41,7 +41,7 @@ const App = () => {
         const meData = await meFetch();    // arg me data
 
         if ( meData.success ) {
-            console.log('welcome ' + meData.user.username);
+            // console.log('welcome ' + meData.user.username);
             setLoggedIn(true);
             setProfileData(meData.user);
         } else {
