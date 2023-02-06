@@ -6,19 +6,18 @@ import { BiLogOutCircle } from 'react-icons/bi';
 
 
 const Profile = () => {
-    const { loggedIn, setLoggedIn, profileData, setProfileData } = useOutletContext();
-    // console.log('profile data!!!!!!1', profileData) //todo: stop from error while waiting for this
+    const { setLoggedIn, profileData, setProfileData } = useOutletContext();
 
     const navigate = useNavigate();
 
 
     function handleLogOut() {
-        // console.log("logging out");
         localStorage.removeItem("token");
         setProfileData({});
         setLoggedIn(false);
         navigate('/');
     }
+
 
     return (
         <div className='page-container'>
@@ -33,9 +32,8 @@ const Profile = () => {
                         <Link to='' className='profile-button-link'><MdSettings className='profile-icon'/>Your Account</Link>
                         <button onClick={handleLogOut}><BiLogOutCircle className='profile-icon flip'/>Log Out</button>
                     </div>
-                </div> : <p className='nothing-here'>No profile data...</p>
+                </div> : <div className='nothing-here'>No profile data...<div className='spinner'></div></div>
             }
-
         </div>
     )
 }
