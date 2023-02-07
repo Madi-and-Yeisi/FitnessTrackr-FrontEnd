@@ -25,22 +25,22 @@ const Routines = () => {
 
     return (
         <div className="page-container">
-        <header>
-            <h1>Routines</h1>
-            <form>
-                <ImSearch />
-                <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
-            </form>
+            <header>
+                <h1>Routines</h1>
+                <form>
+                    <ImSearch />
+                    <input type="text" value={searchTerm} onChange={(event) => setSearchTerm(event.target.value)}></input>
+                </form>
+                {
+                    loggedIn ? <Link to={'/routines/my-routines'} className="header-button"><BsFillArrowRightCircleFill />My Routines</Link> : null
+                }
+            </header>
             {
-                loggedIn ? <Link to={'/routines/my-routines'} className="header-button"><BsFillArrowRightCircleFill />My Routines</Link> : null
+                routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
+                    return <RoutinePreview key={idx} routine={routine} />
+                }) : <div className="nothing-here">Fetching routines...<div className="spinner"></div></div>
             }
-        </header>
-        {
-            routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
-                return <RoutinePreview key={idx} routine={routine} />
-            }) : <div className="nothing-here">Getting routines...<div className="spinner"></div></div>
-        }
-    </div>
+        </div>
     )
 }
 

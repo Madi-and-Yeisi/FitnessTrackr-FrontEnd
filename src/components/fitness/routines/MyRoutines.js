@@ -9,8 +9,10 @@ import { myRoutinesFetch } from "../../../api/users";
 import RoutinePreview from "./RoutinePreview";
 
 const MyRoutines = () => {
+
     const [routines, setRoutines] = useState([]);
     const [ searchTerm, setSearchTerm ] = useState("");
+    const [ noRoutines, setNoRoutines ] = useState(false);
 
 
     useEffect(() => {
@@ -21,6 +23,7 @@ const MyRoutines = () => {
     async function fetchRoutines() {
         const myRoutinesFetchData = await myRoutinesFetch();
         setRoutines(myRoutinesFetchData.routines);
+        if (myRoutinesFetchData.routines.length == 0) setNoRoutines(true);
     }
 
 
@@ -49,7 +52,8 @@ const MyRoutines = () => {
             {
                 routinesToDisplay.length ? routinesToDisplay.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} setRoutines={setRoutines} />
-                }) : <p className="nothing-here">No routines to display...</p>
+                }) : !noRoutines ? <div className="nothing-here">Fetching routines...<div className="spinner"></div></div> 
+                        : <p className="nothing-here">You have no routines.</p>
             }
             </div>
         </div>

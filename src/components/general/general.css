@@ -42,6 +42,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .center-row {
@@ -73,6 +74,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap-reverse;
     width: 100%;
     background-color: whitesmoke;
 }
@@ -125,7 +127,7 @@ nav {
 }
 
 .logout, .logout:visited {
-    align-self: flex-start;
+    align-self: flex-end;
     display: flex;
     align-items: center;
     gap: 2px;
@@ -164,6 +166,7 @@ nav {
 .page-container header {
     background: rgba(0, 0, 0, 0);
     padding: 10px;
+    flex-wrap: wrap;
 }
 
 .page-container header h1 {
@@ -262,7 +265,7 @@ nav {
 }
 
 .home-container img {
-    height: 80vh;
+    width: 900px;
 }
 
 .home-info {
@@ -297,4 +300,62 @@ nav {
     font-size: 18pt;
     font-weight: bold;
     font-family: 'Oooh Baby', cursive;
+}
+
+
+
+/* 
+
+SCREEN SIZE CONDITIONAL SIZING
+
+*/
+
+
+
+@media screen and (max-width:900px) {
+    .home-container img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:760px) {
+    .page-container {
+        padding: 10px 40px;
+    }
+}
+
+@media screen and (max-width:600px) {
+    .page-container {
+        padding: 10px 20px;
+    }
+    .logout, .logout:visited {
+        font-size: 10pt;
+    }
+    nav {
+        justify-content: space-evenly;
+        gap: 20px;
+    }
+    .home-info {
+        top: 5%;
+        right: 10%;
+        max-width: 50%;
+    }
+    .home-message {
+        bottom: 15%;
+        left: 10%;
+        max-width: 40%;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .home-info {
+        top: 3%;
+        right: 5%;
+        max-width: 70%;
+    }
+    .home-message {
+        bottom: 5%;
+        left: 5%;
+        max-width: 50%;
+    }
 }

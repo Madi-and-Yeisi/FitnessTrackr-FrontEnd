@@ -8,6 +8,7 @@ import RoutinePreview from "./RoutinePreview";
 const CreatorRoutines = () => {
 
     const [routines, setRoutines] = useState([]);
+    const [ noRoutines, setNoRoutines ] = useState(false);
 
     const location = useLocation();
     const username = location.pathname.slice('/routines/user/'.length);
@@ -16,7 +17,13 @@ const CreatorRoutines = () => {
     useEffect(() => {
         async function getRoutines() {
             const userRoutinesFetchData = await userRoutinesFetch(username);
-            userRoutinesFetchData.success ? setRoutines(userRoutinesFetchData.routines) : console.log(userRoutinesFetchData.message);
+            if (userRoutinesFetchData.success) {
+                setRoutines(userRoutinesFetchData.routines);
+                if (userRoutinesFetchData.routines.length == 0) setNoRoutines(true);
+            } else {
+                console.log(userRoutinesFetchData.message);
+            }
+            
         }
         getRoutines();
     }, []);
@@ -31,7 +38,8 @@ const CreatorRoutines = () => {
             {
                 routines.length ? routines.map((routine, idx) => {
                     return <RoutinePreview key={idx} routine={routine} />
-                }) : <div className="nothing-here">No routines to display...<div className="spinner"></div></div>
+                }) : !noRoutines ? <div className="nothing-here">Fetching routines...<div className="spinner"></div></div> 
+                : <p className="nothing-here">No routines to display.</p>
             }
             </div>
         </div>

@@ -268,7 +268,6 @@
 }
 
 
-/*  */
 .empty {
     display: flex;
     justify-content: center;
@@ -285,28 +284,8 @@ SCREEN SIZE CONDITIONAL SIZING
 */
 
 
-/* tablet styles conditional sizing */
-@media screen and (max-width:850px) {
-    .routine-activity-card {
-    width: 354px!important;
-    height: 15vh;
-    border: 1px solid fuchsia;
-    }
-}
-
-/* mobile styles conditional sizing */
-@media screen and (max-width:480px) {
-    .activities-container {
-    width: 200px!important;
-    height: 55vh;
-    border: 1px solid blue;
-    }
-}
-
-/* skinny mobile styles conditional sizing */
-@media screen and (max-width:414px) {
-    .activities-container {
-    width: 100px!important;
-    border: 1px solid goldenrod;
+@media screen and (max-width: 760px) {
+    .detailed-routine-activity {
+        width: 90%;
     }
 }

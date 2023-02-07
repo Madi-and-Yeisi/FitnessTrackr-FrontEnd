@@ -33,7 +33,7 @@ const Activities = () => {
     const activitiesToDisplay = searchTerm.length ? filteredActivities : activities;
 
     return (
-        <div className="page-container all-activities">
+        <div className="page-container">
             <header>
                 <h1>Activities</h1>
                 <form>
@@ -47,7 +47,7 @@ const Activities = () => {
             {
                 activitiesToDisplay.length ? activitiesToDisplay.map((activity, idx) => {
                     return <ActivityPreview key={idx} activity={activity} setActivities={setActivities} />
-                }) : <div className="nothing-here">No activities to display...<div className="spinner"></div></div>
+                }) : <div className="nothing-here">Fetching activities...<div className="spinner"></div></div>
             }
         </div>
     )
